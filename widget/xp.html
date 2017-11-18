@@ -1,0 +1,26 @@
+<div ng-show="((carac != undefined && xp.caracs > 0) || comp != undefined) && diff < 0" class="w-xp expandable">
+	<span class="val calcule">{{-diff}}</span>
+	<form>
+		<table>
+			<tr ng-show="caracs.length > 0 && xp.caracs > 0">
+				<th>Carac<span ng-show="caracs.length > 1">s</span>.</th>
+				<td class="val calcule">{{xp.caracs}}</td>
+			</tr>
+			<tr ng-show="caracs.length > 1 && xp.caracs > 0" ng-repeat="c in caracs">
+				<td class="label saisie">{{c.label}}</td>
+				<td class="val saisie">
+					<input name="{{c.nom}}" type="number" maxlength="2" ng-model="c.val" ng-change="computeInvalid()"/>
+				</td>
+			</tr>
+			<tr ng-show="comp != undefined && xp.comp > 0">
+				<th>Comp.</th>
+				<td class="val calcule">{{xp.comp}}</td>
+			</tr>
+			<tr>
+				<td class="center" colspan="2">
+					<button ng-disabled="invalid" ng-click="valid()">Valider</button>
+				</td>
+			</tr>
+		</table>
+	</form>
+</div>

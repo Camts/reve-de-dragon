@@ -1,0 +1,51 @@
+<table id="cadre-archetype" class="cadre center">
+	<tr>
+		<td colspan="10"><h1>Rempissage de l'archétype</h1></td>
+		<td colspan="3" class="right"><button ng-click="archetypeValid()">Valider</button></td>
+	</tr>
+	<tr>
+		<th class="right">Niveau</th>
+		<td ng-class="{'emphase': ihm.archetype.emphase == 11}" ng-click="service.competence.emphaseArchetype(ihm, 11)">+11</td>
+		<td ng-class="{'emphase': ihm.archetype.emphase == 10}" ng-click="service.competence.emphaseArchetype(ihm, 10)">+10</td>
+		<td ng-class="{'emphase': ihm.archetype.emphase == 9}" ng-click="service.competence.emphaseArchetype(ihm, 9)">+9</td>
+		<td ng-class="{'emphase': ihm.archetype.emphase == 8}" ng-click="service.competence.emphaseArchetype(ihm, 8)">+8</td>
+		<td ng-class="{'emphase': ihm.archetype.emphase == 7}" ng-click="service.competence.emphaseArchetype(ihm, 7)">+7</td>
+		<td ng-class="{'emphase': ihm.archetype.emphase == 6}" ng-click="service.competence.emphaseArchetype(ihm, 6)">+6</td>
+		<td ng-class="{'emphase': ihm.archetype.emphase == 5}" ng-click="service.competence.emphaseArchetype(ihm, 5)">+5</td>
+		<td ng-class="{'emphase': ihm.archetype.emphase == 4}" ng-click="service.competence.emphaseArchetype(ihm, 4)">+4</td>
+		<td ng-class="{'emphase': ihm.archetype.emphase == 3}" ng-click="service.competence.emphaseArchetype(ihm, 3)">+3</td>
+		<td ng-class="{'emphase': ihm.archetype.emphase == 2}" ng-click="service.competence.emphaseArchetype(ihm, 2)">+2</td>
+		<td ng-class="{'emphase': ihm.archetype.emphase == 1}" ng-click="service.competence.emphaseArchetype(ihm, 1)">+1</td>
+		<td ng-class="{'emphase': ihm.archetype.emphase == 0}" ng-click="service.competence.emphaseArchetype(ihm, 0)">0</td>
+	</tr>
+	<tr>
+		<th class="right">Total</th>
+		<td>1</td>
+		<td>1</td>
+		<td>2</td>
+		<td>3</td>
+		<td>4</td>
+		<td>5</td>
+		<td>6</td>
+		<td>7</td>
+		<td>8</td>
+		<td>9</td>
+		<td>10</td>
+		<td>&infin;</td>
+	</tr>
+	<tr>
+		<th class="right">Restant</th>
+		<td class="val calcule">{{ihm.archetype.values[11].restant}}</td>
+		<td class="val calcule">{{ihm.archetype.values[10].restant}}</td>
+		<td class="val calcule">{{ihm.archetype.values[9].restant}}</td>
+		<td class="val calcule">{{ihm.archetype.values[8].restant}}</td>
+		<td class="val calcule">{{ihm.archetype.values[7].restant}}</td>
+		<td class="val calcule">{{ihm.archetype.values[6].restant}}</td>
+		<td class="val calcule">{{ihm.archetype.values[5].restant}}</td>
+		<td class="val calcule">{{ihm.archetype.values[4].restant}}</td>
+		<td class="val calcule">{{ihm.archetype.values[3].restant}}</td>
+		<td class="val calcule">{{ihm.archetype.values[2].restant}}</td>
+		<td class="val calcule">{{ihm.archetype.values[1].restant}}</td>
+		<td class="val calcule">&infin;</td>
+	</tr>
+</table>

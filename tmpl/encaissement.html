@@ -1,0 +1,140 @@
+<div id="cadre-encaissement" class="cadre" draggable="true" ondragstart="zone.drag(event)">
+	<table>
+		<tr>
+			<td colspan="7">
+				<h1>Encaissement</h1>
+				<table prefs>
+					<tr>
+						<td><label for="cadre-encaissement-armure" class="label saisie">Voir l'armure</label></td>
+						<td><input id="cadre-encaissement-armure" class="val saisie" type="checkbox" ng-model="display.cadre.encaissement.armure"/></td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+		<tr>
+			<td class="label saisie">+Dom</td>
+			<td class="val saisie"><input type="number" maxlength="2" ng-model="ihm.encaissement.dom" type-int-min="0"/></td>
+			<td class="label saisie">Réussite</td>
+			<td class="val saisie"><select ng-model="ihm.encaissement.reussite">
+				<option value="0">Normale</option><option value="1">Significative</option><option value="2">Particulière</option><option value="3">Critique</option>
+			</select></td>
+			<td class="label saisie">Type</td>
+			<td class="val saisie"><select ng-model="ihm.encaissement.type">
+				<option value="T">Tranchant</option><option value="C">Contandant</option><option value="P">Pointe</option>
+			</select></td>
+			<td><button ng-click="encaissementValid()">Encaisser</button></td>
+		</tr>
+	</table>
+	<table ng-show="display.cadre.encaissement.armure">
+		<tr>
+			<th colspan="9"><h1>Armure</h1></th>
+		</tr>
+		<tr>
+			<th colspan="3">Bras de l'arme</th>
+			<th colspan="3">Tête</th>
+			<th colspan="3">Bras du bouclier</th>
+		</tr>
+		<tr>
+			<td class="label saisie">Épaule</td>
+			<td class="val saisie"><select ng-model="perso.eqmt.armure.epauleArme.val" ng-options="encaissementTypeArmure.indexOf(t) as t for t in encaissementTypeArmure"></select></td>
+			<td class="val saisie"><input type="number" maxlength="1" ng-model="perso.eqmt.armure.epauleArme.bonus" type-int-min="0" title="Bonus"/></td>
+			<td class="label saisie">Crâne</td>
+			<td class="val saisie"><select ng-model="perso.eqmt.armure.crane.val" ng-options="encaissementTypeArmure.indexOf(t) as t for t in encaissementTypeArmure"></select></td>
+			<td class="val saisie"><input type="number" maxlength="1" ng-model="perso.eqmt.armure.crane.bonus" type-int-min="0" title="Bonus"/></td>
+			<td class="label saisie">Épaule</td>
+			<td class="val saisie"><select ng-model="perso.eqmt.armure.epauleBouclier.val" ng-options="encaissementTypeArmure.indexOf(t) as t for t in encaissementTypeArmure"></select></td>
+			<td class="val saisie"><input type="number" maxlength="1" ng-model="perso.eqmt.armure.epauleBouclier.bonus" type-int-min="0" title="Bonus"/></td>
+		</tr>
+		<tr>
+			<td class="label saisie">Bras</td>
+			<td class="val saisie"><select ng-model="perso.eqmt.armure.brasArme.val" ng-options="encaissementTypeArmure.indexOf(t) as t for t in encaissementTypeArmure"></select></td>
+			<td class="val saisie"><input type="number" maxlength="1" ng-model="perso.eqmt.armure.brasArme.bonus" type-int-min="0" title="Bonus"/></td>
+			<td class="label saisie">Visage</td>
+			<td class="val saisie"><select ng-model="perso.eqmt.armure.visage.val" ng-options="encaissementTypeArmure.indexOf(t) as t for t in encaissementTypeArmure"></select></td>
+			<td class="val saisie"><input type="number" maxlength="1" ng-model="perso.eqmt.armure.visage.bonus" type-int-min="0" title="Bonus"/></td>
+			<td class="label saisie">Bras</td>
+			<td class="val saisie"><select ng-model="perso.eqmt.armure.brasBouclier.val" ng-options="encaissementTypeArmure.indexOf(t) as t for t in encaissementTypeArmure"></select></td>
+			<td class="val saisie"><input type="number" maxlength="1" ng-model="perso.eqmt.armure.brasBouclier.bonus" type-int-min="0" title="Bonus"/></td>
+		</tr>
+		<tr>
+			<td class="label saisie">Coude</td>
+			<td class="val saisie"><select ng-model="perso.eqmt.armure.coudeArme.val" ng-options="encaissementTypeArmure.indexOf(t) as t for t in encaissementTypeArmure"></select></td>
+			<td class="val saisie"><input type="number" maxlength="1" ng-model="perso.eqmt.armure.coudeArme.bonus" type-int-min="0" title="Bonus"/></td>
+			<td class="label saisie">Cou</td>
+			<td class="val saisie"><select ng-model="perso.eqmt.armure.cou.val" ng-options="encaissementTypeArmure.indexOf(t) as t for t in encaissementTypeArmure"></select></td>
+			<td class="val saisie"><input type="number" maxlength="1" ng-model="perso.eqmt.armure.cou.bonus" type-int-min="0" title="Bonus"/></td>
+			<td class="label saisie">Coude</td>
+			<td class="val saisie"><select ng-model="perso.eqmt.armure.coudeBouclier.val" ng-options="encaissementTypeArmure.indexOf(t) as t for t in encaissementTypeArmure"></select></td>
+			<td class="val saisie"><input type="number" maxlength="1" ng-model="perso.eqmt.armure.coudeBouclier.bonus" type-int-min="0" title="Bonus"/></td>
+		</tr>
+		<tr>
+			<td class="label saisie">Avant-bras</td>
+			<td class="val saisie"><select ng-model="perso.eqmt.armure.avantBrasArme.val" ng-options="encaissementTypeArmure.indexOf(t) as t for t in encaissementTypeArmure"></select></td>
+			<td class="val saisie"><input type="number" maxlength="1" ng-model="perso.eqmt.armure.avantBrasArme.bonus" type-int-min="0" title="Bonus"/></td>
+			<th colspan="3">Buste</th>
+			<td class="label saisie">Avant-bras</td>
+			<td class="val saisie"><select ng-model="perso.eqmt.armure.avantBrasBouclier.val" ng-options="encaissementTypeArmure.indexOf(t) as t for t in encaissementTypeArmure"></select></td>
+			<td class="val saisie"><input type="number" maxlength="1" ng-model="perso.eqmt.armure.avantBrasBouclier.bonus" type-int-min="0" title="Bonus"/></td>
+		</tr>
+		<tr>
+			<td class="label saisie">Poignet</td>
+			<td class="val saisie"><select ng-model="perso.eqmt.armure.poignetArme.val" ng-options="encaissementTypeArmure.indexOf(t) as t for t in encaissementTypeArmure"></select></td>
+			<td class="val saisie"><input type="number" maxlength="1" ng-model="perso.eqmt.armure.poignetArme.bonus" type-int-min="0" title="Bonus"/></td>
+			<td class="label saisie">Thorax</td>
+			<td class="val saisie"><select ng-model="perso.eqmt.armure.thorax.val" ng-options="encaissementTypeArmure.indexOf(t) as t for t in encaissementTypeArmure"></select></td>
+			<td class="val saisie"><input type="number" maxlength="1" ng-model="perso.eqmt.armure.thorax.bonus" type-int-min="0" title="Bonus"/></td>
+			<td class="label saisie">Poignet</td>
+			<td class="val saisie"><select ng-model="perso.eqmt.armure.poignetBouclier.val" ng-options="encaissementTypeArmure.indexOf(t) as t for t in encaissementTypeArmure"></select></td>
+			<td class="val saisie"><input type="number" maxlength="1" ng-model="perso.eqmt.armure.poignetBouclier.bonus" type-int-min="0" title="Bonus"/></td>
+		</tr>
+		<tr>
+			<td class="label saisie">Main</td>
+			<td class="val saisie"><select ng-model="perso.eqmt.armure.mainArme.val" ng-options="encaissementTypeArmure.indexOf(t) as t for t in encaissementTypeArmure"></select></td>
+			<td class="val saisie"><input type="number" maxlength="1" ng-model="perso.eqmt.armure.mainArme.bonus" type-int-min="0" title="Bonus"/></td>
+			<td class="label saisie">Côtes arme</td>
+			<td class="val saisie"><select ng-model="perso.eqmt.armure.cotesArme.val" ng-options="encaissementTypeArmure.indexOf(t) as t for t in encaissementTypeArmure"></select></td>
+			<td class="val saisie"><input type="number" maxlength="1" ng-model="perso.eqmt.armure.cotesArme.bonus" type-int-min="0" title="Bonus"/></td>
+			<td class="label saisie">Main</td>
+			<td class="val saisie"><select ng-model="perso.eqmt.armure.mainBouclier.val" ng-options="encaissementTypeArmure.indexOf(t) as t for t in encaissementTypeArmure"></select></td>
+			<td class="val saisie"><input type="number" maxlength="1" ng-model="perso.eqmt.armure.mainBouclier.bonus" type-int-min="0" title="Bonus"/></td>
+		</tr>
+		<tr>
+			<th colspan="3">Jambe de l'arme</th>
+			<td class="label saisie">Ventre</td>
+			<td class="val saisie"><select ng-model="perso.eqmt.armure.ventre.val" ng-options="encaissementTypeArmure.indexOf(t) as t for t in encaissementTypeArmure"></select></td>
+			<td class="val saisie"><input type="number" maxlength="1" ng-model="perso.eqmt.armure.ventre.bonus" type-int-min="0" title="Bonus"/></td>
+			<th colspan="3">Jambe du bouclier</th>
+		</tr>
+		<tr>
+			<td class="label saisie">Hanche</td>
+			<td class="val saisie"><select ng-model="perso.eqmt.armure.hancheArme.val" ng-options="encaissementTypeArmure.indexOf(t) as t for t in encaissementTypeArmure"></select></td>
+			<td class="val saisie"><input type="number" maxlength="1" ng-model="perso.eqmt.armure.hancheArme.bonus" type-int-min="0" title="Bonus"/></td>
+			<td class="label saisie">Côtes bouclier </td>
+			<td class="val saisie"><select ng-model="perso.eqmt.armure.cotesBouclier.val" ng-options="encaissementTypeArmure.indexOf(t) as t for t in encaissementTypeArmure"></select></td>
+			<td class="val saisie"><input type="number" maxlength="1" ng-model="perso.eqmt.armure.cotesBouclier.bonus" type-int-min="0" title="Bonus"/></td>
+			<td class="label saisie">Hanche</td>
+			<td class="val saisie"><select ng-model="perso.eqmt.armure.hancheBouclier.val" ng-options="encaissementTypeArmure.indexOf(t) as t for t in encaissementTypeArmure"></select></td>
+			<td class="val saisie"><input type="number" maxlength="1" ng-model="perso.eqmt.armure.hancheBouclier.bonus" type-int-min="0" title="Bonus"/></td>
+		</tr>
+		<tr>
+			<td class="label saisie">Cuisse</td>
+			<td class="val saisie"><select ng-model="perso.eqmt.armure.cuisseArme.val" ng-options="encaissementTypeArmure.indexOf(t) as t for t in encaissementTypeArmure"></select></td>
+			<td class="val saisie"><input type="number" maxlength="1" ng-model="perso.eqmt.armure.cuisseArme.bonus" type-int-min="0" title="Bonus"/></td>
+			<td class="label saisie">Bas ventre</td>
+			<td class="val saisie"><select ng-model="perso.eqmt.armure.basVentre.val" ng-options="encaissementTypeArmure.indexOf(t) as t for t in encaissementTypeArmure"></select></td>
+			<td class="val saisie"><input type="number" maxlength="1" ng-model="perso.eqmt.armure.basVentre.bonus" type-int-min="0" title="Bonus"/></td>
+			<td class="label saisie">Cuisse</td>
+			<td class="val saisie"><select ng-model="perso.eqmt.armure.cuisseBouclier.val" ng-options="encaissementTypeArmure.indexOf(t) as t for t in encaissementTypeArmure"></select></td>
+			<td class="val saisie"><input type="number" maxlength="1" ng-model="perso.eqmt.armure.cuisseBouclier.bonus" type-int-min="0" title="Bonus"/></td>
+		</tr>
+		<tr>
+			<td class="label saisie">Genoux</td>
+			<td class="val saisie"><select ng-model="perso.eqmt.armure.genouxArme.val" ng-options="encaissementTypeArmure.indexOf(t) as t for t in encaissementTypeArmure"></select></td>
+			<td class="val saisie"><input type="number" maxlength="1" ng-model="perso.eqmt.armure.genouxArme.bonus" type-int-min="0" title="Bonus"/></td>
+			<td colspan="3"></td>
+			<td class="label saisie">Genoux</td>
+			<td class="val saisie"><select ng-model="perso.eqmt.armure.genouxBouclier.val" ng-options="encaissementTypeArmure.indexOf(t) as t for t in encaissementTypeArmure"></select></td>
+			<td class="val saisie"><input type="number" maxlength="1" ng-model="perso.eqmt.armure.genouxBouclier.bonus" type-int-min="0" title="Bonus"/></td>
+		</tr>
+	</table>
+</div>

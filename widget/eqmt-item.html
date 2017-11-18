@@ -1,0 +1,6 @@
+<td colspan="2" ng-click="onNomClick($event)">
+	<nobr>{{item.nom}}</nobr>
+	<input type="text" ng-model="item.nom" ng-keyup="onNomKeyUp($event)" ng-blur="onNomBlur($event)"/>
+</td>
+<td class="center"><input type="number" maxlength="2" ng-model="item.qte" /></td>
+<td><img src="img/cancel.png" title="Supprimer l'objet" ng-click="remove()"/></td>

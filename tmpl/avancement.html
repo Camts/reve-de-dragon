@@ -1,0 +1,33 @@
+<div id="cadre-avancement" class="cadre" ng-mouseover="computeAvancement()">
+	<div><img src="img/trophy.png"/></div>
+	<table>
+		<tr>
+			<td colspan="2"><h1>Avancement</h1></td>
+		</tr>
+		<tr>
+			<td colspan="2"><h2>Caractéristiques</h2></td>
+		</tr>
+		<tr>
+			<td class="label calcule">Niveaux gagnés</td>
+			<td class="val calcule">{{ihm.avancement.caracsNiv}}</td>
+		</tr>
+		<tr>
+			<td class="label calcule">XP restante</td>
+			<td class="val calcule">{{ihm.avancement.caracsXP}}</td>
+		</tr>
+		<tr>
+			<td colspan="2"><h2>Compétences</h2></td>
+		</tr>
+		<tr>
+			<td class="label calcule">XP gagnée</td>
+			<td class="val calcule">{{ihm.avancement.comps}}</td>
+		</tr>
+		<tr>
+			<td colspan="2"><h2>Archétype</h2></td>
+		</tr>
+		<tr ng-repeat="(nom, comp) in perso.comp" ng-show="comp.arch < comp.val">
+			<td>{{service.competence.label[nom]}} : {{comp.val}} ({{comp.arch}})</td>
+			<td class="val calcule">+{{comp.val - comp.arch}}</td>
+		</tr>
+	</table>
+</div>

@@ -1,0 +1,53 @@
+<table id="cadre-monnaie" class="cadre" draggable="true" ondragstart="zone.drag(event)">
+	<tr>
+		<td colspan="3"><h1>Monnaie</h1></td>
+	</tr>
+	<tr>
+		<td rowspan="2" class="label saisie">Or</td>
+		<td rowspan="2" class="val saisie"><input type="number" maxlength="2" ng-model="perso.eqmt.monnaie.or"/></td>
+		<td class="space"></td>
+	</tr>
+	<tr>
+		<td rowspan="2">
+			<img src="img/down-green.png" ng-show="perso.eqmt.monnaie.or > 0"
+				ng-click="perso.eqmt.monnaie.argent = perso.eqmt.monnaie.argent + 10; perso.eqmt.monnaie.or = perso.eqmt.monnaie.or - 1"/>
+			<img src="img/down-grey.png" ng-show="perso.eqmt.monnaie.or == 0"/>
+			<img src="img/up-green.png" ng-show="perso.eqmt.monnaie.argent >= 10"
+				ng-click="perso.eqmt.monnaie.argent = perso.eqmt.monnaie.argent - 10; perso.eqmt.monnaie.or = perso.eqmt.monnaie.or + 1"/>
+			<img src="img/up-grey.png" ng-show="perso.eqmt.monnaie.argent < 10"/>
+		</td>
+	</tr>
+	<tr>
+		<td rowspan="2" class="label saisie">Argent</td>
+		<td rowspan="2" class="val saisie"><input type="number" maxlength="2" ng-model="perso.eqmt.monnaie.argent"/></td>
+	</tr>
+	<tr>
+		<td rowspan="2">
+			<img src="img/down-green.png" ng-show="perso.eqmt.monnaie.argent > 0"
+				ng-click="perso.eqmt.monnaie.bronze = perso.eqmt.monnaie.bronze + 10; perso.eqmt.monnaie.argent = perso.eqmt.monnaie.argent - 1"/>
+			<img src="img/down-grey.png" ng-show="perso.eqmt.monnaie.argent == 0"/>
+			<img src="img/up-green.png" ng-show="perso.eqmt.monnaie.bronze >= 10"
+				ng-click="perso.eqmt.monnaie.bronze = perso.eqmt.monnaie.bronze - 10; perso.eqmt.monnaie.argent = perso.eqmt.monnaie.argent + 1"/>
+			<img src="img/up-grey.png" ng-show="perso.eqmt.monnaie.bronze < 10"/>
+		</td>
+	</tr>
+	<tr>
+		<td rowspan="2" class="label saisie">Bronze</td>
+		<td rowspan="2" class="val saisie"><input type="number" maxlength="2" ng-model="perso.eqmt.monnaie.bronze"/></td>
+	</tr>
+	<tr>
+		<td rowspan="2">
+			<img src="img/down-green.png" ng-show="perso.eqmt.monnaie.bronze > 0"
+				ng-click="perso.eqmt.monnaie.etain = perso.eqmt.monnaie.etain + 10; perso.eqmt.monnaie.bronze = perso.eqmt.monnaie.bronze - 1"/>
+			<img src="img/down-grey.png" ng-show="perso.eqmt.monnaie.bronze == 0"/>
+			<img src="img/up-green.png" ng-show="perso.eqmt.monnaie.etain >= 10"
+				ng-click="perso.eqmt.monnaie.etain = perso.eqmt.monnaie.etain - 10; perso.eqmt.monnaie.bronze = perso.eqmt.monnaie.bronze + 1"/>
+			<img src="img/up-grey.png" ng-show="perso.eqmt.monnaie.etain < 10"/>
+		</td>
+	</tr>
+	<tr>
+		<td rowspan="2" class="label saisie">Etain</td>
+		<td rowspan="2" class="val saisie"><input type="number" maxlength="2" ng-model="perso.eqmt.monnaie.etain"/></td>
+	</tr>
+	<tr><td class="space"></td></tr>
+</table>

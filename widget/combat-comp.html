@@ -1,0 +1,18 @@
+<th>{{combatComp.label}}</th>
+<td class="bord-r"><xp diff="diff" carac="combatComp.caracNom" comp="combatComp.compNom"/></td>
+<td class="cadre-combat-eqmt val saisie"><input type="text" ng-model="eqmt.nom"/></td>
+<td class="cadre-combat-eqmt val saisie"><input type="number" maxlength="1" type-int-min="0" ng-model="eqmt.bonus" ng-change="computeStat()"/></td>
+<td class="cadre-combat-eqmt val saisie"><input type="number" maxlength="2" type-int-min="0" ng-model="eqmt.dt" ng-change="computeStat()"/></td>
+<td class="cadre-combat-eqmt val saisie"><input type="number" maxlength="2" type-int-min="0" ng-model="eqmt.dc" ng-change="computeStat()"/></td>
+<td class="cadre-combat-eqmt val saisie"><input type="number" maxlength="2" type-int-min="0" ng-model="eqmt.dp" ng-change="computeStat()"/></td>
+<td class="cadre-combat-eqmt val saisie"><input type="number" maxlength="2" type-int-min="0" ng-model="eqmt.res"/></td>
+<td class="cadre-combat-eqmt val saisie bord-r"><input type="number" maxlength="1" type-int-min="0" ng-model="eqmt.enc"/></td>
+<td class="val calcule">{{stat.init}}</td>
+<td class="val calcule" ng-class="{'emphase': stat.max=='t'}">{{stat.dt}}</td>
+<td class="val calcule" ng-class="{'emphase': stat.max=='c'}">{{stat.dc}}</td>
+<td class="val calcule bord-r" ng-class="{'emphase': stat.max=='p'}">{{stat.dp}}</td>
+<td class="val calcule seuil-crit">{{seuil.crit}}%</td>
+<td class="val calcule seuil-part">{{seuil.part}}%</td>
+<td class="val calcule seuil-sign">{{seuil.sign}}%</td>
+<td class="val calcule seuil-norm">{{seuil.norm}}%</td>
+<td class="val calcule seuil-total">{{seuil.total}}%</td>

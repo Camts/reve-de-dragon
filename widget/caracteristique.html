@@ -1,0 +1,6 @@
+<td class="label saisie dice" ng-click="$parent.jetSetCaracNom(nom)" ng-attr-title="{{title}}">{{label}}</td>
+<td class="val saisie"><input class="number" type="text" maxlength="2" ng-model="m.val" type-int-min="6"/></td>
+<td ng-hide="noXp" class="val saisie" title="XP pour monter : {{$parent.service.carac.xpToUpFrom(m.val)}}">
+	<input type="number" maxlength="2" ng-model="m.xp" ng-change="onXpChange()"/>
+</td>
+<td ng-hide="noXp"><img src="img/plus.png" ng-click="m.xp = m.xp + 1; onXpChange()"/></td>

@@ -1,0 +1,30 @@
+<tr ng-hide="!ihm.mode && display.pref.compMin > service.competence.val(m)">
+	<td class="label saisie dice" ng-click="$parent.jetSetCompNom(nom)">{{label}}</td>
+	<td ng-show="ihm.mode == 'stress'" class="ko" title="Limite de l'archétype">{{m.arch}}</td>
+	<td class="val saisie" ng-class="{'emphase': m.arch <= m.val && ihm.mode == 'archetype'}">
+		<input class="number" type="text" maxlength="3" ng-model="m.val" type-int-min="{{$parent.service.competence.min[m.type]}}"
+			ng-disabled="ihm.mode == 'stress' || ihm.mode == 'archetype'" title="{{m.val || m.val == 0 ? undefined : $parent.service.competence.val(m)}}"/>
+	</td>
+	<td title="XP pour monter : {{xpToUpFrom()}}" ng-hide="ihm.mode == 'archetype'">
+		<input class="val saisie number" type="text" maxlength="3" ng-model="m.xp" type-int-min="0" ng-disabled="ihm.mode == 'stress'" ng-blur="onXpChange()"/>
+	</td>
+	<td ng-hide="ihm.mode == 'stress' || ihm.mode == 'archetype'"><img src="img/plus.png" ng-click="m.xp = m.xp + 1; onXpChange()"/></td>
+	<td ng-show="ihm.mode == 'stress'">
+		<span ng-show="$parent.service.competence.val(m) > -11">
+			<span class="arrows">
+				<img ng-show="g.canUp && !g.arch" src="img/up-green.png" ng-click="upWithStress()"/>
+				<img ng-hide="g.canUp || g.arch" src="img/up-grey.png"/>
+				<img ng-show="g.arch" src="img/forbidden.png" title="Archétype atteint"/>
+				<span class="{{g.lvl > 0 ? 'emphase' : ''}}">{{g.lvl}}</span>
+			</span>
+			<input class="val saisie" type="number" name="xp" maxlength="3" ng-model="g.xp" type-int-min="0" ng-change="onStressXpChange()"/>
+			<img ng-show="g.xp > 0" src="img/cancel.png" ng-click="g.xp = 0; onStressXpChange()"/>
+			<img ng-hide="g.xp > 0" src="img/cancel-dis.png"/>
+		</span>
+		<img ng-show="$parent.service.competence.val(m) < -10" src="img/forbidden.png" title="Commencer par monter à -10 par apprentissage"/>
+	</td>
+	<td ng-show="ihm.mode == 'archetype'" ng-class="{'emphase': m.arch == ihm.archetype.emphase}">
+		<select ng-model="m.arch" ng-change="onArchChange(m.arch, '{{m.arch}}')"
+		 ng-options="v.value as v.value disable when v.restant == 0 && v.value != m.arch for v in ihm.archetype.values"></select>
+	</td>
+</tr>

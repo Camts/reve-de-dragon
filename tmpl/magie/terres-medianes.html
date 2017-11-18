@@ -1,0 +1,225 @@
+<table id="cadre-magie-terres-medianes" class="cadre" draggable="true" ondragstart="zone.drag(event)">
+	<tr>
+		<td><h1>Carte des terres médianes</h1></td>
+	</tr>
+	<tr ng-show="!perso.magie.monte">
+		<td>
+			Monter :
+			<button ng-disabled="perso.compteur.reve < 1" ng-click="terresMedianesMonter(false)" title="Coûte 1 point de rêve et 1 point de fatigue">normalement</button>
+			<button ng-disabled="perso.compteur.reve < 2" ng-click="terresMedianesMonter(true)" title="Coûte 2 points de rêve et 1 point de fatigue">en accéléré</button>
+		</td>
+	</tr>
+	<tr ng-show="perso.magie.monte">
+		<td><button ng-click="terresMedianesDescendre()">Descendre</button></td>
+	</tr>
+	<tr>
+		<td>Case actuelle : {{terresMedianesTexte(perso.magie.terreMediane)}}</td>
+	</tr>
+	<tr>
+		<td style="position: relative;" ng-class="'w-tmc-type-' + ihm.magie.typeCase">
+			<img src="../../img/terres-medianes.png"/>
+
+			<div terres-medianes-case="A1"></div>
+			<div terres-medianes-case="A2"></div>
+			<div terres-medianes-case="A3"></div>
+			<div terres-medianes-case="A4"></div>
+			<div terres-medianes-case="A5"></div>
+			<div terres-medianes-case="A6"></div>
+			<div terres-medianes-case="A7"></div>
+			<div terres-medianes-case="A8"></div>
+			<div terres-medianes-case="A9"></div>
+			<div terres-medianes-case="A10"></div>
+			<div terres-medianes-case="A11"></div>
+			<div terres-medianes-case="A12"></div>
+			<div terres-medianes-case="A13"></div>
+			<div terres-medianes-case="A14"></div>
+			<div terres-medianes-case="A15"></div>
+
+			<div terres-medianes-case="B1"></div>
+			<div terres-medianes-case="B2"></div>
+			<div terres-medianes-case="B3"></div>
+			<div terres-medianes-case="B4"></div>
+			<div terres-medianes-case="B5"></div>
+			<div terres-medianes-case="B6"></div>
+			<div terres-medianes-case="B7"></div>
+			<div terres-medianes-case="B8"></div>
+			<div terres-medianes-case="B9"></div>
+			<div terres-medianes-case="B10"></div>
+			<div terres-medianes-case="B11"></div>
+			<div terres-medianes-case="B12"></div>
+			<div terres-medianes-case="B13"></div>
+			<div terres-medianes-case="B14"></div>
+
+			<div terres-medianes-case="C1"></div>
+			<div terres-medianes-case="C2"></div>
+			<div terres-medianes-case="C3"></div>
+			<div terres-medianes-case="C4"></div>
+			<div terres-medianes-case="C5"></div>
+			<div terres-medianes-case="C6"></div>
+			<div terres-medianes-case="C7"></div>
+			<div terres-medianes-case="C8"></div>
+			<div terres-medianes-case="C9"></div>
+			<div terres-medianes-case="C10"></div>
+			<div terres-medianes-case="C11"></div>
+			<div terres-medianes-case="C12"></div>
+			<div terres-medianes-case="C13"></div>
+			<div terres-medianes-case="C14"></div>
+			<div terres-medianes-case="C15"></div>
+
+			<div terres-medianes-case="D1"></div>
+			<div terres-medianes-case="D2"></div>
+			<div terres-medianes-case="D3"></div>
+			<div terres-medianes-case="D4"></div>
+			<div terres-medianes-case="D5"></div>
+			<div terres-medianes-case="D6"></div>
+			<div terres-medianes-case="D7"></div>
+			<div terres-medianes-case="D8"></div>
+			<div terres-medianes-case="D9"></div>
+			<div terres-medianes-case="D10"></div>
+			<div terres-medianes-case="D11"></div>
+			<div terres-medianes-case="D12"></div>
+			<div terres-medianes-case="D13"></div>
+			<div terres-medianes-case="D14"></div>
+
+			<div terres-medianes-case="E1"></div>
+			<div terres-medianes-case="E2"></div>
+			<div terres-medianes-case="E3"></div>
+			<div terres-medianes-case="E4"></div>
+			<div terres-medianes-case="E5"></div>
+			<div terres-medianes-case="E6"></div>
+			<div terres-medianes-case="E7"></div>
+			<div terres-medianes-case="E8"></div>
+			<div terres-medianes-case="E9"></div>
+			<div terres-medianes-case="E10"></div>
+			<div terres-medianes-case="E11"></div>
+			<div terres-medianes-case="E12"></div>
+			<div terres-medianes-case="E13"></div>
+			<div terres-medianes-case="E14"></div>
+			<div terres-medianes-case="E15"></div>
+
+			<div terres-medianes-case="F1"></div>
+			<div terres-medianes-case="F2"></div>
+			<div terres-medianes-case="F3"></div>
+			<div terres-medianes-case="F4"></div>
+			<div terres-medianes-case="F5"></div>
+			<div terres-medianes-case="F6"></div>
+			<div terres-medianes-case="F7"></div>
+			<div terres-medianes-case="F8"></div>
+			<div terres-medianes-case="F9"></div>
+			<div terres-medianes-case="F10"></div>
+			<div terres-medianes-case="F11"></div>
+			<div terres-medianes-case="F12"></div>
+			<div terres-medianes-case="F13"></div>
+			<div terres-medianes-case="F14"></div>
+
+			<div terres-medianes-case="G1"></div>
+			<div terres-medianes-case="G2"></div>
+			<div terres-medianes-case="G3"></div>
+			<div terres-medianes-case="G4"></div>
+			<div terres-medianes-case="G5"></div>
+			<div terres-medianes-case="G6"></div>
+			<div terres-medianes-case="G7"></div>
+			<div terres-medianes-case="G8"></div>
+			<div terres-medianes-case="G9"></div>
+			<div terres-medianes-case="G10"></div>
+			<div terres-medianes-case="G11"></div>
+			<div terres-medianes-case="G12"></div>
+			<div terres-medianes-case="G13"></div>
+			<div terres-medianes-case="G14"></div>
+			<div terres-medianes-case="G15"></div>
+
+			<div terres-medianes-case="H1"></div>
+			<div terres-medianes-case="H2"></div>
+			<div terres-medianes-case="H3"></div>
+			<div terres-medianes-case="H4"></div>
+			<div terres-medianes-case="H5"></div>
+			<div terres-medianes-case="H6"></div>
+			<div terres-medianes-case="H7"></div>
+			<div terres-medianes-case="H8"></div>
+			<div terres-medianes-case="H9"></div>
+			<div terres-medianes-case="H10"></div>
+			<div terres-medianes-case="H11"></div>
+			<div terres-medianes-case="H12"></div>
+			<div terres-medianes-case="H13"></div>
+			<div terres-medianes-case="H14"></div>
+
+			<div terres-medianes-case="I1"></div>
+			<div terres-medianes-case="I2"></div>
+			<div terres-medianes-case="I3"></div>
+			<div terres-medianes-case="I4"></div>
+			<div terres-medianes-case="I5"></div>
+			<div terres-medianes-case="I6"></div>
+			<div terres-medianes-case="I7"></div>
+			<div terres-medianes-case="I8"></div>
+			<div terres-medianes-case="I9"></div>
+			<div terres-medianes-case="I10"></div>
+			<div terres-medianes-case="I11"></div>
+			<div terres-medianes-case="I12"></div>
+			<div terres-medianes-case="I13"></div>
+			<div terres-medianes-case="I14"></div>
+			<div terres-medianes-case="I15"></div>
+
+			<div terres-medianes-case="J1"></div>
+			<div terres-medianes-case="J2"></div>
+			<div terres-medianes-case="J3"></div>
+			<div terres-medianes-case="J4"></div>
+			<div terres-medianes-case="J5"></div>
+			<div terres-medianes-case="J6"></div>
+			<div terres-medianes-case="J7"></div>
+			<div terres-medianes-case="J8"></div>
+			<div terres-medianes-case="J9"></div>
+			<div terres-medianes-case="J10"></div>
+			<div terres-medianes-case="J11"></div>
+			<div terres-medianes-case="J12"></div>
+			<div terres-medianes-case="J13"></div>
+			<div terres-medianes-case="J14"></div>
+
+			<div terres-medianes-case="K1"></div>
+			<div terres-medianes-case="K2"></div>
+			<div terres-medianes-case="K3"></div>
+			<div terres-medianes-case="K4"></div>
+			<div terres-medianes-case="K5"></div>
+			<div terres-medianes-case="K6"></div>
+			<div terres-medianes-case="K7"></div>
+			<div terres-medianes-case="K8"></div>
+			<div terres-medianes-case="K9"></div>
+			<div terres-medianes-case="K10"></div>
+			<div terres-medianes-case="K11"></div>
+			<div terres-medianes-case="K12"></div>
+			<div terres-medianes-case="K13"></div>
+			<div terres-medianes-case="K14"></div>
+			<div terres-medianes-case="K15"></div>
+
+			<div terres-medianes-case="L1"></div>
+			<div terres-medianes-case="L2"></div>
+			<div terres-medianes-case="L3"></div>
+			<div terres-medianes-case="L4"></div>
+			<div terres-medianes-case="L5"></div>
+			<div terres-medianes-case="L6"></div>
+			<div terres-medianes-case="L7"></div>
+			<div terres-medianes-case="L8"></div>
+			<div terres-medianes-case="L9"></div>
+			<div terres-medianes-case="L10"></div>
+			<div terres-medianes-case="L11"></div>
+			<div terres-medianes-case="L12"></div>
+			<div terres-medianes-case="L13"></div>
+			<div terres-medianes-case="L14"></div>
+
+			<div terres-medianes-case="M1"></div>
+			<div terres-medianes-case="M2"></div>
+			<div terres-medianes-case="M3"></div>
+			<div terres-medianes-case="M4"></div>
+			<div terres-medianes-case="M5"></div>
+			<div terres-medianes-case="M6"></div>
+			<div terres-medianes-case="M7"></div>
+			<div terres-medianes-case="M8"></div>
+			<div terres-medianes-case="M9"></div>
+			<div terres-medianes-case="M10"></div>
+			<div terres-medianes-case="M11"></div>
+			<div terres-medianes-case="M12"></div>
+			<div terres-medianes-case="M13"></div>
+			<div terres-medianes-case="M14"></div>
+			<div terres-medianes-case="M15"></div>
+		</td>
+	</tr>
+</table>

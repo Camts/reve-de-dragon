@@ -1,0 +1,33 @@
+<table id="cadre-date" class="cadre" draggable="true" ondragstart="zone.drag(event)">
+	<tr>
+		<td colspan="3"><h1>Date</h1></td>
+	</tr>
+	<tr>
+		<td class="label saisie center" title="12 heures draconiques par jour">Heure</td>
+		<td class="val calcule left">
+			<input maxlength="2" ng-model="perso.compteur.date.heure" type-heure/>
+			<img src="img/plus.png" ng-click="perso.compteur.date.heure = perso.compteur.date.heure + 1"/>
+			<span class="bottom" heure="perso.compteur.date.heure"></span>
+		</td>
+	</tr>
+	<tr>
+		<td class="label saisie" title="28 jours par mois">Jour</td>
+		<td class="val calcule left">
+			<input type="number" maxlength="2" ng-model="perso.compteur.date.jour"/>
+			{{i18n.date.jour[perso.compteur.date.jour - 1]}}
+		</td>
+	</tr>
+	<tr>
+		<td class="label saisie" title="12 mois par an">Mois</td>
+		<td class="val calcule left">
+			<input type="number" maxlength="2" ng-model="perso.compteur.date.mois"/>
+			{{i18n.date.mois[perso.compteur.date.mois - 1]}}
+		</td>
+	</tr>
+	<tr>
+		<td class="label saisie" title="Depuis le début du 3ème âge">Année</td>
+		<td class="val calcule left">
+			<input type="number" maxlength="4" ng-model="perso.compteur.date.annee"/>
+		</td>
+	</tr>
+</table>

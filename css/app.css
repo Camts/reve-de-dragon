@@ -1,0 +1,294 @@
+body {
+	background-image: url("../img/bg-default.jpg");
+	background-size: 100% auto;
+	margin: 5px;
+	font-weight: bold;
+}
+
+table {border-spacing: 0px;}
+
+td {vertical-align: top; padding: 2px;}
+
+img {vertical-align: text-bottom;}
+
+input {font-weight: bold;}
+input[type="number"], input.number {text-align: center;}
+input:disabled {background-color: #C0C0C0;}
+button[disabled] {cursor: not-allowed;}
+
+h1 {
+	font-size: medium;
+	text-align: center;
+	color: #308030;
+	margin: 2px;
+}
+
+h2 {
+	font-size: medium;
+	text-align: left;
+	color: #C050C0;
+	margin: 2px;
+	padding-left: 10px;
+}
+
+ul {margin: 0px; padding-left: 16px;}
+
+/*[title] {text-shadow: 1px 1px #FFFFFF;}*/
+
+.left {text-align: left !important;}
+.center {text-align: center !important; vertical-align: middle;}
+.right {text-align: right !important;}
+
+[onclick], [ng-click], label[for] {cursor: pointer;}
+.dice[ng-click] {cursor: url("../img/dice.png"), pointer;}
+.imp {font-weight: bolder; color: #C05050;}
+.emphase {font-weight: bolder; font-style: italic;}
+
+.ok {color: #50C050;}
+.ok[disabled] {color: #505050;}
+.ko {color: #C05050;}
+
+.ng-invalid {color: #FF5050;}
+
+.label {text-align: right; font-style: italic;}
+th.label {text-align: center;}
+.label.saisie {color: #5050C0;}
+.label.calcule {color: #505050;}
+.val {text-align: center;}
+.val.saisie {}
+.val.calcule {color: #505050; padding-left: 5px;}
+
+.bord-r {border-right: solid 1px #000000;}
+.bord-b {border-bottom: solid 1px #000000;}
+
+.expandable {
+	border: dashed 1px #000000;
+	border-radius: 5px;
+	background: linear-gradient(to bottom right, rgba(255,255,255,0), rgba(255,255,255,1));
+}
+.expandable {height: 21px; overflow: hidden; position: relative;}
+.expandable:HOVER {overflow: visible; z-index: 2;}
+.expandable table {display: none;}
+.expandable:HOVER table {display: block; position: absolute; top: 0px; left: 0px; background-color: #FFFFFF; border: solid 1px #000000; border-radius: 5px;}
+
+.seuil-crit {background: linear-gradient(to bottom right, rgba(80,182,80,0.33), rgba(80,182,80,0));}
+.seuil-part {background: linear-gradient(to bottom right, rgba(80,182,182,033), rgba(80,182,182,0));}
+.seuil-sign {background: linear-gradient(to bottom right, rgba(80,80,182,0.33), rgba(80,80,182,0));}
+.seuil-norm {background: linear-gradient(to bottom right, rgba(80,80,80,0.33), rgba(80,80,80,0));}
+.seuil-total {background: linear-gradient(to bottom right, rgba(182,80,80,0.33), rgba(182,80,80,0));}
+
+#glasspane {z-index: 1; width: 100%; height: 100%; position: absolute; top: 0px; left: 0px;}
+#cadres-normal, #cadres-magie {z-index: 2; width: 100%; height: 100%; position: absolute; top: 0px; left: 0px;}
+
+#clock {position: absolute; right: 0px; top: 26px; z-index: 3;}
+#clock img:nth-child(2) {display: none;}
+#clock:HOVER img:nth-child(1) {display: none;}
+#clock:HOVER img:nth-child(2) {display: block;}
+
+#notifications {position: absolute; bottom: 0px; right: 0px; z-index: 3;}
+.notification {
+	font-weight: normal;
+	margin: 5px;
+	border: solid 1px #000000;
+	border-radius: 5px;
+	padding: 2px;
+	background-color: #FFFFFF;
+	cursor: pointer;
+}
+
+#magie-switch {position: absolute; right: 0px; top: 78px ; z-index: 3;}
+
+/*********\
+| Widgets |
+\*********/
+
+/* Zone */
+.zone-sep-v, .zone-sep-h {display: none; border: none; padding: 0px;}
+.zone-content, .zone-inner {padding: 0px; cursor: auto;}
+.zone-show .zone {border: solid 1px black;}
+.zone-show .zone-sep-v {display: block; border: dashed 1px black; background-color: rgba(255,255,255,0.33); padding: 10px;}
+.zone-show .zone-sep-h {display: block; border: dashed 1px black; background-color: rgba(255,255,255,0.33); padding: 10px;}
+.zone-show .zone-content:empty {border: dashed 1px black; background-color: #50C050; padding: 10px; cursor: pointer;}
+.zone-show .zone-content:empty:before {content: "Zone libre";}
+.zone-show .cadre {cursor: move;} 
+
+/* Prefs */
+.w-prefs-parent {position: relative;}
+.w-prefs {position: absolute; top: 0px; right: 0px; overflow: visible;}
+.w-prefs-img {margin: 3px;}
+.w-prefs:HOVER .w-prefs-img {display: none;}
+.w-prefs > div {
+	display: none;
+	position: absolute;
+	top: 0px;
+	right: 0px;
+	white-space: nowrap;
+	background-color: #FFFFFF;
+	border-radius: 5px;
+}
+.w-prefs:HOVER > div {display: block;}
+
+/* Heure */
+.w-heure {position: relative;}
+.w-heure div {display: none; position: relative; width: 0px; height: 0px; overflow: hidden;}
+.w-heure.top div {top: -252px;}
+.w-heure.middle div {top: -136px;}
+.w-heure.bottom div {top: -21px;}
+.w-heure:HOVER span {opacity: 0;}
+.w-heure:HOVER div {display: inherit; overflow: visible;}
+.w-heure img {position: absolute;}
+.w-heure img:nth-child(2), .w-heure img:nth-child(3), .w-heure img:nth-child(4) {display: none; opacity: 0.5; left: 0px;}
+.w-heure img:nth-child(5), .w-heure img:nth-child(6), .w-heure img:nth-child(7) {display: none; opacity: 0.5; left: 90px;}
+.w-heure.w-heure-1  img:nth-child(2) {display: block; top: 0px;}
+.w-heure.w-heure-2  img:nth-child(3) {display: block; top: 43px;}
+.w-heure.w-heure-3  img:nth-child(3) {display: block; top: 86px;}
+.w-heure.w-heure-4  img:nth-child(3) {display: block; top: 129px;}
+.w-heure.w-heure-5  img:nth-child(3) {display: block; top: 172px;}
+.w-heure.w-heure-6  img:nth-child(4) {display: block; top: 215px;}
+.w-heure.w-heure-7  img:nth-child(5) {display: block; top: 0px;}
+.w-heure.w-heure-8  img:nth-child(6) {display: block; top: 43px;}
+.w-heure.w-heure-9  img:nth-child(6) {display: block; top: 86px;}
+.w-heure.w-heure-10 img:nth-child(6) {display: block; top: 129px;}
+.w-heure.w-heure-11 img:nth-child(6) {display: block; top: 172px;}
+.w-heure.w-heure-12 img:nth-child(7) {display: block; top: 215px;}
+
+/* Compétence */
+.w-competence .arrows {
+	margin-right: 4px;
+	border: solid 1px grey;
+	padding-left: 2px;
+	padding-bottom: 2px;
+}
+.w-competence .arrows {font-weight: normal;}
+.w-competence .arrows .emphase {color: #50C050; font-weight: bold; font-style: normal;}
+.w-competence td.emphase {border: solid 2px #C05050; padding: 0px;}
+
+/* Expérience */
+.w-xp {width: 20px; text-align: center;}
+#cadre-jet .w-xp {width: 30px; height: 24px;} 
+.w-xp .val.calcule {padding-left: 0px; vertical-align: middle;}
+
+/* Combat comp */
+.w-combat-comp input[type=text] {width: 120px;}
+
+/* Eqmt sac */
+.eqmt-sac table {
+	width: 100%;
+	border-radius: 5px;
+	background-color: rgba(255,255,255,0.33);
+}
+.eqmt-sac .eqmt-edit h2 {display: none;}
+.eqmt-sac input[type=text] {display: none;}
+.eqmt-sac .eqmt-edit input {display: block;}
+
+/* Eqmt item */
+.eqmt-item input[type=number] {width: 29px;}
+.eqmt-item td:first-of-type {width: 100%;}
+.eqmt-item .eqmt-edit nobr {display: none;}
+.eqmt-item input[type=text] {display: none;}
+.eqmt-item .eqmt-edit input[type=text] {display: block;}
+
+/* Case des terres médianes */
+.w-tmc, .w-tmc-current, .w-tmc-neighbour {
+	position: absolute; cursor: auto; box-sizing: border-box;
+	font-family: fantasy; font-weight: bolder; font-size: 32px; text-align: center; color: #C05050;
+}
+.w-tmc-reserve {background: linear-gradient(to bottom right, rgba(0,0,255,1), rgba(0,0,255,0));}
+.w-tmc-current {background-color: rgba(80,192,80,0.66);}
+.w-tmc-neighbour {background-color: rgba(80,80,192,0.66); cursor: pointer;}
+.w-tmc-type-CITE .w-tmc-type-CITE, .w-tmc-type-COLLINES .w-tmc-type-COLLINES,
+.w-tmc-type-DESERT .w-tmc-type-DESERT, .w-tmc-type-DESOLATION .w-tmc-type-DESOLATION,
+.w-tmc-type-FLEUVE .w-tmc-type-FLEUVE, .w-tmc-type-FORET .w-tmc-type-FORET,
+.w-tmc-type-GOUFFRE .w-tmc-type-GOUFFRE, .w-tmc-type-LAC .w-tmc-type-LAC,
+.w-tmc-type-MARAIS .w-tmc-type-MARAIS, .w-tmc-type-MONTS .w-tmc-type-MONTS,
+.w-tmc-type-NECROPOLE .w-tmc-type-NECROPOLE, .w-tmc-type-PLAINES .w-tmc-type-PLAINES,
+.w-tmc-type-PONT .w-tmc-type-PONT, .w-tmc-type-SANCTUAIRE .w-tmc-type-SANCTUAIRE {border: solid 2px #C05050;}
+
+/********\
+| Cadres |
+\********/
+
+.cadre {
+	margin: 5px;
+	border-radius: 5px;
+	padding: 2px;
+	background-color: rgba(255,255,255,0.66);
+}
+
+/* Modes d'affichage */
+#clock .cadre, #magie-switch .cadre {display: block;}
+#cadres-magie {display: none;}
+
+.comp-arch .cadre, .comp-arch #cadres-magie, .comp-arch #clock .cadre, .comp-arch #magie-switch .cadre {display: none;}
+.comp-arch #cadres-normal .cadre.comp {display: block;}
+
+.mode-stress .cadre {display: none;}
+.mode-stress #cadres-normal .cadre.comp {display: block;}
+
+.mode-magie #cadres-normal {display: none;}
+.mode-magie #cadres-magie {display: block;}
+
+/* Identité */
+#cadre-identite .expandable {float: right; margin-left: 5px;}
+
+/* Caractéristiques */
+.carac-calc td {padding-top: 3px; padding-bottom: 4px;}
+.carac-calc td.label {cursor: url("../img/dice.png"), pointer;}
+
+/* Prefs & Avancement */
+#cadre-prefs, #cadre-avancement {position: absolute; right: 0px; z-index: 3; overflow: hidden;}
+#cadre-prefs:not(:HOVER), #cadre-avancement:not(:HOVER) {width: 16px; height: 16px;}
+#cadre-prefs:HOVER, #cadre-avancement:HOVER {z-index: 4; background-color: #FFFFFF;}
+#cadre-prefs > div, #cadre-avancement > div {position: relative;}
+#cadre-prefs > div > img, #cadre-avancement > div > img {position: absolute;}
+#cadre-prefs h1, #cadre-avancement h1 {padding-left: 24px; padding-right: 24px;}
+#cadre-prefs table, #cadre-avancement table {width: 100%;}
+
+#cadre-prefs {top: 0px;}
+#cadre-avancement {top: 52px;}
+
+/* Stress */
+#cadre-stress {display: none;}
+.mode-stress #cadre-stress {display: inline-block;}
+
+/* Archétype */
+#cadre-archetype {display: none;}
+.comp-arch #cadre-archetype {display: inline-block;}
+#cadre-archetype .emphase {color: #C05050;}
+
+/* Regroupement compétences */
+.comp-group .cadre.comp {display: none;}
+.comp-arch #cadres-normal #cadre-comp-toutes, .mode-stress #cadres-normal #cadre-comp-toutes, #cadre-comp-toutes {display: none;}
+.comp-group #cadre-comp-toutes {display: block;}
+
+/* Compétences draconiques */
+.comp-drac {display: none;}
+.haut-revant .comp-drac {display: table-row;}
+
+/* Jet de  dés */
+#cadre-jet, #cadre-jet h1 {font-size: 20px;}
+#cadre-jet input {font-size: 15.2px;}
+
+/* Monnaie */
+#cadre-monnaie .space {height: 10px;}
+
+/* Sacs */
+#cadre-sacs-title {position: relative;}
+#cadre-sacs-title span {position: absolute; top: 5px; right: 5px}
+
+/* Combat */
+.cadre-combat-hide-eqmt .cadre-combat-eqmt {display: none;}
+
+/* Encaissement */
+.cadre-encaissement > table {width: 100%;}
+
+/* Blessures */
+#cadre-blessures td.val {background: linear-gradient(to bottom right, rgba(255,255,255,0.33), rgba(255,255,255,0));}
+.cadre-blessures-hide-detail .cadre-blessures-detail {display: none;}
+
+/* Sorts de magie */
+.cadre-magie-sorts-detail {font-weight: normal;}
+.cadre-magie-sorts-detail h1 {text-align: left; font-size: larger;}
+.cadre-magie-sorts-detail h2 {text-align: left; font-size: large;}
+.cadre-magie-sorts-detail h3 {text-align: left; color: #5050C0;	margin: 2px; padding-left: 20px;}
+.cadre-magie-sorts-detail ul, .cadre-magie-sorts-detail ol {margin-left: 0px; padding-left: 16px;}

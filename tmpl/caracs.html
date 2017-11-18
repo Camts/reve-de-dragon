@@ -1,0 +1,47 @@
+<table id="cadre-caracs" class="cadre" draggable="true" ondragstart="zone.drag(event)">
+	<tr>
+		<td><h1>Caractéristiques</h1></td>
+	</tr>
+	<tr><td><table><tr>
+		<td>
+			<table>
+				<tr caracteristique="taille"></tr>
+				<tr caracteristique="apparence"></tr>
+				<tr caracteristique="constitution" ft="true" fr="true"></tr>
+				<tr caracteristique="force" ft="true" fr="true"></tr>
+				<tr caracteristique="agilite" ft="true"></tr>
+				<tr caracteristique="dexterite" ft="true"></tr>
+				<tr caracteristique="vue"></tr>
+				<tr caracteristique="ouie"></tr>
+				<tr caracteristique="odorat"></tr>
+				<tr caracteristique="gout"></tr>
+			</table>
+		</td>
+		<td>
+			<table>
+				<tr caracteristique="volonte"></tr>
+				<tr caracteristique="intellect" ft="true"></tr>
+				<tr caracteristique="empathie"></tr>
+				<tr caracteristique="eloquence"></tr>
+				<tr caracteristique="reve"></tr>
+				<tr caracteristique="chance"></tr>
+				<tr class="carac-calc">
+					<td class="label calcule" ng-click="jetSetCaracNom('melee')">Mélée</td>
+					<td class="val calcule">{{service.carac.melee(perso.carac)}}</td>
+				</tr>
+				<tr class="carac-calc">
+					<td class="label calcule" ng-click="jetSetCaracNom('tir')">Tir</td>
+					<td class="val calcule">{{service.carac.tir(perso.carac)}}</td>
+				</tr>
+				<tr class="carac-calc">
+					<td class="label calcule" ng-click="jetSetCaracNom('lance')">Lancé</td>
+					<td class="val calcule">{{service.carac.lance(perso.carac)}}</td>
+				</tr>
+				<tr class="carac-calc">
+					<td class="label calcule" ng-click="jetSetCaracNom('derobee')">Dérobée</td>
+					<td class="val calcule">{{service.carac.derobee(perso.carac)}}</td>
+				</tr>
+			</table>
+		</td>
+	</tr></table></td></tr>
+</table>

@@ -1,0 +1,30 @@
+<table id="cadre-sacs" class="cadre" draggable="true" ondragstart="zone.drag(event)">
+	<tr>
+		<td id="cadre-sacs-title" colspan="{{display.sac.length}}">
+			<h1>Sacs</h1>
+			<span>
+				<img title="Supprimer la dernière colonne vide"
+				 src="img/minus.png" ng-click="sacRemoveCol()"
+				 ng-show="display.sac.length > 1 && display.sac[display.sac.length - 1].length == 0"/>
+				<img title="Ajouter une nouvelle colonne"
+				 src="img/plus.png" ng-click="sacAddCol()"/>
+			</span>
+		</td>
+	</tr>
+	<tr>
+		<td ng-repeat="col in display.sac track by $index">
+			<table>
+				<tr ng-repeat="nom in col">
+					<td eqmt-sac="{{nom}}"></td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+	<tr>
+		<td colspan="{{display.sac.length}}" class="center">
+			<input id="sac-new-nom" type="text" />
+			<img title="Ajouter un nouveau sac avec ce nom"
+			 src="img/plus.png" ng-click="sacAddSac()"/>
+		</td>
+	</tr>
+</table>

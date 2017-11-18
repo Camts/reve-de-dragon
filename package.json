@@ -1,0 +1,25 @@
+{
+	"name": "reve-de-dragon",
+	"version": "1.0.0",
+	"description": "Feuille de personnage",
+	"main": "index.html",
+	"private": true,
+	"keywords": [
+		"node",
+		"webkit",
+		"win",
+		"osx"
+	],
+	"window": {
+		"frame": true,
+		"icon": "img/logo-24x24.png",
+		"fullscreen": false,
+		"toolbar": true,
+		"resizable": true,
+		"width": 1200,
+		"height": 1000,
+		"position": "center"
+	},
+	"author": "Camts",
+	"license": "ISC"
+}

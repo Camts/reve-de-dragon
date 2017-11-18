@@ -1,0 +1,24 @@
+<table id="cadre-magie-compteurs" class="cadre" draggable="true" ondragstart="zone.drag(event)">
+	<tr>
+		<td colspan="4"><h1>Compteurs</h1></td>
+	</tr>
+	<tr>
+		<td class="label saisie">Moral</td>
+		<td class="val saisie"><input type="number" maxlength="2" ng-model="perso.compteur.moral"/></td>
+		<td class="label saisie">Destinée</td>
+		<td>
+			<input class="val saisie" class="number" type="text" maxlength="2" ng-model="perso.compteur.destinee" type-int-min="0"/>
+			<img src="img/minus.png" ng-click="perso.compteur.destinee = perso.compteur.destinee - 1"/>
+		</td>
+	</tr>
+	<tr>
+		<td class="label saisie">Rêve</td>
+		<td class="val saisie"><input type="number" maxlength="2" ng-model="perso.compteur.reve" type-int-min="0"/></td>
+	</tr>
+	<tr>
+		<td class="label saisie">Fatigue</td>
+		<td class="val saisie"><input type="number" maxlength="2" ng-model="perso.compteur.fatigue" type-int-min="0"/></td>
+		<td class="label calcule">Malus</td>
+		<td class="val calcule">{{ihm.jet.malus}}</td>
+	</tr>
+</table>

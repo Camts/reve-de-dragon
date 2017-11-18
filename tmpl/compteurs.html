@@ -1,0 +1,70 @@
+<table id="cadre-compteurs" class="cadre" draggable="true" ondragstart="zone.drag(event)">
+	<tr>
+		<td colspan="5"><h1>Compteurs</h1></td>
+	</tr>
+	<tr>
+		<td class="label saisie">Moral</td>
+		<td class="val saisie"><input type="number" maxlength="2" ng-model="perso.compteur.moral"/></td>
+		<td colspan="3" class="center">
+			<span class="label saisie">Destinée</span>
+			<input class="val saisie" class="number" type="text" maxlength="2" ng-model="perso.compteur.destinee" type-int-min="0"/>
+			<img src="img/minus.png" ng-click="perso.compteur.destinee = perso.compteur.destinee - 1"/>
+		</td>
+	</tr>
+	<tr>
+		<th class="label saisie dice" ng-click="jetSetCaracVal(perso.compteur.reve)">Rêve</th>
+		<td class="val saisie"><input type="number" maxlength="2" ng-model="perso.compteur.reve" type-int-min="0"/></td>
+		<td colspan="3" class="center">
+			<div class="expandable">Herbe de lune
+				<table>
+					<tr ng-repeat="i in [0,1,2,3,4,5,6,7,8,9]">
+						<td class="label calcule">+{{i+1}}</td>
+						<td class="val calcule">{{perso.eqmt.herbe.lune[i]}}</td>
+						<td>
+							<span class="val calcule seuil-norm">{{service.seuil.normale(perso.compteur.reve, -1 - i -ihm.jet.malus)}}</span>%
+						</td>
+						<td>
+							<button title="Fumer et ne pas résister" ng-click="$parent.service.compteur.fumer($parent, i)" class="ok">Fumer</button>
+						</td>
+					</tr>
+				</table>
+			</div>
+		</td>
+	</tr>
+	<tr>
+		<th>Stress</th>
+		<td class="val saisie"><input type="number" maxlength="2" ng-model="perso.compteur.stress" type-int-min="0"/></td>
+		<td colspan="3">
+			<span title="Critique : transforme 150% du stress">
+				<span class="label calcule">Crit</span>
+				<span class="val calcule seuil-crit">{{service.seuil.critique(service.seuil.normale(perso.compteur.reve, 0))}}</span>%
+			</span>&nbsp;&nbsp;&nbsp;
+			<span title="Particulière : transforme 100% du stress">
+				<span class="label calcule">Part</span>
+				<span class="val calcule seuil-part">{{service.seuil.particuliere(service.seuil.normale(perso.compteur.reve, 0))}}</span>%
+			</span>
+		</td>
+	</tr>
+	<tr>
+		<td colspan="5">
+			<span title="Significative : transforme 75% du stress">
+				<span class="label calcule">Sign</span>
+				<span class="val calcule seuil-sign">{{service.seuil.significative(service.seuil.normale(perso.compteur.reve, 0))}}</span>%
+			</span>&nbsp;
+			<span title="Normale : transforme 50% du stress">
+				<span class="label calcule">Norm</span>
+				<span class="val calcule seuil-norm">{{service.seuil.normale(perso.compteur.reve, 0)}}</span>%
+			</span>&nbsp;
+			<span title="Echec total : transforme 0% du stress, 20% en échec normal">
+				<span class="label calcule">E.Tot</span>
+				<span class="val calcule seuil-total">{{service.seuil.echecTotal(service.seuil.normale(perso.compteur.reve, 0))}}</span>%
+			</span>
+		</td>
+	</tr>
+	<tr>
+		<td class="label saisie">Jet</td>
+		<td class="val saisie"><input type="number" maxlength="2" ng-model="ihm.xp.jet" type-int-min="1" type-int-max="100"/></td>
+		<td class="val calcule">{{service.compteur.stressToXP(perso.compteur, ihm.xp.jet)}} {{service.compteur.stressToXP(perso.compteur, ihm.xp.jet) > 1 ? 'points' : 'point'}}</td>
+		<td colspan="2"><button class="ok" ng-disabled="!perso.compteur.stress || !ihm.xp.jet || ihm.xp.jet.$invalid" ng-click="stressTransform()">Transformer</button></td>
+	</tr>
+</table>

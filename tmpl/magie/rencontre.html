@@ -1,0 +1,23 @@
+<table id="cadre-magie-rencontre" class="cadre" draggable="true" ondragstart="zone.drag(event)">
+	<tr>
+		<td colspan="5"><h1>Rencontre</h1></td>
+	</tr>
+	<tr>
+		<td colspan="4" class="label saisie">Puissance</td>
+		<td><input class="val saisie" type="number" maxlength="2" ng-model="ihm.magie.rencontre" type-int-min="0"/></td>
+	</tr>
+	<tr>
+		<td class="label calcule" title="Critique">Crit</td>
+		<td class="label calcule" title="Particulière">Part</td>
+		<td class="label calcule" title="Significative">Sign</td>
+		<td class="label calcule" title="Normale">Norm</td>
+		<td class="label calcule" title="Echec total">E.Tot</td>
+	</tr>
+	<tr>
+		<td class="val calcule seuil-crit">{{rencontreCritique()}}%</td>
+		<td class="val calcule seuil-part">{{rencontreParticuliere()}}%</td>
+		<td class="val calcule seuil-sign">{{rencontreSignificative()}}%</td>
+		<td class="val calcule seuil-norm">{{rencontreNormale()}}%</td>
+		<td class="val calcule seuil-total">{{rencontreEchecTotal()}}%</td>
+	</tr>
+</table>

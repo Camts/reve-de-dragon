@@ -1,0 +1,21 @@
+<table>
+	<tr>
+		<td ng-click="onNomClick($event)">
+			<h2>{{sac.nom}}</h2>
+			<input type="text" ng-model="sac.nom" ng-keyup="onNomKeyUp($event)" ng-blur="onNomBlur($event)"/>
+		</td>
+		<td colspan="2" class="right"><nobr>
+			<img src="img/arrow-left.png" ng-show="$parent.$parent.$index != 0"
+			 title="Déplacer ce sac d'une colonne vers la gauche" ng-click="moveLeft()"/>
+			<img src="img/arrow-right.png" ng-show="$parent.$parent.$index != display.sac.length - 1"
+			 title="Déplacer ce sac d'une colonne vers la droite" ng-click="moveRight()"/>
+			<img src="img/plus.png" title="Ajouter un objet dans ce sac" ng-click="addItem($event)"/>
+		</nobr></td>
+		<td>
+			<img src="img/cancel.png" title="Supprimer ce sac"
+				ng-show="sac.liste.length == 0" ng-click="remove()"/>
+			<img src="img/cancel-dis.png" ng-show="sac.liste.length > 0"/>
+		</td>
+	</tr>
+	<tr ng-repeat="item in sac.liste" eqmt-item></tr>
+</table>

@@ -1,0 +1,75 @@
+<table id="cadre-blessures" class="cadre" draggable="true" ondragstart="zone.drag(event)"
+ ng-class="{'cadre-blessures-hide-detail': !display.cadre.blessures.detail}">
+	<tr>
+		<td colspan="{{display.cadre.blessures.detail ? 9 : 4}}">
+			<h1>Blessures</h1>
+			<table prefs>
+				<tr>
+					<td><label for="cadre-blessures-detail" class="label saisie">Détails</label></td>
+					<td><input id="cadre-blessures-detail" class="val saisie" type="checkbox" ng-model="display.cadre.blessures.detail"/></td>
+				</tr>
+				<tr>
+					<td class="label saisie">Heure</td>
+					<td class="val saisie"><select type="checkbox" ng-model="display.cadre.blessures.heure">
+						<option value="top">Au dessus</option>
+						<option value="middle">Centré</option>
+						<option value="bottom">En dessous</option>
+					</select></td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+	<tr>
+		<th class="label calcule">Grade</th>
+		<th class="label calcule cadre-blessures-detail">Type</th>
+		<th class="label calcule">Localisation</th>
+		<th class="label calcule" title="Nombre de jouts avant test">Jours</th>
+		<th class="label calcule cadre-blessures-detail">Date</th>
+		<th class="label calcule">Perte</th>
+		<th class="label calcule cadre-blessures-detail">Herbes</th>
+		<th class="label calcule cadre-blessures-detail">Soin</th>
+		<td ng-attr-title="{{blessureEnduParReposText(perso.blessure)}}">
+			<button ng-disabled="blessureEnduParRepos(perso.blessure) == 0" ng-click="blessureRepos(perso.blessure)">Se reposer</button>
+		</td>
+	</tr>
+	<tr ng-repeat="b in perso.blessure">
+		<td class="val calcule">{{b.grade}}</td>
+		<td class="val calcule cadre-blessures-detail">{{b.type}}</td>
+		<td class="val calcule">{{b.localisation}}</td>
+		<td class="val calcule">{{b.jours}}</td>
+		<td class="val calcule cadre-blessures-detail"><span ng-class="display.cadre.blessures.heure" heure="b.date.heure"></span> {{b.date.jour}}/{{b.date.mois}}/{{b.date.annee}}</td>
+		<td class="val calcule"><img ng-show="b.saigne" src="img/blood.png" title="Saignement"/> {{b.endu}} endu <span class="imp" ng-show="b.vie">{{b.vie}} vie</span></td>
+		<td class="val calcule cadre-blessures-detail">
+			<span ng-show="b.herbes">
+				<img src="img/done.png"/> {{b.herbes.bruns}} {{blessureHerbe[b.herbes.qualite]}} en {{i18n.date.heure[b.herbes.heure - 1]}}
+			</span>
+			<span ng-hide="b.herbes">
+				<img src="img/help.png"/> {{blessureMiniText(b.grade)}}
+			</span>
+		</td>
+		<td class="center cadre-blessures-detail">
+			<span ng-show="b.herbes">
+				<button ng-disabled="b.herbes" ng-click="blessureTest(b)">Tester</button>
+			</span>
+			<span ng-show="!b.herbes && !b.saigne">
+				<button class="ok" ng-disabled="blessuresHerbes.bruns.$invalid || !blessureNecessaireEtSuffisant(b, ihm.herbes)"
+					ng-click="blessureApplique(b, ihm.herbes.heure, ihm.herbes.qualite, ihm.herbes.bruns)">Appliquer</button>
+			</span>
+			<span ng-show="b.saigne">
+				<button ng-click="b.saigne = false" title="Arrêter le saignement"><img src="img/blood.png"/> Arrêter</button>
+			</span>
+		</td>
+		<td class="cadre-blessures-detail">
+			<button ng-click="blessureSuppr($parent.perso.blessure, b)" title="En cas de soin total ou de potion magique">Supprimer</button>
+		</td>
+	</tr>
+	<tr class="cadre-blessures-detail">
+		<td class="label saisie" colspan="8">
+			<form name="blessuresHerbes">
+				Herbes
+				<input name="bruns" type="number" class="val saisie" maxlength="2" ng-model="ihm.herbes.bruns" required type-int-min="1"/>
+				<select ng-model="ihm.herbes.qualite" ng-options="h for h in blessureHerbe"></select>
+			</form>
+		</td>
+	</tr>
+</table>

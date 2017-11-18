@@ -1,0 +1,41 @@
+<table id="cadre-jet" class="cadre" draggable="true" ondragstart="zone.drag(event)">
+	<tr>
+		<td colspan="4"><h1>Jet de dés</h1></td>
+	</tr>
+	<tr>
+		<td class="label saisie">Caractéristique</td>
+		<td class="val saisie"><input type="number" maxlength="2" ng-model="ihm.jet.carac.val" ng-change="jetOnCaracChange()"/></td>
+		<td colspan="2">{{i18n.carac[ihm.jet.carac.nom]}}</td>
+	</tr>
+	<tr>
+		<td class="label saisie">Compétence</td>
+		<td class="val saisie"><input type="number" maxlength="3" ng-model="ihm.jet.comp.val"  ng-change="jetOnCompChange()"/></td>
+		<td colspan="2">{{service.competence.label[ihm.jet.comp.nom]}}</td>
+	</tr>
+	<tr>
+		<td class="label saisie">Difficulté</td>
+		<td class="val saisie"><input type="number" maxlength="3" ng-model="ihm.jet.diff"  ng-change="jetOnDiffChange()"/></td>
+		<td class="label calcule" style="width: 73px;" title="XP en cas de particulière ou critique">XP</td>
+		<td style="width: 73px;"><xp diff="ihm.jet.comp.val + ihm.jet.diff - ihm.jet.malus" carac="ihm.jet.carac.nom" comp="ihm.jet.comp.nom"/></td>
+	</tr>
+	<tr>
+		<td colspan="4">
+			<table>
+				<tr>
+					<td class="label calcule" title="Critique">Crit</td>
+					<td class="label calcule" title="Particulière">Part</td>
+					<td class="label calcule" title="Significative">Sign</td>
+					<td class="label calcule" title="Normale">Norm</td>
+					<td class="label calcule" title="Echec total">E.Tot</td>
+				</tr>
+				<tr>
+					<td class="val calcule seuil-crit">{{ihm.jet.seuil.crit}}%</td>
+					<td class="val calcule seuil-part">{{ihm.jet.seuil.part}}%</td>
+					<td class="val calcule seuil-sign">{{ihm.jet.seuil.sign}}%</td>
+					<td class="val calcule seuil-norm">{{ihm.jet.seuil.norm}}%</td>
+					<td class="val calcule seuil-total">{{ihm.jet.seuil.total}}%</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+</table>

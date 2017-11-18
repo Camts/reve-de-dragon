@@ -1,0 +1,78 @@
+<table id="cadre-combat" class="cadre" draggable="true" ondragstart="zone.drag(event)"
+ ng-class="{'cadre-combat-hide-eqmt': !display.cadre.combat.eqmt}">
+	<thead>
+		<tr>
+			<td colspan="{{display.cadre.combat.eqmt ? 18 : 11}}">
+				<h1>Combat</h1>
+				<table prefs>
+					<tr>
+						<td><label for="cadre-combat-eqmt" class="label saisie">Voir l'équipement</label></td>
+						<td><input id="cadre-combat-eqmt" class="val saisie" type="checkbox" ng-model="display.cadre.combat.eqmt"/></td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+		<tr>
+			<th colspan="2" class="bord-r">Compétence</th>
+			<th colspan="7" class="cadre-combat-eqmt bord-r">Equipement</th>
+			<th colspan="4" class="bord-r" title="Tous malus et bonus compris">Stats.</th>
+			<th colspan="5">Pourcentages</th>
+		</tr>
+		<tr>
+			<th class="bord-b" title="Nom de la compétence">Nom</th>
+			<th class="bord-b bord-r" title="XP en cas de particulière ou critique" class="bord-r">XP</th>
+			<th class="cadre-combat-eqmt bord-b" title="Nom de l'arme">Nom</th>
+			<th class="cadre-combat-eqmt bord-b" title="Bonus d'enchantement">+</th>
+			<th class="cadre-combat-eqmt bord-b" title="Dégâts tranchants">T.</th>
+			<th class="cadre-combat-eqmt bord-b" title="Dégâts contandants">C.</th>
+			<th class="cadre-combat-eqmt bord-b" title="Dégâts en pointe">P.</th>
+			<th class="cadre-combat-eqmt bord-b" title="Résistance">Rés.</th>
+			<th class="cadre-combat-eqmt bord-b bord-r" title="Encombrement" class="bord-r">Enc.</th>
+			<th class="bord-b" title="Initiative">Init.</th>
+			<th class="bord-b" title="Dégâts tranchants">T.</th>
+			<th class="bord-b" title="Dégâts contandants">C.</th>
+			<th class="bord-b bord-r" title="Dégâts en pointe">P.</th>
+			<th class="bord-b" title="Critique">Crit</th>
+			<th class="bord-b" title="Particulière">Part</th>
+			<th class="bord-b" title="Significative">Sign</th>
+			<th class="bord-b" title="Normale">Norm</th>
+			<th class="bord-b" title="Echec total">E.Tot</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td colspan="2" class="bord-r"><h2>Attaque</h2></td>
+			<td colspan="7" class="cadre-combat-eqmt bord-r"></td>
+			<td colspan="4" class="bord-r"></td>
+			<td colspan="5" class="right">Difficulté <input type="number" ng-model="perso.combat.diff.att" maxlength="3" type-int-max="0"/></td>
+		</tr>
+		<tr label="Epée 1m" type="att" carac="melee" combat-comp="epee1m"></tr>
+		<tr label="Epée 2m" type="att" carac="melee" combat-comp="epee2m"></tr>
+		<tr label="Hache 1m" type="att" carac="melee" combat-comp="hache1m"></tr>
+		<tr label="Hache 2m" type="att" carac="melee" combat-comp="hache2m"></tr>
+		<tr label="Masse 1m" type="att" carac="melee" combat-comp="masse1m"></tr>
+		<tr label="Masse 2m" type="att" carac="melee" combat-comp="masse2m"></tr>
+		<tr label="Fléaux" type="att" carac="melee" combat-comp="fleaux"></tr>
+		<tr label="Dague" type="att" carac="melee" combat-comp="dague"></tr>
+		<tr label="Corps à corps" type="att" carac="melee" combat-comp="corpsACorps"></tr>
+		<tr label="Bouclier" type="att" carac="melee" combat-comp="bouclier"></tr>
+		<tr>
+			<td colspan="2" class="bord-r"><h2>Distance</h2></td>
+			<td colspan="7" class="cadre-combat-eqmt bord-r"></td>
+			<td colspan="4" class="bord-r"></td>
+			<td colspan="5" class="right">Difficulté <input type="number" ng-model="perso.combat.diff.dist" maxlength="3" type-int-max="0"/></td>
+		</tr>
+		<tr label="Arc" type="dist" carac="tir" combat-comp="arc"></tr>
+		<tr label="Arbalète" type="dist" carac="tir" combat-comp="arbalete"></tr>
+		<tr label="Dague lancée" type="dist" carac="lance" combat-comp="dagueLancee"></tr>
+		<tr label="Hache lancée" type="dist" carac="lance" combat-comp="hacheLancee"></tr>
+		<tr>
+			<td colspan="2" class="bord-r"><h2>Défense</h2></td>
+			<td colspan="7" class="cadre-combat-eqmt bord-r"></td>
+			<td colspan="4" class="bord-r"></td>
+			<td colspan="5" class="right">Difficulté <input type="number" ng-model="perso.combat.diff.def" maxlength="3" type-int-max="0"/></td>
+		</tr>
+		<tr label="Bouclier" type="def" carac="melee" combat-comp="bouclier"></tr>
+		<tr label="Esquive" type="def" carac="derobee" combat-comp="esquive"></tr>
+	</tbody>
+</table>
