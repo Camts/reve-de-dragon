@@ -2,7 +2,7 @@
 	<tr>
 		<td colspan="2"><h1>Vie</h1></td>
 		<td class="label calcule">Max</td>
-		<td class="val calcule">{{service.carac.vieMax(perso.carac)}}</td>
+		<td class="val calcule">{{perso.carac.vieMax}}</td>
 	</tr>
 	<tr>
 		<td class="label saisie" colspan="3">Perte hors blessure</td>
@@ -10,8 +10,8 @@
 	</tr>
 	<tr>
 		<td class="label calcule">Actuelle</td>
-		<td class="val calcule">{{ihm.compteur.vie}}</td>
+		<td class="val calcule">{{perso.carac.vieMax - perso.compteur.perteVie}}</td>
 		<td class="label calcule">Malus</td>
-		<td class="val calcule">{{ihm.compteur.perteVie}}</td>
+		<td class="val calcule">{{perso.compteur.perteVie}}</td>
 	</tr>
 </table>

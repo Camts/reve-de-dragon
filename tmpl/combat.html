@@ -4,7 +4,7 @@
 		<tr>
 			<td colspan="{{display.cadre.combat.eqmt ? 18 : 11}}">
 				<h1>Combat</h1>
-				<table prefs>
+				<table class="no-pnj" prefs>
 					<tr>
 						<td><label for="cadre-combat-eqmt" class="label saisie">Voir l'équipement</label></td>
 						<td><input id="cadre-combat-eqmt" class="val saisie" type="checkbox" ng-model="display.cadre.combat.eqmt"/></td>
@@ -46,33 +46,47 @@
 			<td colspan="4" class="bord-r"></td>
 			<td colspan="5" class="right">Difficulté <input type="number" ng-model="perso.combat.diff.att" maxlength="3" type-int-max="0"/></td>
 		</tr>
-		<tr label="Epée 1m" type="att" carac="melee" combat-comp="epee1m"></tr>
-		<tr label="Epée 2m" type="att" carac="melee" combat-comp="epee2m"></tr>
-		<tr label="Hache 1m" type="att" carac="melee" combat-comp="hache1m"></tr>
-		<tr label="Hache 2m" type="att" carac="melee" combat-comp="hache2m"></tr>
-		<tr label="Masse 1m" type="att" carac="melee" combat-comp="masse1m"></tr>
-		<tr label="Masse 2m" type="att" carac="melee" combat-comp="masse2m"></tr>
-		<tr label="Fléaux" type="att" carac="melee" combat-comp="fleaux"></tr>
-		<tr label="Dague" type="att" carac="melee" combat-comp="dague"></tr>
-		<tr label="Corps à corps" type="att" carac="melee" combat-comp="corpsACorps"></tr>
-		<tr label="Bouclier" type="att" carac="melee" combat-comp="bouclier"></tr>
+		<tr type="att" combat-comp="epee1m-d"></tr>
+		<tr type="att" combat-comp="epee1m-g"></tr>
+		<tr type="att" combat-comp="epee2m"></tr>
+		<tr type="att" combat-comp="hache1m-d"></tr>
+		<tr type="att" combat-comp="hache1m-g"></tr>
+		<tr type="att" combat-comp="hache2m"></tr>
+		<tr type="att" combat-comp="masse1m-d"></tr>
+		<tr type="att" combat-comp="masse1m-g"></tr>
+		<tr type="att" combat-comp="masse2m"></tr>
+		<tr type="att" combat-comp="fleaux"></tr>
+		<tr type="att" combat-comp="dague-d"></tr>
+		<tr type="att" combat-comp="dague-g"></tr>
+		<tr type="att" combat-comp="corpsACorps"></tr>
+		<tr type="att" combat-comp="bouclier"></tr>
 		<tr>
 			<td colspan="2" class="bord-r"><h2>Distance</h2></td>
 			<td colspan="7" class="cadre-combat-eqmt bord-r"></td>
 			<td colspan="4" class="bord-r"></td>
 			<td colspan="5" class="right">Difficulté <input type="number" ng-model="perso.combat.diff.dist" maxlength="3" type-int-max="0"/></td>
 		</tr>
-		<tr label="Arc" type="dist" carac="tir" combat-comp="arc"></tr>
-		<tr label="Arbalète" type="dist" carac="tir" combat-comp="arbalete"></tr>
-		<tr label="Dague lancée" type="dist" carac="lance" combat-comp="dagueLancee"></tr>
-		<tr label="Hache lancée" type="dist" carac="lance" combat-comp="hacheLancee"></tr>
+		<tr type="dist" combat-comp="arc"></tr>
+		<tr type="dist" combat-comp="arbalete"></tr>
+		<tr type="dist" combat-comp="dagueLancee"></tr>
+		<tr type="dist" combat-comp="hacheLancee"></tr>
 		<tr>
 			<td colspan="2" class="bord-r"><h2>Défense</h2></td>
 			<td colspan="7" class="cadre-combat-eqmt bord-r"></td>
 			<td colspan="4" class="bord-r"></td>
 			<td colspan="5" class="right">Difficulté <input type="number" ng-model="perso.combat.diff.def" maxlength="3" type-int-max="0"/></td>
 		</tr>
-		<tr label="Bouclier" type="def" carac="melee" combat-comp="bouclier"></tr>
-		<tr label="Esquive" type="def" carac="derobee" combat-comp="esquive"></tr>
+		<tr type="def" combat-comp="epee1m-d"></tr>
+		<tr type="def" combat-comp="epee1m-g"></tr>
+		<tr type="def" combat-comp="epee2m"></tr>
+		<tr type="def" combat-comp="hache1m-d"></tr>
+		<tr type="def" combat-comp="hache1m-g"></tr>
+		<tr type="def" combat-comp="hache2m"></tr>
+		<tr type="def" combat-comp="masse1m-d"></tr>
+		<tr type="def" combat-comp="masse1m-g"></tr>
+		<tr type="def" combat-comp="masse2m"></tr>
+		<tr type="def" combat-comp="dague-g"></tr>
+		<tr type="def" combat-comp="bouclier"></tr>
+		<tr type="def" combat-comp="esquive"></tr>
 	</tbody>
 </table>

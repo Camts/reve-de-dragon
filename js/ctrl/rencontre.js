@@ -1,11 +1,13 @@
+"use strict";
+// jshint esversion: 6
+
 controle.rencontre = function($scope) {
 	$scope.rencontreNormale = function() {
-		var comp = $scope.perso.comp;
+		let comp = $scope.perso.comp;
 		// meilleure voie de magie
-		var mvm = Math.max(service.competence.val(comp.oniros), service.competence.val(comp.hypnos), service.competence
-				.val(comp.narcos), service.competence.val(comp.thanatos));
-		return service.seuil.normale($scope.perso.compteur.reve, mvm - $scope.ihm.jet.malus
-				- defZero($scope.ihm.magie.rencontre));
+		let mvm = Math.max(comp.oniros.val, comp.hypnos.val, comp.narcos.val, comp.thanatos.val);
+		return service.seuil.normale($scope.perso.compteur.reve, mvm - $scope.perso.compteur.malus
+				- defZero($scope.perso.ihm.magie.rencontre));
 	};
 	$scope.rencontreCritique = function() {
 		return service.seuil.critique($scope.rencontreNormale());

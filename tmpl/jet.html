@@ -10,13 +10,13 @@
 	<tr>
 		<td class="label saisie">Compétence</td>
 		<td class="val saisie"><input type="number" maxlength="3" ng-model="ihm.jet.comp.val"  ng-change="jetOnCompChange()"/></td>
-		<td colspan="2">{{service.competence.label[ihm.jet.comp.nom]}}</td>
+		<td colspan="2">{{Comp.typeLabel[ihm.jet.comp.nom][1]}}</td>
 	</tr>
 	<tr>
 		<td class="label saisie">Difficulté</td>
 		<td class="val saisie"><input type="number" maxlength="3" ng-model="ihm.jet.diff"  ng-change="jetOnDiffChange()"/></td>
 		<td class="label calcule" style="width: 73px;" title="XP en cas de particulière ou critique">XP</td>
-		<td style="width: 73px;"><xp diff="ihm.jet.comp.val + ihm.jet.diff - ihm.jet.malus" carac="ihm.jet.carac.nom" comp="ihm.jet.comp.nom"/></td>
+		<td style="width: 73px;"><xp diff="ihm.jet.comp.val + ihm.jet.diff - perso.compteur.malus" carac="ihm.jet.carac.nom" comp="ihm.jet.comp.nom"/></td>
 	</tr>
 	<tr>
 		<td colspan="4">

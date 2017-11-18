@@ -21,10 +21,10 @@
 						<td class="label calcule">+{{i+1}}</td>
 						<td class="val calcule">{{perso.eqmt.herbe.lune[i]}}</td>
 						<td>
-							<span class="val calcule seuil-norm">{{service.seuil.normale(perso.compteur.reve, -1 - i -ihm.jet.malus)}}</span>%
+							<span class="val calcule seuil-norm">{{service.seuil.normale(perso.compteur.reve, -1 - i -perso.compteur.malus)}}</span>%
 						</td>
 						<td>
-							<button title="Fumer et ne pas résister" ng-click="$parent.service.compteur.fumer($parent, i)" class="ok">Fumer</button>
+							<button title="Fumer et ne pas résister" ng-click="$parent.service.compteur.fumer($parent.perso, i)" class="ok">Fumer</button>
 						</td>
 					</tr>
 				</table>
@@ -63,8 +63,8 @@
 	</tr>
 	<tr>
 		<td class="label saisie">Jet</td>
-		<td class="val saisie"><input type="number" maxlength="2" ng-model="ihm.xp.jet" type-int-min="1" type-int-max="100"/></td>
-		<td class="val calcule">{{service.compteur.stressToXP(perso.compteur, ihm.xp.jet)}} {{service.compteur.stressToXP(perso.compteur, ihm.xp.jet) > 1 ? 'points' : 'point'}}</td>
-		<td colspan="2"><button class="ok" ng-disabled="!perso.compteur.stress || !ihm.xp.jet || ihm.xp.jet.$invalid" ng-click="stressTransform()">Transformer</button></td>
+		<td class="val saisie"><input type="number" maxlength="2" ng-model="perso.ihm.xp.jet" type-int-min="1" type-int-max="100"/></td>
+		<td class="val calcule">{{service.compteur.stressToXP(perso.compteur, perso.ihm.xp.jet)}} {{service.compteur.stressToXP(perso.compteur, perso.ihm.xp.jet) > 1 ? 'points' : 'point'}}</td>
+		<td colspan="2"><button class="ok" ng-disabled="!perso.compteur.stress || !perso.ihm.xp.jet || perso.ihm.xp.jet.$invalid" ng-click="stressTransform()">Transformer</button></td>
 	</tr>
 </table>

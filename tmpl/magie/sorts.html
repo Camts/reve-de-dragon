@@ -57,14 +57,14 @@
 			<input ng-show="sortIsEdit($index)" name="rituel" type="checkbox" ng-model="s.rituel"/>
 		</td>
 		<td class="val saisie">
-			<span ng-hide="sortIsEdit($index)">{{ihm.magie.sortBonusTexte[$index]}}<!--span ng-repeat="(c, b) in s.bonus"><span ng-hide="$first">, </span>{{c}}: {{b}}</span--></span>
-			<input ng-show="sortIsEdit($index)" name="bonus" class="val saisie" ng-model="ihm.magie.sortBonusTexte[$index]"
+			<span ng-hide="sortIsEdit($index)">{{perso.ihm.magie.sortBonusTexte[$index]}}<!--span ng-repeat="(c, b) in s.bonus"><span ng-hide="$first">, </span>{{c}}: {{b}}</span--></span>
+			<input ng-show="sortIsEdit($index)" name="bonus" class="val saisie" ng-model="perso.ihm.magie.sortBonusTexte[$index]"
 			 title="Format : case: bonus, case: bonus... (exemple: 'G8: 12, I7: 5')"/>
 		</td>
 		<td class="val calcule seuil-norm">{{sortSeuilNormale(s)}}</td>
 		<td>
-			<img title="Voir les détails et où le lancer sur la carte" src="../../img/eye-open.png" ng-hide="ihm.magie.sortVu == $index" ng-click="sortVoir($index, s)"/>
-			<img title="Ne plus voir" src="../../img/eye-closed.png" ng-show="ihm.magie.sortVu == $index" ng-click="sortVoir($index, s)"/>
+			<img title="Voir les détails et où le lancer sur la carte" src="../../img/eye-open.png" ng-hide="perso.ihm.magie.sortVu == $index" ng-click="sortVoir($index, s)"/>
+			<img title="Ne plus voir" src="../../img/eye-closed.png" ng-show="perso.ihm.magie.sortVu == $index" ng-click="sortVoir($index, s)"/>
 		</td>
 		<td ng-show="display.cadre.magieSort.actions">
 			<img title="Modifier" src="../../img/edit.png" ng-show="sortIsEdit(-1)" ng-click="sortEdit($index)"/>
@@ -81,21 +81,21 @@
 		<td colspan="14"><h1>Ajouter un sort</h1></td>
 	</tr>
 	<tr ng-show="display.cadre.magieSort.actions && sortIsEdit(-1)" id="sort-new"><form>
-		<td class="val saisie"><select name="voie" ng-model="ihm.magie.sortNew.voie" ng-options="v for v in sortVoies()"></select></td>
-		<td class="val saisie"><input name="nom" class="val saisie" ng-model="ihm.magie.sortNew.nom"/></td>
-		<td class="val saisie"><select name="typeCase" ng-model="ihm.magie.sortNew.typeCase" ng-options="v for v in sortTypesCase()"></select></td>
-		<td class="val saisie"><input name="diff" type="number" class="val saisie" maxlength="3" ng-model="ihm.magie.sortNew.diff" required type-int-max="-1"/></td>
-		<td class="val saisie"><input name="conso" type="number" class="val saisie" maxlength="2" ng-model="ihm.magie.sortNew.conso" required type-int-min="1"/></td>
-		<td class="val saisie"><input name="portee" type="number" class="val saisie" maxlength="2" ng-model="ihm.magie.sortNew.portee" type-int-min="1"/></td>
-		<td class="val saisie"><input name="variable" type="checkbox" ng-model="ihm.magie.sortNew.variable"/></td>
-		<td class="val saisie"><input name="rituel" type="checkbox" ng-model="ihm.magie.sortNew.rituel"/></td>
-		<td class="val saisie" colspan="2"><input name="bonus" class="val saisie" ng-model="ihm.magie.sortNew.bonus" title="Format : case: bonus, case: bonus... (exemple: 'G8: 12, I7: 5')"/></td>
+		<td class="val saisie"><select name="voie" ng-model="perso.ihm.magie.sortNew.voie" ng-options="v for v in sortVoies()"></select></td>
+		<td class="val saisie"><input name="nom" class="val saisie" ng-model="perso.ihm.magie.sortNew.nom"/></td>
+		<td class="val saisie"><select name="typeCase" ng-model="perso.ihm.magie.sortNew.typeCase" ng-options="v for v in sortTypesCase()"></select></td>
+		<td class="val saisie"><input name="diff" type="number" class="val saisie" maxlength="3" ng-model="perso.ihm.magie.sortNew.diff" required type-int-max="-1"/></td>
+		<td class="val saisie"><input name="conso" type="number" class="val saisie" maxlength="2" ng-model="perso.ihm.magie.sortNew.conso" required type-int-min="1"/></td>
+		<td class="val saisie"><input name="portee" type="number" class="val saisie" maxlength="2" ng-model="perso.ihm.magie.sortNew.portee" type-int-min="1"/></td>
+		<td class="val saisie"><input name="variable" type="checkbox" ng-model="perso.ihm.magie.sortNew.variable"/></td>
+		<td class="val saisie"><input name="rituel" type="checkbox" ng-model="perso.ihm.magie.sortNew.rituel"/></td>
+		<td class="val saisie" colspan="2"><input name="bonus" class="val saisie" ng-model="perso.ihm.magie.sortNew.bonus" title="Format : case: bonus, case: bonus... (exemple: 'G8: 12, I7: 5')"/></td>
 		<td><img title="Ajouter" src="../../img/plus.png" ng-click="sortAdd()"/></td>
 		<td colspan="3"></td>
 	</form></tr>
 	<tr ng-show="display.cadre.magieSort.actions">
 		<th class="label saisie" title="Description détaillés du fonctionnement et des effets">Détails</th>
-		<td class="val saisie left" colspan="13"><textarea rows="10" cols="100" ng-model="ihm.magie.sortDetail"></textarea></td>
+		<td class="val saisie left" colspan="13"><textarea rows="10" cols="100" ng-model="perso.ihm.magie.sortDetail"></textarea></td>
 	</tr>
 	<tr ng-show="display.cadre.magieSort.actions">
 		<th>Format</th>
@@ -112,7 +112,7 @@
 			</table>
 		</td>
 	</tr>
-	<tr ng-show="ihm.magie.sortVu > -1">
+	<tr ng-show="perso.ihm.magie.sortVu > -1">
 		<td colspan="14">
 			<h1>Lancer le sort</h1>
 			<form>
@@ -120,7 +120,7 @@
 					<tr>
 						<td class="label saisie" title="Nombre de points de rêve à dépenser en plus du coût minimal du sort">Part variable</td>
 						<td><input id="cadre-magie-sorts-var" name="var" type="number" class="val saisie" maxlength="2"
-						 ng-model="ihm.magie.castVar" type-int-min="0" type-int-max="{{perso.compteur.reve - perso.magie.sorts[ihm.magie.sortVu].conso}}"/></td>
+						 ng-model="perso.ihm.magie.castVar" type-int-min="0" type-int-max="{{perso.compteur.reve - perso.magie.sorts[perso.ihm.magie.sortVu].conso}}"/></td>
 						<td class="label calcule" title="Critique">Crit</td>
 						<td class="label calcule" title="Particulière">Part</td>
 						<td class="label calcule" title="Significative">Sign</td>
@@ -130,7 +130,7 @@
 					<tr>
 						<td class="label saisie" title="Ajustement de la difficulté par l'astrologie">Astrologie</td>
 						<td><select id="cadre-magie-sorts-astro" name="astro" class="val saisie"
-						 ng-model="ihm.magie.castAstro" ng-options="v for v in [-4, -2, 0, 2, 4]"></select></td>
+						 ng-model="perso.ihm.magie.castAstro" ng-options="v for v in [-4, -2, 0, 2, 4]"></select></td>
 						<td class="val calcule seuil-crit">{{sortSeuilCritique()}}</td>
 						<td class="val calcule seuil-part">{{sortSeuilParticuliere()}}</td>
 						<td class="val calcule seuil-sign">{{sortSeuilSignificative()}}</td>
@@ -144,7 +144,7 @@
 					<tr style="text-align: center;">
 						<th colspan="2" class="label calcule">Réussite</th>
 						<td colspan="2"><button ng-click="sortCast(true, false)" ng-disabled="!sortCanCast()">Lancer</button></td>
-						<td colspan="3"><button ng-click="sortCast(true, true)" ng-disabled="!sortCanCast() || perso.magie.sorts[ihm.magie.sortVu].rituel">Mettre en réserve</button></td>
+						<td colspan="3"><button ng-click="sortCast(true, true)" ng-disabled="!sortCanCast() || perso.magie.sorts[perso.ihm.magie.sortVu].rituel">Mettre en réserve</button></td>
 					</tr>
 				</table>
 			</form>

@@ -43,6 +43,7 @@ ul {margin: 0px; padding-left: 16px;}
 .dice[ng-click] {cursor: url("../img/dice.png"), pointer;}
 .imp {font-weight: bolder; color: #C05050;}
 .emphase {font-weight: bolder; font-style: italic;}
+.hiddenText {color: rgba(0, 0, 0, 0) !important;}
 
 .ok {color: #50C050;}
 .ok[disabled] {color: #505050;}
@@ -78,7 +79,8 @@ th.label {text-align: center;}
 .seuil-total {background: linear-gradient(to bottom right, rgba(182,80,80,0.33), rgba(182,80,80,0));}
 
 #glasspane {z-index: 1; width: 100%; height: 100%; position: absolute; top: 0px; left: 0px;}
-#cadres-normal, #cadres-magie {z-index: 2; width: 100%; height: 100%; position: absolute; top: 0px; left: 0px;}
+#cadres-normal, #cadres-eqmt, #cadres-magie, #cadres-pnjs {z-index: 2; width: 100%; height: 100%; position: absolute; top: 0px; left: 0px;}
+#pnjs .no-pnj {display: none;}
 
 #clock {position: absolute; right: 0px; top: 26px; z-index: 3;}
 #clock img:nth-child(2) {display: none;}
@@ -96,7 +98,18 @@ th.label {text-align: center;}
 	cursor: pointer;
 }
 
-#magie-switch {position: absolute; right: 0px; top: 78px ; z-index: 3;}
+#eqmt-switch {position: absolute; right: 0px; top: 78px ; z-index: 3;}
+#magie-switch {position: absolute; right: 0px; top: 104px ; z-index: 3;}
+
+/******\
+| PNJs |
+\******/
+
+.selected {color: #5050C0;}
+
+#cadre-modeles table {width: 100%;}
+#cadre-modeles tr > td:nth-child(1) {width: 100%;}
+#cadre-modeles h2 {padding-left: 0;}
 
 /*********\
 | Widgets |
@@ -217,16 +230,21 @@ th.label {text-align: center;}
 
 /* Modes d'affichage */
 #clock .cadre, #magie-switch .cadre {display: block;}
-#cadres-magie {display: none;}
+#cadres-eqmt, #cadres-magie {display: none;}
 
-.comp-arch .cadre, .comp-arch #cadres-magie, .comp-arch #clock .cadre, .comp-arch #magie-switch .cadre {display: none;}
+.comp-arch .cadre, .comp-arch #cadres-eqmt, .comp-arch #cadres-magie, .comp-arch #clock .cadre, .comp-arch #magie-switch .cadre {display: none;}
 .comp-arch #cadres-normal .cadre.comp {display: block;}
 
 .mode-stress .cadre {display: none;}
 .mode-stress #cadres-normal .cadre.comp {display: block;}
 
 .mode-magie #cadres-normal {display: none;}
+.mode-magie #cadres-eqmt {display: none;}
 .mode-magie #cadres-magie {display: block;}
+
+.mode-eqmt #cadres-normal {display: none;}
+.mode-eqmt #cadres-eqmt {display: block;}
+.mode-eqmt #cadres-magie {display: none;}
 
 /* Identité */
 #cadre-identite .expandable {float: right; margin-left: 5px;}
@@ -292,3 +310,7 @@ th.label {text-align: center;}
 .cadre-magie-sorts-detail h2 {text-align: left; font-size: large;}
 .cadre-magie-sorts-detail h3 {text-align: left; color: #5050C0;	margin: 2px; padding-left: 20px;}
 .cadre-magie-sorts-detail ul, .cadre-magie-sorts-detail ol {margin-left: 0px; padding-left: 16px;}
+
+/* Modeles */
+#cadre-modeles-title {position: relative;}
+#cadre-modeles-title span {position: absolute; top: 5px; right: 5px}

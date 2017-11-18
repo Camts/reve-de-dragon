@@ -4,18 +4,18 @@
 	</tr>
 	<tr>
 		<td class="label calcule">Combat</td>
-		<td colspan="2"><button ng-disabled="perso.combat.round > 0" ng-click="perso.combat.round = 1">Nouveau</button></td>
-		<td><button ng-disabled="perso.combat.round == undefined" ng-click="perso.combat.round = undefined">Fin</button></td>
+		<td colspan="2"><button ng-disabled="display.round > 0" ng-click="roundStart()">Nouveau</button></td>
+		<td><button ng-disabled="display.round == undefined" ng-click="roundEnd()">Fin</button></td>
 	</tr>
 	<tr>
 		<td class="label calcule">Round</td>
-		<td class="val calcule">{{perso.combat.round}}</td>
-		<td colspan="2"><button ng-disabled="perso.combat.round == undefined" ng-click="blessureIncrRound()">Suivant</button></td>
+		<td class="val calcule">{{display.round}}</td>
+		<td colspan="2"><button ng-disabled="display.round == undefined" ng-click="roundIncr()">Suivant</button></td>
 	</tr>
 	<tr>
 		<td colspan="4">
-			<button ng-disabled="perso.combat.round == undefined" ng-click="blessureSonne()">Sonné</button>
-			<span class="label calcule" colspan="2">jusqu'au round</span>
+			<button ng-disabled="display.round == undefined" ng-click="perso.blessureSonne(display.round)">Sonné</button>
+			<span class="label calcule">jusqu'au round</span>
 			<span class="val calcule">{{perso.combat.sonne}}</span>
 		</td>
 	</tr>

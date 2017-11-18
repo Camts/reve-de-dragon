@@ -1,19 +1,27 @@
-var app = angular.module('rdd', []);
+"use strict";
+// jshint esversion: 6
+
+let app = angular.module("rdd", []);
 // package for services sub-packages
-var service = {};
+let service = {};
 // package for controllers constructors
-var controle = {};
+let controle = {};
+
+window.onerror = function(message, url, line, column, error) {
+	alert(message + " " + url + " " + line + ":" + column);
+	alert(error.stack);
+};
 
 function defZero(val) {
 	return val ? val : 0;
-};
+}
 
-app.directive('typeIntMin', function() {
+app.directive("typeIntMin", function() {
 	return {
-		require : 'ngModel',
+		require : "ngModel",
 		link : function(scope, element, attr, mCtrl) {
 			mCtrl.$parsers.push(function(value) {
-				var i, valid;
+				let i, valid;
 				if (typeof (value) == "string") {
 					valid = value.match(/^-?[0-9]+$/) != null;
 					i = valid ? parseInt(value) : undefined;
@@ -24,19 +32,19 @@ app.directive('typeIntMin', function() {
 					valid = true;
 					i = undefined;
 				}
-				mCtrl.$setValidity('intMin', valid && i >= parseInt(attr.typeIntMin));
+				mCtrl.$setValidity("intMin", valid && i >= parseInt(attr.typeIntMin));
 				return i;
 			});
 		}
 	};
 });
 
-app.directive('typeIntMax', function() {
+app.directive("typeIntMax", function() {
 	return {
-		require : 'ngModel',
+		require : "ngModel",
 		link : function(scope, element, attr, mCtrl) {
 			mCtrl.$parsers.push(function(value) {
-				var i, valid;
+				let i, valid;
 				if (typeof (value) == "string") {
 					valid = value.match(/^-?[0-9]+$/) != null;
 					i = valid ? parseInt(value) : undefined;
@@ -47,19 +55,19 @@ app.directive('typeIntMax', function() {
 					valid = true;
 					i = undefined;
 				}
-				mCtrl.$setValidity('intMax', valid && i <= parseInt(attr.typeIntMax));
+				mCtrl.$setValidity("intMax", valid && i <= parseInt(attr.typeIntMax));
 				return i;
 			});
 		}
 	};
 });
 
-app.directive('typeHeure', function() {
+app.directive("typeHeure", function() {
 	return {
-		require : 'ngModel',
+		require : "ngModel",
 		link : function(scope, element, attr, mCtrl) {
 			function myValidation(value) {
-				var i, valid;
+				let i, valid;
 				if (typeof (value) == "string") {
 					valid = value.match(/^-?[0-9]+$/) != null;
 					i = valid ? parseInt(value) : undefined;
@@ -70,7 +78,7 @@ app.directive('typeHeure', function() {
 					valid = false;
 					i = undefined;
 				}
-				mCtrl.$setValidity('intMin', valid && i >= 1 && i <= 12);
+				mCtrl.$setValidity("intMin", valid && i >= 1 && i <= 12);
 				return i;
 			}
 			mCtrl.$parsers.push(myValidation);
@@ -78,30 +86,30 @@ app.directive('typeHeure', function() {
 	};
 });
 
-var util = {
+let util = {
 	rand : function(max) {
 		return Math.ceil(Math.random() * max);
 	},
 	setNumberInputsWidth : function(node) {
-		var inputs = node.querySelectorAll("input[maxlength]");
-		for (var i = 0; i < inputs.length; i++) {
-			var input = inputs[i];
-			var width = input.maxLength * (input.clientHeight > 0 ? input.clientHeight - 3 : 14) / 2 + 5;
+		let inputs = node.querySelectorAll("input[maxlength]");
+		for (let i = 0; i < inputs.length; i++) {
+			let input = inputs[i];
+			let width = input.maxLength * (input.clientHeight > 0 ? input.clientHeight - 3 : 14) / 2 + 5;
 			if (input.type && input.type == "number")
 				width += 10;
 			input.style.width = width + "px";
 		}
 	},
 	indexOf : function(a, e) {
-		for (var i = 0; i < a.length; i++) {
+		for (let i = 0; i < a.length; i++) {
 			if (a[i] == e)
 				return i;
 		}
 		return -1;
 	},
 	indexOfSameNodeName : function(a, e) {
-		var out = 0, name = e.nodeName;
-		for (var i = 0; i < a.length; i++) {
+		let out = 0, name = e.nodeName;
+		for (let i = 0; i < a.length; i++) {
 			if (a[i].nodeName == name)
 				if (a[i] == e)
 					return out;
@@ -111,8 +119,8 @@ var util = {
 		return -1;
 	},
 	removeEmptyText : function(elt) {
-		for (var i = elt.childNodes.length - 1; i >= 0; i--) {
-			var child = elt.childNodes[i];
+		for (let i = elt.childNodes.length - 1; i >= 0; i--) {
+			let child = elt.childNodes[i];
 			if (child.nodeType == 3) { // text
 				if (child.nodeValue.trim().length == 0)
 					elt.removeChild(child);
@@ -121,11 +129,21 @@ var util = {
 		}
 	},
 	notify : function(msg) {
-		var div = document.createElement("div");
+		let div = document.createElement("div");
 		div.setAttribute("class", "notification");
 		div.setAttribute("onclick", "this.parentNode.removeChild(this)");
 		div.innerHTML = msg;
-		var notifs = document.getElementById("notifications");
+		let notifs = document.getElementById("notifications");
 		notifs.insertBefore(div, notifs.firstChild);
 	}
 };
+
+document.addEventListener("click", function(evt) {
+	if (evt.target.nodeName == "INPUT") {
+		evt.target.select();
+	}
+}, false);
+
+setTimeout(function() {
+	util.setNumberInputsWidth(document);
+}, 3000);

@@ -1,4 +1,7 @@
-i18n = {
+"use strict";
+// jshint esversion: 6
+
+let i18n = {
 	carac : {
 		taille : "Taille",
 		apparence : "Apparence",

@@ -1,3 +1,6 @@
+"use strict";
+// jshint esversion: 6
+
 service.dao = {
 	initialPersoData : {
 		id : {
@@ -12,480 +15,9 @@ service.dao = {
 			yeux : "",
 			signePart : ""
 		},
-		carac : {
-			taille : {
-				val : 6
-			},
-			apparence : {
-				val : 6,
-				xp : undefined
-			},
-			constitution : {
-				val : 6,
-				xp : undefined
-			},
-			force : {
-				val : 6,
-				xp : undefined
-			},
-			agilite : {
-				val : 6,
-				xp : undefined
-			},
-			dexterite : {
-				val : 6,
-				xp : undefined
-			},
-			vue : {
-				val : 6,
-				xp : undefined
-			},
-			ouie : {
-				val : 6,
-				xp : undefined
-			},
-			odorat : {
-				val : 6,
-				xp : undefined
-			},
-			gout : {
-				val : 6,
-				xp : undefined
-			},
-			volonte : {
-				val : 6,
-				xp : undefined
-			},
-			intellect : {
-				val : 6,
-				xp : undefined
-			},
-			empathie : {
-				val : 6,
-				xp : undefined
-			},
-			eloquence : {
-				val : 6,
-				xp : undefined
-			},
-			reve : {
-				val : 6,
-				xp : undefined
-			},
-			chance : {
-				val : 6,
-				xp : undefined
-			}
+		carac : { /* $nom : {val: , xp: } */
 		},
-		comp : {
-			/* Générales */
-			chant : {
-				type : "gen",
-				val : undefined,
-				arch : 0,
-				xp : undefined
-			},
-			danse : {
-				type : "gen",
-				val : undefined,
-				arch : 0,
-				xp : undefined
-			},
-			discours : {
-				type : "gen",
-				val : undefined,
-				arch : 0,
-				xp : undefined
-			},
-			discretion : {
-				type : "gen",
-				val : undefined,
-				arch : 0,
-				xp : undefined
-			},
-			escalade : {
-				type : "gen",
-				val : undefined,
-				arch : 0,
-				xp : undefined
-			},
-			esquive : {
-				type : "gen",
-				val : undefined,
-				arch : 0,
-				xp : undefined
-			},
-			saut : {
-				type : "gen",
-				val : undefined,
-				arch : 0,
-				xp : undefined
-			},
-			seCacher : {
-				type : "gen",
-				val : undefined,
-				arch : 0,
-				xp : undefined
-			},
-			course : {
-				type : "gen",
-				val : undefined,
-				arch : 0,
-				xp : undefined
-			},
-			srvExt : {
-				type : "gen",
-				val : undefined,
-				arch : 0,
-				xp : undefined
-			},
-			dessin : {
-				type : "gen",
-				val : undefined,
-				arch : 0,
-				xp : undefined
-			},
-			cuisine : {
-				type : "gen",
-				val : undefined,
-				arch : 0,
-				xp : undefined
-			},
-			bricolage : {
-				type : "gen",
-				val : undefined,
-				arch : 0,
-				xp : undefined
-			},
-			seduction : {
-				type : "gen",
-				val : undefined,
-				arch : 0,
-				xp : undefined
-			},
-			/* Combat */
-			epee1m : {
-				type : "combat",
-				val : undefined,
-				arch : 0,
-				xp : undefined
-			},
-			epee2m : {
-				type : "combat",
-				val : undefined,
-				arch : 0,
-				xp : undefined
-			},
-			hache1m : {
-				type : "combat",
-				val : undefined,
-				arch : 0,
-				xp : undefined
-			},
-			hache2m : {
-				type : "combat",
-				val : undefined,
-				arch : 0,
-				xp : undefined
-			},
-			masse1m : {
-				type : "combat",
-				val : undefined,
-				arch : 0,
-				xp : undefined
-			},
-			masse2m : {
-				type : "combat",
-				val : undefined,
-				arch : 0,
-				xp : undefined
-			},
-			fleaux : {
-				type : "combat",
-				val : undefined,
-				arch : 0,
-				xp : undefined
-			},
-			dague : {
-				type : "combat",
-				val : undefined,
-				arch : 0,
-				xp : undefined
-			},
-			corpsACorps : {
-				type : "combat",
-				val : undefined,
-				arch : 0,
-				xp : undefined
-			},
-			bouclier : {
-				type : "combat",
-				val : undefined,
-				arch : 0,
-				xp : undefined
-			},
-			arc : {
-				type : "combat",
-				val : undefined,
-				arch : 0,
-				xp : undefined
-			},
-			arbalete : {
-				type : "combat",
-				val : undefined,
-				arch : 0,
-				xp : undefined
-			},
-			dagueLancee : {
-				type : "combat",
-				val : undefined,
-				arch : 0,
-				xp : undefined
-			},
-			hacheLancee : {
-				type : "combat",
-				val : undefined,
-				arch : 0,
-				xp : undefined
-			},
-			/* Particulières */
-			charpenterie : {
-				type : "part",
-				val : undefined,
-				arch : 0,
-				xp : undefined
-			},
-			comedie : {
-				type : "part",
-				val : undefined,
-				arch : 0,
-				xp : undefined
-			},
-			commerce : {
-				type : "part",
-				val : undefined,
-				arch : 0,
-				xp : undefined
-			},
-			equitation : {
-				type : "part",
-				val : undefined,
-				arch : 0,
-				xp : undefined
-			},
-			maconnerie : {
-				type : "part",
-				val : undefined,
-				arch : 0,
-				xp : undefined
-			},
-			musique : {
-				type : "part",
-				val : undefined,
-				arch : 0,
-				xp : undefined
-			},
-			pickpocket : {
-				type : "part",
-				val : undefined,
-				arch : 0,
-				xp : undefined
-			},
-			premiersSoins : {
-				type : "part",
-				val : undefined,
-				arch : 0,
-				xp : undefined
-			},
-			srvCite : {
-				type : "part",
-				val : undefined,
-				arch : 0,
-				xp : undefined
-			},
-			srvMer : {
-				type : "part",
-				val : undefined,
-				arch : 0,
-				xp : undefined
-			},
-			srvDesert : {
-				type : "part",
-				val : undefined,
-				arch : 0,
-				xp : undefined
-			},
-			srvForet : {
-				type : "part",
-				val : undefined,
-				arch : 0,
-				xp : undefined
-			},
-			srvGlace : {
-				type : "part",
-				val : undefined,
-				arch : 0,
-				xp : undefined
-			},
-			srvMarais : {
-				type : "part",
-				val : undefined,
-				arch : 0,
-				xp : undefined
-			},
-			srvMontagne : {
-				type : "part",
-				val : undefined,
-				arch : 0,
-				xp : undefined
-			},
-			srvPlaine : {
-				type : "part",
-				val : undefined,
-				arch : 0,
-				xp : undefined
-			},
-			srvSousSol : {
-				type : "part",
-				val : undefined,
-				arch : 0,
-				xp : undefined
-			},
-			travestissement : {
-				type : "part",
-				val : undefined,
-				arch : 0,
-				xp : undefined
-			},
-			/* Spéciales */
-			acrobatie : {
-				type : "spe",
-				val : undefined,
-				arch : 0,
-				xp : undefined
-			},
-			armurerie : {
-				type : "spe",
-				val : undefined,
-				arch : 0,
-				xp : undefined
-			},
-			jeu : {
-				type : "spe",
-				val : undefined,
-				arch : 0,
-				xp : undefined
-			},
-			jonglerie : {
-				type : "spe",
-				val : undefined,
-				arch : 0,
-				xp : undefined
-			},
-			maroquinerie : {
-				type : "spe",
-				val : undefined,
-				arch : 0,
-				xp : undefined
-			},
-			natation : {
-				type : "spe",
-				val : undefined,
-				arch : 0,
-				xp : undefined
-			},
-			navigation : {
-				type : "spe",
-				val : undefined,
-				arch : 0,
-				xp : undefined
-			},
-			orfevrerie : {
-				type : "spe",
-				val : undefined,
-				arch : 0,
-				xp : undefined
-			},
-			serrurerie : {
-				type : "spe",
-				val : undefined,
-				arch : 0,
-				xp : undefined
-			},
-			/* Connaissances */
-			alchimie : {
-				type : "conn",
-				val : undefined,
-				arch : 0,
-				xp : undefined
-			},
-			astrologie : {
-				type : "conn",
-				val : undefined,
-				arch : 0,
-				xp : undefined
-			},
-			botanique : {
-				type : "conn",
-				val : undefined,
-				arch : 0,
-				xp : undefined
-			},
-			chirurgie : {
-				type : "conn",
-				val : undefined,
-				arch : 0,
-				xp : undefined
-			},
-			legendes : {
-				type : "conn",
-				val : undefined,
-				arch : 0,
-				xp : undefined
-			},
-			lireEtEcrire : {
-				type : "conn",
-				val : undefined,
-				arch : 0,
-				xp : undefined
-			},
-			medecine : {
-				type : "conn",
-				val : undefined,
-				arch : 0,
-				xp : undefined
-			},
-			zoologie : {
-				type : "conn",
-				val : undefined,
-				arch : 0,
-				xp : undefined
-			},
-			/* Draconic */
-			oniros : {
-				type : "drac",
-				val : undefined,
-				arch : 0,
-				xp : undefined
-			},
-			hypnos : {
-				type : "drac",
-				val : undefined,
-				arch : 0,
-				xp : undefined
-			},
-			narcos : {
-				type : "drac",
-				val : undefined,
-				arch : 0,
-				xp : undefined
-			},
-			thanatos : {
-				type : "drac",
-				val : undefined,
-				arch : 0,
-				xp : undefined
-			}
+		comp : { /* $nom {type: , val: , arch: , xp: } */
 		},
 		magie : {
 			terreMediane : "G7",
@@ -500,10 +32,10 @@ service.dao = {
 		},
 		compteur : {
 			date : {
-				heure : 1,
-				jour : 1,
-				mois : 1,
-				annee : 1
+				heure : 10,
+				jour : 21,
+				mois : 7,
+				annee : 3456
 			},
 			destinee : 6,
 			moral : 0,
@@ -526,8 +58,8 @@ service.dao = {
 		blessure : [/*
 					 * { grade: 17, type : "T", localisation : "thorax", jours :
 					 * 1, heure : 10, endu : 5, vie : 1, saigne : false, herbes : {
-					 * heure : 11, qualite : 4, bruns : 6 }, recupEndu : false,
-					 * soin : undefined }
+					 * qualite : 4, bruns : 6 }, recupEndu : false, soin :
+					 * undefined }
 					 */],
 		eqmt : { /* equipement */
 			monnaie : {
@@ -542,111 +74,114 @@ service.dao = {
 			},
 			arme : {/* comp : {nom:, bonus:, dt:, dc:, dp:, res:, enc:} */},
 			armure : {
-				hancheArme : {
-					val : 0,
-					bonus : 0
-				},
-				crane : {
-					val : 0,
-					bonus : 0
-				},
-				hancheBouclier : {
-					val : 0,
-					bonus : 0
-				},
-				cuisseArme : {
-					val : 0,
-					bonus : 0
-				},
-				visage : {
-					val : 0,
-					bonus : 0
-				},
-				cuisseBouclier : {
-					val : 0,
-					bonus : 0
-				},
-				genouxArme : {
-					val : 0,
-					bonus : 0
-				},
-				cou : {
-					val : 0,
-					bonus : 0
-				},
-				genouxBouclier : {
-					val : 0,
-					bonus : 0
-				},
-				epauleArme : {
-					val : 0,
-					bonus : 0
-				},
-				thorax : {
-					val : 0,
-					bonus : 0
-				},
-				epauleBouclier : {
-					val : 0,
-					bonus : 0
-				},
-				brasArme : {
-					val : 0,
-					bonus : 0
-				},
-				cotesArme : {
-					val : 0,
-					bonus : 0
-				},
-				brasBouclier : {
-					val : 0,
-					bonus : 0
-				},
-				coudeArme : {
-					val : 0,
-					bonus : 0
-				},
-				ventre : {
-					val : 0,
-					bonus : 0
-				},
-				coudeBouclier : {
-					val : 0,
-					bonus : 0
-				},
-				avantBrasArme : {
-					val : 0,
-					bonus : 0
-				},
-				cotesBouclier : {
-					val : 0,
-					bonus : 0
-				},
-				avantBrasBouclier : {
-					val : 0,
-					bonus : 0
-				},
-				poignetArme : {
-					val : 0,
-					bonus : 0
-				},
-				basVentre : {
-					val : 0,
-					bonus : 0
-				},
-				poignetBouclier : {
-					val : 0,
-					bonus : 0
-				},
-				mainArme : {
-					val : 0,
-					bonus : 0
-				},
-				mainBouclier : {
-					val : 0,
-					bonus : 0
+				aventure : {
+					hancheArme : {
+						val : 0,
+						bonus : 0
+					},
+					crane : {
+						val : 0,
+						bonus : 0
+					},
+					hancheBouclier : {
+						val : 0,
+						bonus : 0
+					},
+					cuisseArme : {
+						val : 0,
+						bonus : 0
+					},
+					visage : {
+						val : 0,
+						bonus : 0
+					},
+					cuisseBouclier : {
+						val : 0,
+						bonus : 0
+					},
+					genouxArme : {
+						val : 0,
+						bonus : 0
+					},
+					cou : {
+						val : 0,
+						bonus : 0
+					},
+					genouxBouclier : {
+						val : 0,
+						bonus : 0
+					},
+					epauleArme : {
+						val : 0,
+						bonus : 0
+					},
+					thorax : {
+						val : 0,
+						bonus : 0
+					},
+					epauleBouclier : {
+						val : 0,
+						bonus : 0
+					},
+					brasArme : {
+						val : 0,
+						bonus : 0
+					},
+					cotesArme : {
+						val : 0,
+						bonus : 0
+					},
+					brasBouclier : {
+						val : 0,
+						bonus : 0
+					},
+					coudeArme : {
+						val : 0,
+						bonus : 0
+					},
+					ventre : {
+						val : 0,
+						bonus : 0
+					},
+					coudeBouclier : {
+						val : 0,
+						bonus : 0
+					},
+					avantBrasArme : {
+						val : 0,
+						bonus : 0
+					},
+					cotesBouclier : {
+						val : 0,
+						bonus : 0
+					},
+					avantBrasBouclier : {
+						val : 0,
+						bonus : 0
+					},
+					poignetArme : {
+						val : 0,
+						bonus : 0
+					},
+					basVentre : {
+						val : 0,
+						bonus : 0
+					},
+					poignetBouclier : {
+						val : 0,
+						bonus : 0
+					},
+					mainArme : {
+						val : 0,
+						bonus : 0
+					},
+					mainBouclier : {
+						val : 0,
+						bonus : 0
+					}
 				}
 			},
+			armureCourante : "aventure",
 			sac : [{
 				nom : "Ceinture",
 				liste : [/* {nom:, qte:}, {nom:, qte:} */]
@@ -666,6 +201,7 @@ service.dao = {
 	initialPersoDisplay : {
 		pref : {
 			background : 0,
+			zoom : 100,
 			zones : false,
 			archetype : false,
 			compMin : -11,
@@ -680,9 +216,6 @@ service.dao = {
 			combat : {
 				eqmt : false
 			},
-			encaissement : {
-				armure : false
-			},
 			blessures : {
 				detail : false,
 				heure : "middle"
@@ -691,34 +224,81 @@ service.dao = {
 				actions : true
 			}
 		},
-		sac : [["Ceinture", "Besace"], ["Grand sac"], ["Monture"]]
+		round : undefined,
+		sac : [[/* "Ceinture", "Besace" */]/* , ["Grand sac"], ["Monture"] */]
+	},
+
+	initialPersoIhm : {
+		xp : {
+			jet : undefined,
+			restant : undefined,
+			invalid : 0,
+			valid : []
+		},
+		avancement : {
+			caracs : undefined,
+			comps : undefined
+		},
+		compteur : {
+			vie : 0
+		},
+		recup : {
+			enduMn : 0,
+			fatigueH : 0,
+			fatigueMn : 0
+		},
+		encaissement : {
+			dom : 0,
+			reussite : "0", /* 0=n, 1=s, 2=p, 3=c */
+			type : "T"
+		},
+		herbes : {
+			qualite : "Fausse Suppure",
+			bruns : 1
+		},
+		magie : {
+			typeCase : undefined,
+			sortNew : {
+				voie : "oniros",
+				typeCase : "CITE",
+				diff : -1,
+				conso : 1
+			},
+			sortVu : undefined,
+			sortBonusTexte : {},
+			sortEdit : -1,
+			sortDetail : "",
+			castVar : 0,
+			castAstro : 0,
+			rencontre : 0
+		}
 	},
 
 	initialPersoZones : {
 		normal : [[
 				[
-						["cadre-identite", "cadre-jet"],
 						[
-								"cadre-caracs",
-								[[[["cadre-attributs"], ["cadre-vie"]], "cadre-date"],
-										[["cadre-fatigue", "cadre-monnaie"], "cadre-endurance"]]], ["cadre-sacs"]],
+								[["cadre-identite"], ["cadre-caracs"], ["cadre-jet"]],
+								[["cadre-attributs"], ["cadre-date"], ["cadre-vie"], ["cadre-endurance"],
+										["cadre-fatigue"]]], ["cadre-compteurs", "cadre-round"]],
 				[
 						["cadre-comp-toutes", [["cadre-comp-gen"], ["cadre-comp-drac"]], "cadre-comp-combat",
 								"cadre-comp-part", [["cadre-comp-spe"], ["cadre-comp-conn"]]],
-						[[["cadre-herbes", [["cadre-compteurs"], ["cadre-round"]]], ["cadre-encaissement"]],
-								"cadre-combat"], ["cadre-blessures"]]]],
+						[[["cadre-encaissement"], ["cadre-blessures"]], "cadre-combat"]]]],
+		eqmt : [["cadre-sacs", [["cadre-armure"], ["cadre-herbes", "cadre-monnaie"]]]],
 		magie : [["cadre-magie-terres-medianes",
 				[["cadre-magie-drac", "cadre-magie-compteurs", "cadre-magie-rencontre"], ["cadre-magie-sorts"]]]]
 	},
 
-	initialPnjData : {
+	initialPnjsData : {
 		persos : [],
 		modeles : []
 	},
 
-	initialPnjDisplay : {
+	initialPnjsDisplay : {
 		pref : {
 			background : 0,
+			zoom : 100,
 			zones : false,
 			archetype : false,
 			compMin : -11,
@@ -733,40 +313,59 @@ service.dao = {
 			combat : {
 				eqmt : true
 			},
-			encaissement : {
-				armure : true
-			},
 			blessures : {
-				detail : true,
+				detail : false,
 				heure : "middle"
 			}
 		},
-		sac : [["Ceinture", "Besace"], ["Grand sac"], ["Monture"]]
+		round : undefined
 	},
 
-	initialPersoZones : [[
-			[
-					["cadre-identite", "cadre-jet"],
-					[
-							"cadre-caracs",
-							[[[["cadre-attributs"], ["cadre-vie"]], "cadre-date"], ["cadre-fatigue", "cadre-endurance"]]]],
-			[
-					["cadre-comp-toutes", [["cadre-comp-gen"], ["cadre-comp-drac"]], "cadre-comp-combat",
-							"cadre-comp-part", [["cadre-comp-spe"], ["cadre-comp-conn"]]],
-					[[["cadre-compteurs"], ["cadre-round"], ["cadre-encaissement"]], "cadre-combat"],
-					["cadre-blessures"]]]],
+	initialPnjsZones : [[
+			[["cadre-round"], ["cadre-persos"], ["cadre-modeles"]],
+			[["cadre-identite"], ["cadre-caracs"], ["cadre-jet"],
+					[[["cadre-attributs"], ["cadre-endurance"]], [["cadre-vie"], ["cadre-fatigue"]]]],
+			[["cadre-comp-pnjs", [["cadre-encaissement"], ["cadre-armure"], ["cadre-blessures"]]], ["cadre-combat"]]]],
+
+	initialIhmGlobal : {
+		mode : undefined,
+		modeArchetype : false,
+		background : undefined,
+		archetype : {
+			emphase : undefined
+		},
+		jet : {
+			carac : {
+				val : undefined,
+				nom : undefined
+			},
+			comp : {
+				val : undefined,
+				nom : undefined
+			},
+			diff : undefined,
+			seuil : {
+				crit : undefined,
+				part : undefined,
+				sign : undefined,
+				norm : undefined,
+				total : undefined
+			}
+		}
+	},
 
 	fs : undefined,
 	dataDir : undefined,
 
 	loadPerso : function() {
-		var perso, display, zones;
+		let perso, display, zones;
 		if (service.dao.fs != undefined) {
 			if (!service.dao.fs.existsSync(service.dao.dataDir))
 				service.dao.fs.mkdirSync(service.dao.dataDir);
 
 			if (service.dao.fs.existsSync(service.dao.dataDir + "/perso.json")) {
 				perso = JSON.parse(service.dao.fs.readFileSync(service.dao.dataDir + "/perso.json"));
+				service.dao.upgradeData(perso);
 				service.dao.merge("perso", perso, service.dao.initialPersoData);
 			} else
 				perso = service.dao.initialPersoData;
@@ -777,10 +376,13 @@ service.dao = {
 			} else
 				display = service.dao.initialPersoDisplay;
 
-			if (service.dao.fs.existsSync(service.dao.dataDir + "/zones.json"))
+			if (service.dao.fs.existsSync(service.dao.dataDir + "/zones.json")) {
 				zones = JSON.parse(service.dao.fs.readFileSync(service.dao.dataDir + "/zones.json"));
-			else
+				service.dao.upgradePersoZones(zones);
+			} else {
 				zones = service.dao.initialPersoZones;
+				service.dao.upgradePersoZones(zones);
+			}
 		} else {
 			perso = service.dao.initialPersoData;
 			display = service.dao.initialPersoDisplay;
@@ -796,36 +398,65 @@ service.dao = {
 		return service.dao.data;
 	},
 
+	savePerso : function() {
+		if (service.dao.fs != undefined) {
+			let perso = service.dao.data.perso.toData();
+			service.dao.removeHashKeys(perso);
+			service.dao.fs.writeFileSync(service.dao.dataDir + "/perso.json", JSON.stringify(perso, null, 2));
+
+			service.dao.displayVerifySacs();
+			let display = service.dao.data.display;
+			service.dao.removeHashKeys(display);
+			service.dao.fs.writeFileSync(service.dao.dataDir + "/display.json", JSON.stringify(display, null, 2));
+
+			service.dao.fs.writeFileSync(service.dao.dataDir + "/zones.json", JSON.stringify({
+				normal : zone.getConfig("cadres-normal"),
+				eqmt : zone.getConfig("cadres-eqmt"),
+				magie : zone.getConfig("cadres-magie")
+			}, null, 2));
+		}
+	},
+
 	loadPNJs : function() {
-		var pnjs, display, zones;
+		let pnjs, display, zones;
 		if (service.dao.fs != undefined) {
 			if (!service.dao.fs.existsSync(service.dao.dataDir))
 				service.dao.fs.mkdirSync(service.dao.dataDir);
 
-			if (service.dao.fs.existsSync(service.dao.dataDir + "/pnj-persos.json")) {
-				pnjs = JSON.parse(service.dao.fs.readFileSync(service.dao.dataDir + "/pnj-persos.json"));
-				service.dao.merge("perso", perso, service.dao.initialPnjData);
-			} else
-				pnjs = service.dao.initialPnjData;
+			if (service.dao.fs.existsSync(service.dao.dataDir + "/pnjs-persos.json")) {
+				pnjs = JSON.parse(service.dao.fs.readFileSync(service.dao.dataDir + "/pnjs-persos.json"));
+				let i;
+				for (i = 0; i < pnjs.persos.length; i++) {
+					service.dao.upgradeData(pnjs.persos[i]);
+					service.dao.merge("persos[" + i + "]", pnjs.persos[i], service.dao.initialPersoData);
+				}
+				for (i = 0; i < pnjs.modeles.length; i++) {
+					service.dao.upgradeData(pnjs.modeles[i]);
+					service.dao.merge("modeles[" + i + "]", pnjs.modeles[i], service.dao.initialPersoData);
+				}
+			} else {
+				pnjs = service.dao.initialPnjsData;
+			}
 
-			if (service.dao.fs.existsSync(service.dao.dataDir + "/pnj-display.json")) {
-				display = JSON.parse(service.dao.fs.readFileSync(service.dao.dataDir + "/pnj-display.json"));
-				service.dao.merge("display", display, service.dao.initialPnjDisplay);
+			if (service.dao.fs.existsSync(service.dao.dataDir + "/pnjs-display.json")) {
+				display = JSON.parse(service.dao.fs.readFileSync(service.dao.dataDir + "/pnjs-display.json"));
+				service.dao.merge("display", display, service.dao.initialPnjsDisplay);
 			} else
-				display = service.dao.initialPnjDisplay;
+				display = service.dao.initialPnjsDisplay;
 
-			if (service.dao.fs.existsSync(service.dao.dataDir + "/pnj-zones.json"))
-				zones = JSON.parse(service.dao.fs.readFileSync(service.dao.dataDir + "/pnj-zones.json"));
+			if (service.dao.fs.existsSync(service.dao.dataDir + "/pnjs-zones.json"))
+				zones = JSON.parse(service.dao.fs.readFileSync(service.dao.dataDir + "/pnjs-zones.json"));
 			else
-				zones = service.dao.initialPnjZones;
+				zones = service.dao.initialPnjsZones;
 		} else {
-			pnjs = service.dao.initialPnjData;
-			display = service.dao.initialPnjDisplay;
-			zones = service.dao.initialPnjZones;
+			pnjs = service.dao.initialPnjsData;
+			display = service.dao.initialPnjsDisplay;
+			zones = service.dao.initialPnjsZones;
 		}
 
 		service.dao.data = {
-			pnjs : pnjs,
+			persos : pnjs.persos,
+			modeles : pnjs.modeles,
 			display : display,
 			zones : zones,
 		};
@@ -833,27 +464,36 @@ service.dao = {
 		return service.dao.data;
 	},
 
-	save : function() {
+	savePNJs : function() {
 		if (service.dao.fs != undefined) {
-			var perso = service.dao.data.perso;
-			service.dao.removeHashKeys(perso);
-			service.dao.fs.writeFileSync(service.dao.dataDir + "/perso.json", JSON.stringify(perso));
+			let i, pnjs = {
+				persos : [],
+				modeles : []
+			};
+			for (i in service.dao.data.persos) {
+				let perso = service.dao.data.persos[i].toData();
+				service.dao.removeHashKeys(perso);
+				pnjs.persos.push(perso);
+			}
+			for (i in service.dao.data.modeles) {
+				let modele = service.dao.data.modeles[i].toData();
+				service.dao.removeHashKeys(modele);
+				pnjs.modeles.push(modele);
+			}
+			service.dao.fs.writeFileSync(service.dao.dataDir + "/pnjs-persos.json", JSON.stringify(pnjs, null, 2));
 
-			service.dao.displayVerifySacs();
-			var display = service.dao.data.display;
+			let display = service.dao.data.display;
 			service.dao.removeHashKeys(display);
-			service.dao.fs.writeFileSync(service.dao.dataDir + "/display.json", JSON.stringify(display));
+			service.dao.fs.writeFileSync(service.dao.dataDir + "/pnjs-display.json", JSON.stringify(display, null, 2));
 
-			service.dao.fs.writeFileSync(service.dao.dataDir + "/zones.json", JSON.stringify({
-				normal : zone.getConfig("cadres-normal"),
-				magie : zone.getConfig("cadres-magie")
-			}));
+			service.dao.fs.writeFileSync(service.dao.dataDir + "/pnjs-zones.json", JSON.stringify(zone
+					.getConfig("cadres-pnjs"), null, 2));
 		}
 	},
 
 	merge : function(path, data, from) {
 		if (from instanceof Array) {
-			var i = 0;
+			let i = 0;
 			while (i < data.length) {
 				if (from[i] instanceof Object)
 					service.dao.merge(path + "[" + i + "]", data[i], from[i])
@@ -865,7 +505,7 @@ service.dao = {
 				i++;
 			}
 		} else if (from instanceof Object) {
-			for ( var attr in from)
+			for ( let attr in from)
 				if (from[attr] !== undefined)
 					if (data[attr] !== undefined) {
 						if (from[attr] instanceof Object)
@@ -879,11 +519,11 @@ service.dao = {
 
 	removeHashKeys : function(data) {
 		if (data instanceof Array) {
-			for (var i = 0; i < data.length; i++)
+			for (let i = 0; i < data.length; i++)
 				if (data[i] instanceof Object)
 					service.dao.removeHashKeys(data[i])
 		} else if (data instanceof Object)
-			for ( var attr in data)
+			for ( let attr in data)
 				if (attr == "$$hashKey")
 					data[attr] = undefined;
 				else if (data[attr] instanceof Object)
@@ -891,9 +531,9 @@ service.dao = {
 	},
 
 	displayVerifySacs : function() {
-		var display = service.dao.data.display.sac;
-		var sacs = service.dao.data.perso.eqmt.sac;
-		var i, j, col, nom, noms = {};
+		let display = service.dao.data.display.sac;
+		let sacs = service.dao.data.perso.eqmt.sac;
+		let i, j, col, nom, noms = {};
 		for (i = 0; i < sacs.length; i++)
 			noms[sacs[i].nom] = false;
 		i = 0;
@@ -913,10 +553,51 @@ service.dao = {
 			else
 				i++;
 		}
-		util.notify("3)");
 		for (nom in noms) {
 			if (!noms[nom])
 				display.push([nom]);
+		}
+	},
+
+	upgradeData : function(perso) {
+		// armure : 1 set to several
+		let tmp = perso.eqmt.armure;
+		if (tmp.crane && tmp.crane.val != undefined) {
+			perso.eqmt.armure = {};
+			perso.eqmt.armure.aventure = tmp;
+			perso.eqmt.armureCourante = "aventure";
+			util.notify("Armure unique gardée dans le set \"aventure\"");
+		}
+	},
+
+	upgradePersoZones : function(zones) {
+		// add eqmt if missing
+		if (!zones.eqmt) {
+			let removeMovedToEqmt = function(arr) {
+				let i = arr.indexOf("cadre-herbes");
+				if (i != -1)
+					arr.splice(i, 1);
+				i = arr.indexOf("cadre-monnaie");
+				if (i != -1)
+					arr.splice(i, 1);
+				i = arr.indexOf("cadre-sacs");
+				if (i != -1)
+					arr.splice(i, 1);
+				i = 0;
+				while (i < arr.length) {
+					if (typeof (arr[i]) != "string") {
+						removeMovedToEqmt(arr[i]);
+						if (arr[i].length == 0)
+							arr.splice(i, 1);
+						else
+							i++;
+					} else
+						i++;
+				}
+			};
+			removeMovedToEqmt(zones.normal);
+			zones.eqmt = service.dao.initialPersoZones.eqmt;
+			util.notify("Cadres déplacés de la vue normale à la vue équipement");
 		}
 	}
 };
@@ -926,11 +607,14 @@ if (typeof (require) != "undefined") {
 	service.dao.fs = require("fs");
 	service.dao.dataDir = process.env.APPDATA + "/reve-de-dragon";
 
-	var gui = require('nw.gui');
+	let gui = require('nw.gui');
 	if (gui) {
-		var win = gui.Window.get();
+		let win = gui.Window.get();
 		win.on('close', function() {
-			service.dao.save();
+			if (document.body.id == "pnjs")
+				service.dao.savePNJs()
+			else
+				service.dao.savePerso();
 			gui.App.quit();
 		});
 	}

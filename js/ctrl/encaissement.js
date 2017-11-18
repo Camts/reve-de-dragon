@@ -1,5 +1,8 @@
+"use strict";
+// jshint esversion: 6
+
 controle.encaissement = function($scope) {
-	var armure = ["basVentre", "mainBouclier", "mainBouclier", "poignetBouclier", "poignetBouclier",
+	let armure = ["basVentre", "mainBouclier", "mainBouclier", "poignetBouclier", "poignetBouclier",
 			"avantBrasBouclier", "avantBrasBouclier", "avantBrasBouclier", "avantBrasBouclier", "coudeBouclier",
 			"coudeBouclier", "genouxBouclier", "cuisseBouclier", "cuisseBouclier", "hancheBouclier", "hancheBouclier",
 			"hancheBouclier", "hancheBouclier", "genouxArme", "cuisseArme", "cuisseArme", "hancheArme", "hancheArme",
@@ -14,7 +17,7 @@ controle.encaissement = function($scope) {
 			"brasBouclier", "epauleBouclier", "epauleBouclier", "epauleBouclier", "epauleBouclier", "epauleBouclier",
 			"epauleBouclier", "cou", "cou", "visage", "visage", "crane", "crane", "crane"];
 
-	var armureTexte = {
+	let armureTexte = {
 		avantBrasArme : "avant-bras de l'arme",
 		avantBrasBouclier : "avant-bras du bouclier",
 		basVentre : "bas-ventre",
@@ -44,7 +47,7 @@ controle.encaissement = function($scope) {
 	};
 
 	/* localisation -> normal, significative, particuliere, critique */
-	var localisation2grade = {
+	let localisation2grade = {
 		avantBrasArme : [9, 12, 16, 22],
 		avantBrasBouclier : [9, 12, 16, 22],
 		basVentre : [12, 14, 17, 22],
@@ -73,14 +76,14 @@ controle.encaissement = function($scope) {
 		visage : [11, 13, 16, 22]
 	};
 
-	var protection = {
+	let protection = {
 		T : [-3, 0, 2, 4, 5, 7, 10],
 		C : [-3, -1, 2, 4, 6, 5, 8],
 		P : [-3, -1, 1, 3, 6, 4, 7]
 	};
 
 	/* grade-1 -> endurance, vie, chances de saigner */
-	var grade2perte = {
+	let grade2perte = {
 		T : [[1, 0, 0], [2, 0, 0], [3, 0, 0], [3, 0, 0], [3, 0, 0], [4, 0, 0], [4, 0, 0], [4, 0, 0], [5, 0, 0],
 				[5, 0, 0], [6, 0, 0], [6, 0, 0], [7, 0, 0], [7, 0, 0], [8, 0, 0], [9, 0, 0], [10, 0, 0], [11, 0, 0],
 				[12, 1, 0], [13, 2, 25], [14, 3, 5], [15, 4, 75], [17, 5, 100], [19, 6, 100], [21, 7, 100],
@@ -101,27 +104,27 @@ controle.encaissement = function($scope) {
 			"Côte de mailles", "Mailles + plaque"];
 
 	$scope.encaissementValid = function() {
-		var localisationDes = util.rand(100);
-		var localisation = armure[localisationDes - 1];
-		var prot = $scope.perso.eqmt.armure[localisation];
-		var reussite = $scope.ihm.encaissement.reussite == "0" ? "normale"
-				: $scope.ihm.encaissement.reussite == "1" ? "significative"
-						: $scope.ihm.encaissement.reussite == "s" ? "particulière" : "critique";
-		var type = $scope.ihm.encaissement.type == "T" ? "tranchant"
-				: $scope.ihm.encaissement.type == "C" ? "contandant" : "pointe";
-		var grade = localisation2grade[localisation][$scope.ihm.encaissement.reussite];
-		grade += $scope.ihm.encaissement.dom;
-		grade -= protection[$scope.ihm.encaissement.type][prot.val] + prot.bonus;
-		var endu2vie = 0, perte = grade2perte[$scope.ihm.encaissement.type][grade - 1];
-		if (perte[0] > $scope.ihm.compteur.endu) {
-			endu2vie = perte[0] - $scope.ihm.compteur.endu;
-			perte[0] -= endu2vie;
-			perte[1] += endu2vie;
+		let localisationDes = util.rand(100);
+		let localisation = armure[localisationDes - 1];
+		let prot = $scope.perso.eqmt.armure[$scope.perso.eqmt.armureCourante][localisation];
+		let reussite = $scope.perso.ihm.encaissement.reussite;
+		let reussiteTxt = reussite == "0" ? "normale" : reussite == "1" ? "significative"
+				: reussite == "2" ? "particulière" : "critique";
+		let type = $scope.perso.ihm.encaissement.type;
+		let typeTxt = type == "T" ? "tranchant" : type == "C" ? "contandant" : "pointe";
+		let grade = localisation2grade[localisation][reussite];
+		grade += $scope.perso.ihm.encaissement.dom;
+		grade -= protection[type][prot.val] + prot.bonus;
+		grade = Math.max(grade, 1);
+		let endu2vie = 0, perte = grade2perte[type][grade - 1];
+		if (perte[0] > $scope.perso.compteur.endu) {
+			endu2vie = perte[0] - $scope.perso.compteur.endu;
+			perte = [perte[0] - endu2vie, perte[1] + endu2vie, perte[2]];
 		}
 
-		var msg = "<div>Encaissement : dommage <span class='emphase'>" + $scope.ihm.encaissement.dom
-				+ "</span>, réussite <span class='emphase'>" + reussite + "</span>, type <span class='emphase'>" + type
-				+ "</span></div><div>Locatisation <span class='emphase'>" + localisationDes
+		let msg = "<div>Encaissement : dommage <span class='emphase'>" + $scope.perso.ihm.encaissement.dom
+				+ "</span>, réussite <span class='emphase'>" + reussiteTxt + "</span>, type <span class='emphase'>"
+				+ typeTxt + "</span></div><div>Locatisation <span class='emphase'>" + localisationDes
 				+ "</span> : <span class='emphase'>" + armureTexte[localisation]
 				+ "</span>, protection <span class='emphase'>" + prot.val + "</span>";
 		if (prot.bonus > 0)
@@ -131,12 +134,12 @@ controle.encaissement = function($scope) {
 		if (perte[1] > 0)
 			msg += " et <span class='emphase'>" + perte[1] + "</span> vie";
 
-		var saigne;
+		let saigne;
 		if (perte[2] > 0 && perte[2] < 100) {
 			saigne = util.rand(100) <= perte[2];
 			msg += "</div><div><span class='emphase'>" + perte[2] + "%</span> de chances de saigner";
 		} else
-			saigne == perte[2] == 100;
+			saigne = perte[2] == 100;
 		if (saigne)
 			msg += ", <img src='img/blood.png'/> <span class='emphase'>saignement</span>";
 		else
@@ -148,9 +151,9 @@ controle.encaissement = function($scope) {
 		msg += "</div>";
 		util.notify(msg);
 
-		$scope.perso.blessure.push({
+		new Blessure($scope.perso, {
 			grade : grade,
-			type : $scope.ihm.encaissement.type,
+			type : type,
 			localisation : armureTexte[localisation],
 			jours : grade,
 			date : {
@@ -162,8 +165,6 @@ controle.encaissement = function($scope) {
 			endu : perte[0],
 			vie : perte[1],
 			saigne : saigne,
-			recupEndu : true,
-			soin : undefined
 		});
 	};
 }

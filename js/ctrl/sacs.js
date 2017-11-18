@@ -1,6 +1,9 @@
+"use strict";
+// jshint esversion: 6
+
 controle.sacs = function($scope) {
 	$scope.sacGetIndex = function(nom) {
-		var i = 0, sacs = $scope.perso.eqmt.sac;
+		let i = 0, sacs = $scope.perso.eqmt.sac;
 		while (i < sacs.length)
 			if (sacs[i].nom == nom)
 				return i;
@@ -10,20 +13,20 @@ controle.sacs = function($scope) {
 	};
 
 	$scope.sacAddCol = function() {
-		var sacs = $scope.display.sac;
+		let sacs = $scope.display.sac;
 		if (sacs[sacs.length - 1].length > 0)
 			sacs.push([]);
 	};
 
 	$scope.sacRemoveCol = function() {
-		var sacs = $scope.display.sac;
+		let sacs = $scope.display.sac;
 		if (sacs[sacs.length - 1].length == 0)
 			sacs.splice(sacs.length - 1, 1);
 	};
 
 	$scope.sacAddSac = function() {
-		var input = document.getElementById('sac-new-nom');
-		var nom = input.value;
+		let input = document.getElementById('sac-new-nom');
+		let nom = input.value;
 		input.value = "";
 		if ($scope.sacGetIndex(nom) != -1) {
 			util.notify("Le sac <span class='emphase'>" + nom + "</span> existe déjà.")

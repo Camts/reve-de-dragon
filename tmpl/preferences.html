@@ -4,26 +4,30 @@
 		<tr>
 			<td colspan="2"><h1>Préférences</h1></td>
 		</tr>
-		<tr>
+		<tr ng-attr-title="Vous pouvez changer d'image de fond en mettant dans le répertoire {{service.dao.dataDir}} un fichier image appelé &quot;bg.png&quot; ou &quot;bg.jpg&quot;">
 			<td class="label saisie">Transparence image de fond</td>
 			<td><input type="number" maxlength="3" ng-model="display.pref.background" type-int-min="0" type-int-max="100" ng-change="service.pref.onBackgroundChange(display.pref.background)"/></td>
 		</tr>
 		<tr>
+			<td class="label saisie">Zoom</td>
+			<td><input type="number" maxlength="3" ng-model="display.pref.zoom" type-int-min="50" type-int-max="200"/></td>
+		</tr>
+		<tr class="no-pnj" title="Masque les compétences ayant une valeur inférieure strictement">
 			<td class="label saisie">Compétences au dessus de</td>
 			<td><input type="number" maxlength="3" ng-model="display.pref.compMin" type-int-min="-11"/></td>
 		</tr>
-		<tr>
+		<tr class="no-pnj" title="Toutes les compétences dans un seul cadre, ordonnées alphabétiquement, au lieu d'un cadre par type de compétences (générales, combat, ...)">
 			<td><label class="label saisie" for="prefs-comps">Regrouper les compétences</label></td>
 			<td><input id="prefs-comps" type="checkbox" ng-model="display.pref.compToutes"/></td>
 		</tr>
 		<tr>
 			<td colspan="2"><h1>Modes d'affichage</h1></td>
 		</tr>
-		<tr>
+		<tr title="Fait apparaître le système de zones dans lesquelles sont placés les cadres, on peut alors ajouter de nouvelles zones horizontalement ou verticalement, supprimer les zones vides, déplacer les cadres de zones en zones">
 			<td><label class="label saisie" for="prefs-cadres">Placer les cadres</label></td>
 			<td><input id="prefs-cadres" type="checkbox" ng-model="ihm.modeZones" ng-change="service.pref.onZonesChange(ihm.modeZones)"/></td>
 		</tr>
-		<tr>
+		<tr class="no-pnj" title="Remplace totalement l'affichage par une vue spécifique aidant au remplissage de l'archétype des compétences">
 			<td><label class="label saisie" for="prefs-arch">Remplir/voir l'archétype</label></td>
 			<td><input id="prefs-arch" type="checkbox" ng-model="ihm.modeArchetype" ng-change="ihm.mode = ihm.modeArchetype ? 'archetype' : undefined"/></td>
 		</tr>

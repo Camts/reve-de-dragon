@@ -2,10 +2,16 @@
 <html>
 
 <head>
-	<title>Switch</title>
+	<title>Rêve de dragon</title>
 	<meta charset="UTF-8">
 	<script type="text/javascript">
-var arg = require('nw.gui').App.argv[0];
+"use strict";
+// jshint esversion: 6
+
+var arg = "perso";
+if (window.require && require("nw.gui")) {
+	arg = require("nw.gui").App.argv[0];
+}
 window.location = arg == "pnjs" ? "pnjs.html" : "perso.html";
 	</script>
 </head>

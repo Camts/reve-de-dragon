@@ -1,3 +1,6 @@
+"use strict";
+// jshint esversion: 6
+
 controle.jet = function($scope) {
 	$scope.jetSetCaracVal = function(val) {
 		$scope.ihm.jet.carac.nom = undefined;
@@ -7,18 +10,18 @@ controle.jet = function($scope) {
 
 	$scope.jetSetCaracNom = function(nom) {
 		$scope.ihm.jet.carac.nom = nom;
-		var val;
-		if ($scope.perso.carac[nom])
+		let val;
+		if ($scope.perso.carac[nom].val !== undefined)
 			val = $scope.perso.carac[nom].val;
 		else
-			val = service.carac[nom]($scope.perso.carac);
+			val = $scope.perso.carac[nom];
 		$scope.ihm.jet.carac.val = val;
 		$scope.jetOnDiffChange();
 	};
 
 	$scope.jetSetCompNom = function(nom) {
 		$scope.ihm.jet.comp.nom = nom;
-		$scope.ihm.jet.comp.val = service.competence.val($scope.perso.comp[nom]);
+		$scope.ihm.jet.comp.val = $scope.perso.comp[nom].val;
 		$scope.jetOnDiffChange();
 	};
 
@@ -32,20 +35,20 @@ controle.jet = function($scope) {
 		$scope.jetOnDiffChange();
 	};
 
-	$scope.$watch("ihm.jet.malus", function() {
+	$scope.$watch("perso.compteur.malus", function() {
 		$scope.jetOnDiffChange();
 	});
 
 	$scope.jetOnDiffChange = function() {
 		if ($scope.ihm.jet.carac.val && ($scope.ihm.jet.comp.val || $scope.ihm.jet.comp.val === 0)) {
-			var diff = parseInt($scope.ihm.jet.comp.val);
+			let diff = parseInt($scope.ihm.jet.comp.val);
 			if ($scope.ihm.jet.diff) {
 				diff += parseInt($scope.ihm.jet.diff);
 			}
 			if ($scope.ihm.jet.carac.nom != "chance") {
-				diff -= $scope.ihm.jet.malus;
+				diff -= $scope.perso.compteur.malus;
 			}
-			var normale = service.seuil.normale(parseInt($scope.ihm.jet.carac.val), diff);
+			let normale = service.seuil.normale(parseInt($scope.ihm.jet.carac.val), diff);
 			$scope.ihm.jet.seuil.norm = normale;
 
 			$scope.ihm.jet.seuil.crit = service.seuil.critique(normale);

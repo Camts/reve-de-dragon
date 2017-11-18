@@ -6,11 +6,11 @@
 		<td class="label saisie">XP</td>
 		<td class="val saisie"><input type="number" maxlength="2" ng-model="perso.compteur.xpEndu" type-int-min="0"/></td>
 		<td class="label calcule">Max</td>
-		<td class="val calcule">{{service.compteur.enduMax(perso)}}</td>
+		<td class="val calcule">{{perso.compteur.enduMax}}</td>
 	</tr>
 	<tr>
 		<td class="label calcule" colspan="3" title="Limite d'endurance due aux blessures">Limite blessures</td>
-		<td class="val calcule">{{ihm.compteur.enduLimite}}</td>
+		<td class="val calcule">{{perso.compteur.enduLimite}}</td>
 	</tr>
 	<tr>
 		<td class="label saisie" colspan="3">Perte hors blessure</td>
@@ -18,21 +18,21 @@
 	</tr>
 	<tr>
 		<td class="label calcule" colspan="3">Actuelle</td>
-		<td class="val calcule">{{ihm.compteur.endu}}</td>
+		<td class="val calcule">{{perso.compteur.endu}}</td>
 	</tr>
-	<tr>
-		<td colspan="1"><button ng-disabled="ihm.compteur.endu == service.compteur.enduMax(perso)" ng-click="compteurRepos()"
+	<tr class="no-pnj">
+		<td colspan="1"><button ng-disabled="perso.compteur.perteEndu == 0 || perso.ihm.recup.enduMn == 0" ng-click="perso.blessureRepos()"
 		 title="Récupération de {FR constitution} points toutes les {FT constitution} minutes">Repos</button></td>
 		<td colspan="3">pendant</td>
 	</tr>
-	<tr>
-		<td class="val calcule">{{compteurEnduPourRepos()}}</td>
-		<td class="val saisie"><input type="number" maxlength="2" ng-model="ihm.recup.enduMn" type-int-min="0"/></td>
+	<tr class="no-pnj">
+		<td class="val calcule">{{perso.enduPourRepos()}}</td>
+		<td class="val saisie"><input type="number" maxlength="2" ng-model="perso.ihm.recup.enduMn" type-int-min="0"/></td>
 		<td colspan="2">minutes</td>
 	</tr>
-	<tr>
+	<tr class="no-pnj">
 		<td class="label caclule">Tout</td>
-		<td class="val calcule">{{compteurMinutesPourRecupEnduTotale()}}</td>
+		<td class="val calcule">{{perso.enduMinutesPourRecupTotale()}}</td>
 		<td colspan="2">minutes</td>
 	</tr>
 </table>

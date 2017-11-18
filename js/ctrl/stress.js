@@ -1,20 +1,33 @@
+"use strict";
+// jshint esversion: 6
+
 controle.stress = function($scope) {
+	let listeners = [];
+	$scope.addStressListener = function(listener) {
+		listeners.push(listener);
+	}
+
 	$scope.stressTransform = function() {
-		$scope.ihm.xp.restant = service.compteur.stressToXP($scope.perso.compteur, $scope.ihm.xp.jet);
+		$scope.perso.ihm.xp.restant = service.compteur.stressToXP($scope.perso.compteur, $scope.perso.ihm.xp.jet);
+		for (let i = 0; i < listeners.length; i++)
+			listeners[i].xp = 0;
 		$scope.ihm.mode = "stress";
 	};
+
 	$scope.stressCancel = function() {
-		$scope.$broadcast("stress-cancel");
-		$scope.ihm.xp.restant = undefined;
+		for (let i = 0; i < listeners.length; i++)
+			listeners[i].xp = 0;
+		$scope.perso.ihm.xp.restant = undefined;
 		$scope.ihm.mode = undefined;
 	};
+
 	$scope.stressValid = function() {
-		var valid = $scope.ihm.xp.valid;
-		for (var i = 0; i < valid.length; i++) {
+		let valid = $scope.perso.ihm.xp.valid;
+		for (let i = 0; i < valid.length; i++) {
 			valid[i]();
 		}
-		$scope.ihm.xp.jet = undefined;
-		$scope.ihm.xp.restant = undefined;
+		$scope.perso.ihm.xp.jet = undefined;
+		$scope.perso.ihm.xp.restant = undefined;
 		$scope.ihm.mode = undefined;
 		$scope.perso.compteur.stress = 0;
 	};

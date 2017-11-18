@@ -1,3 +1,6 @@
+"use strict";
+// jshint esversion: 6
+
 app.directive("prefs", function() {
 	return {
 		restrict : "A",
@@ -6,7 +9,7 @@ app.directive("prefs", function() {
 
 		link : function(scope, elt, attrs) {
 			elt[0].parentNode.classList.toggle("w-prefs-parent");
-			var e = document.createElement("div");
+			let e = document.createElement("div");
 			while (elt[0].firstChild)
 				e.appendChild(elt[0].firstChild);
 			elt[0].appendChild(e);

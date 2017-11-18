@@ -1,3 +1,6 @@
+"use strict";
+// jshint esversion: 6
+
 service.seuil = {
 	normale : function(carac, comp) {
 		return service.seuil.refNormale[carac][comp > -11 ? comp + 11 : 0];

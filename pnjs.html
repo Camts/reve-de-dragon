@@ -7,21 +7,23 @@
 	<link rel="stylesheet" type="text/css" href="css/app.css">
 	<script type="text/javascript" src="js/lib/angular.min.js"></script>
 	<script type="text/javascript" src="js/app.js"></script>
-	<script type="text/javascript" src="js/config.js"></script>
-	<script type="text/javascript" src="js/pnjs.js"></script>
 	<script type="text/javascript" src="js/i18n.js"></script>
-	<script type="text/javascript" src="js/perso.js"></script>
-	<script type="text/javascript" src="js/service/carac.js"></script>
-	<script type="text/javascript" src="js/service/combat.js"></script>
+	<script type="text/javascript" src="js/model/Arme.js"></script>
+	<script type="text/javascript" src="js/model/Blessure.js"></script>
+	<script type="text/javascript" src="js/model/Carac.js"></script>
+	<script type="text/javascript" src="js/model/CombatDiff.js"></script>
+	<script type="text/javascript" src="js/model/Comp.js"></script>
+	<script type="text/javascript" src="js/model/Compteur.js"></script>
+	<script type="text/javascript" src="js/model/Magie.js"></script>
+	<script type="text/javascript" src="js/model/Perso.js"></script>
+	<script type="text/javascript" src="js/model/symbols.js"></script>
+	<script type="text/javascript" src="js/persoCtrl.js"></script>
+	<script type="text/javascript" src="js/pnjsCtrl.js"></script>
 	<script type="text/javascript" src="js/service/competence.js"></script>
 	<script type="text/javascript" src="js/service/compteur.js"></script>
 	<script type="text/javascript" src="js/service/dao.js"></script>
 	<script type="text/javascript" src="js/service/pref.js"></script>
 	<script type="text/javascript" src="js/service/seuil.js"></script>
-	<script type="text/javascript" src="js/ctrl/archetype.js"></script>
-	<script type="text/javascript" src="js/ctrl/blessure.js"></script>
-	<script type="text/javascript" src="js/ctrl/compteur.js"></script>
-	<script type="text/javascript" src="js/ctrl/comp-toutes.js"></script>
 	<script type="text/javascript" src="js/ctrl/encaissement.js"></script>
 	<script type="text/javascript" src="js/ctrl/jet.js"></script>
 	<script type="text/javascript" src="widget/caracteristique.js"></script>
@@ -33,31 +35,23 @@
 	<script type="text/javascript" src="widget/zone.js"></script>
 </head>
 
-<body>
+<body id="pnjs" ng-style="{'zoom': display.pref.zoom + '%'}">
 	<div id="glasspane"></div>
 
-	<div id="pnj-choix" ng-controller="choixCtrl">
-	</div>
-
-	<div id="cadres-normal" ng-controller="persoCtrl">
+	<div id="cadres-pnjs" ng-controller="persoCtrl">
+		<div ng-include="'tmpl/armure.html'"></div>
 		<div ng-include="'tmpl/attributs.html'"></div>
 		<div ng-include="'tmpl/blessures.html'"></div>
 		<div ng-include="'tmpl/caracs.html'"></div>
 		<div ng-include="'tmpl/combat.html'"></div>
-		<div ng-include="'tmpl/comp/generales.html'"></div>
-		<div ng-include="'tmpl/comp/combat.html'"></div>
-		<div ng-include="'tmpl/comp/particulieres.html'"></div>
-		<div ng-include="'tmpl/comp/speciales.html'"></div>
-		<div ng-include="'tmpl/comp/connaissances.html'"></div>
-		<div ng-include="'tmpl/comp/draconic.html'"></div>
-		<div ng-include="'tmpl/comp/toutes.html'"></div>
-		<div ng-include="'tmpl/compteurs.html'"></div>
-		<div ng-include="'tmpl/date.html'"></div>
+		<div ng-include="'tmpl/comp/pnjs.html'"></div>
 		<div ng-include="'tmpl/encaissement.html'"></div>
 		<div ng-include="'tmpl/endurance.html'"></div>
 		<div ng-include="'tmpl/fatigue.html'"></div>
 		<div ng-include="'tmpl/identite.html'"></div>
 		<div ng-include="'tmpl/jet.html'"></div>
+		<div ng-include="'tmpl/modeles.html'"></div>
+		<div ng-include="'tmpl/persos.html'"></div>
 		<div ng-include="'tmpl/round.html'"></div>
 		<div ng-include="'tmpl/vie.html'"></div>
 	</div>

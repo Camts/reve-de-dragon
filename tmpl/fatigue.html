@@ -5,24 +5,24 @@
 	<tr>
 		<td class="val saisie"><input type="number" maxlength="3" ng-model="perso.compteur.fatigue" type-int-min="0"/></td>
 		<td class="label calcule" colspan="2">Malus</td>
-		<td class="val calcule">{{ihm.compteur.fatigueMalus}}</td>
+		<td class="val calcule">{{perso.compteur.fatigueMalus}}</td>
 	</tr>
-	<tr>
-		<td colspan="2"><button ng-disabled="perso.compteur.fatigue > 0" ng-click="compteurSommeil()"
+	<tr class="no-pnj">
+		<td colspan="2"><button ng-disabled="perso.compteur.fatigue == 0 || perso.ihm.recup.fatigueH == 0" ng-click="perso.compteur.sommeil()"
 		 title="Récupération de {FR constitution} points toutes les {FT constitution minutes}">Sommeil</button></td>
 		<td colspan="2">pendant</td>
 	</tr>
-	<tr>
-		<td class="val calcule">{{compteurFatiguePourSommeil()}}</td>
+	<tr class="no-pnj">
+		<td class="val calcule">{{perso.fatiguePourSommeil()}}</td>
 		<td colspan="3">
-			<input class="val saisie" type="number" maxlength="3" ng-model="ihm.recup.fatigueH" min="0" step="0.5"/>
+			<input class="val saisie" type="number" maxlength="3" ng-model="perso.ihm.recup.fatigueH" min="0" step="0.5"/>
 			<span class="label saisie">H</span>
 		</td>
 	</tr>
-	<tr>
+	<tr class="no-pnj">
 		<td class="label caclule">Tout</td>
 		<td colspan="3">
-			<span class="val calcule">{{compteurHeuresPourRecupFatigueTotale()}}</span>
+			<span class="val calcule">{{perso.fatigueHeuresPourRecupTotale()}}</span>
 			<span class="label calcule">H</span>
 		</td>
 	</tr>

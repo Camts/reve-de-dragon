@@ -4,10 +4,10 @@
 	</tr>
 	<tr>
 		<td class="label calcule">Total</td>
-		<td class="val calcule">{{service.compteur.stressToXP(perso.compteur, ihm.xp.jet)}}</td>
+		<td class="val calcule">{{service.compteur.stressToXP(perso.compteur, perso.ihm.xp.jet)}}</td>
 		<td class="label calcule">Restant</td>
-		<td class="val calcule">{{ihm.xp.restant}}</td>
-		<td><button class="ok" ng-disabled="ihm.xp.restant != 0" ng-click="stressValid()">Valider</button></td>
+		<td class="val calcule">{{perso.ihm.xp.restant}}</td>
+		<td><button class="ok" ng-disabled="perso.ihm.xp.restant != 0" ng-click="stressValid()">Valider</button></td>
 		<td><button class="ko" ng-click="stressCancel()">Annuler</button></td>
 	</tr>
 </table>

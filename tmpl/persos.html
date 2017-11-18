@@ -1,0 +1,19 @@
+<table id="cadre-persos" class="cadre" draggable="true" ondragstart="zone.drag(event)">
+	<tr>
+		<td colspan="2"><h1>Persos</h1></td>
+		<td drop-type-index="persos"><img title="Glisser un perso ici pour le supprimer" src="img/minus.png"/></td>
+	</tr>
+	<tr ng-repeat="perso in persos track by $index">
+		<td drag-type-value="persos|{{$index}}" ng-click="persosSelect($index)" ng-class="[{'selected': perso.selected}]">{{perso.id.nom}}</td>
+		<td ng-attr-title="Vie : {{perso.carac.vieMax - perso.compteur.perteVie}} sur {{perso.carac.vieMax}}">
+			<div style="width: 16px; height: 16px;" ng-style="persoJaugeBack(perso.carac.vieMax - perso.compteur.perteVie, perso.carac.vieMax)">
+				<div style="background-color: black;" ng-style="persoJaugeMissing(perso.carac.vieMax - perso.compteur.perteVie, perso.carac.vieMax)"></div>
+			</div>
+		</td>
+		<td ng-attr-title="Endu : {{perso.compteur.endu}} sur {{perso.compteur.enduMax}}">
+			<div style="width: 16px; height: 16px;" ng-style="persoJaugeBack(perso.compteur.endu, perso.compteur.enduMax)">
+				<div style="background-color: black;" ng-style="persoJaugeMissing(perso.compteur.endu, perso.compteur.enduMax)"></div>
+			</div>
+		</td>
+	</tr>
+</table>

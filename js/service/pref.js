@@ -1,3 +1,6 @@
+"use strict";
+// jshint esversion: 6
+
 service.pref = {
 	onBackgroundChange : function(val) {
 		if (!val || isNaN(val) || val < 0)

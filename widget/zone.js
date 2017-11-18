@@ -1,14 +1,17 @@
-zone = {};
+"use strict";
+// jshint esversion: 6
+
+let zone = {};
 
 zone.createSepVertical = function(elt, before, tr, colspan) {
-	var td = document.createElement("td");
+	let td = document.createElement("td");
 	td.setAttribute("class", "zone-sep-v");
 	td.setAttribute("title", "Insérer une zone en verticale");
 	td.setAttribute("onclick", "zone.onClickSep(this)");
 	if (colspan)
 		td.setAttribute("colspan", colspan);
 	if (tr) {
-		var tr = document.createElement("tr");
+		let tr = document.createElement("tr");
 		tr.appendChild(td)
 		td = tr;
 	}
@@ -20,11 +23,11 @@ zone.createSepVertical = function(elt, before, tr, colspan) {
 };
 
 zone.createTableHorizontal = function(elt, before) {
-	var tr = document.createElement("tr");
-	var td = document.createElement("td");
+	let tr = document.createElement("tr");
+	let td = document.createElement("td");
 	td.setAttribute("class", "zone-inner");
 	tr.appendChild(td);
-	var table = document.createElement("table");
+	let table = document.createElement("table");
 	td.appendChild(table);
 	if (before)
 		elt.insertBefore(tr, before);
@@ -34,12 +37,12 @@ zone.createTableHorizontal = function(elt, before) {
 };
 
 zone.createSepHorizontal = function(elt, before, tr) {
-	var td = document.createElement("td");
+	let td = document.createElement("td");
 	td.setAttribute("class", "zone-sep-h");
 	td.setAttribute("title", "Insérer une zone en horizontale");
 	td.setAttribute("onclick", "zone.onClickSep(this)");
 	if (tr) {
-		var tr = document.createElement("tr");
+		let tr = document.createElement("tr");
 		tr.appendChild(td)
 		td = tr;
 	}
@@ -51,7 +54,7 @@ zone.createSepHorizontal = function(elt, before, tr) {
 };
 
 zone.createCellDrop = function(elt, before) {
-	var td = document.createElement("td");
+	let td = document.createElement("td");
 	td.setAttribute("class", "zone-content");
 	td.setAttribute("title", "Suppriner cette zone");
 	td.setAttribute("onclick", "zone.onClickDrop(this)");
@@ -67,12 +70,12 @@ zone.createCellDrop = function(elt, before) {
 zone.onClickDrop = function(elt) {
 	if (elt.childNodes.length > 0)
 		return;
-	var parent = elt.parentNode; // tr
-	var root = parent.parentNode.parentNode.parentNode.parentNode;
+	let parent = elt.parentNode; // tr
+	let root = parent.parentNode.parentNode.parentNode.parentNode;
 	if (root.className && root.className.indexOf("zone") != -1
 			&& root.getElementsByClassName("zone-content").length == 1)
 		return;
-	var cont = false, cn = parent.childNodes;
+	let cont = false, cn = parent.childNodes;
 	if (cn.length == 1) { // Vertical
 		parent.removeChild(elt);
 		elt = parent.parentNode.parentNode; // td
@@ -92,7 +95,7 @@ zone.onClickDrop = function(elt) {
 		}
 	}
 
-	var dev;
+	let dev;
 	while (cont && (!parent.className || parent.className.indexOf("zone") == -1)) {
 		if (parent.nodeName == "TABLE" && parent.childNodes.length == 3) { // Vertical
 			if (parent.childNodes[1].firstChild.firstChild.firstChild.childNodes.length == 3) { // 3 td
@@ -113,12 +116,12 @@ zone.onClickDrop = function(elt) {
 				while (dev.firstChild) {
 					parent.insertBefore(dev.firstChild, elt);
 				}
-				var len = parent.childNodes.length;
+				let len = parent.childNodes.length;
 				elt = parent;
 				parent = parent.parentNode;
-				if (len > elt.previousSibling.firstChild.colSpan) {
+				if (elt.previousSibling && len > elt.previousSibling.firstChild.colSpan) {
 					cn = parent.childNodes;
-					for (var i = 0; i < cn.length; i += 2)
+					for (let i = 0; i < cn.length; i += 2)
 						cn[i].firstChild.colSpan = len;
 				}
 			}
@@ -136,10 +139,10 @@ zone.onClickDrop = function(elt) {
 };
 
 zone.onClickSep = function(elt) {
-	var out, parent = elt.parentNode;
+	let out, parent = elt.parentNode;
 	if (elt.className.indexOf("zone-sep-v") != -1) {
 		// Vertical separator
-		var table, tr;
+		let table, tr;
 		elt = parent; // tr
 		parent = parent.parentNode; // table
 		if (parent.childNodes[1].firstChild.className.indexOf("zone-content") != -1) {
@@ -150,7 +153,7 @@ zone.onClickSep = function(elt) {
 			zone.createSepHorizontal(tr);
 		}
 		zone.createSepVertical(parent, elt, true);
-		var tr = document.createElement("tr");
+		tr = document.createElement("tr");
 		table = zone.createTableHorizontal(parent, elt);
 		table.appendChild(tr);
 		zone.createSepHorizontal(tr);
@@ -160,7 +163,7 @@ zone.onClickSep = function(elt) {
 
 	} else {
 		// Horizontal separator
-		var table, tr, td, i = util.indexOf(parent.childNodes, elt);
+		let table, tr, td, i = util.indexOf(parent.childNodes, elt);
 		if (parent.childNodes.length == 3) {
 			table = document.createElement("table");
 			zone.createSepVertical(table, null, true);
@@ -191,8 +194,8 @@ zone.onClickSep = function(elt) {
 };
 
 zone.setVisible = function(visible) {
-	var body = document.getElementsByTagName("body")[0];
-	var i, contents = body.getElementsByClassName("zone-content");
+	let body = document.getElementsByTagName("body")[0];
+	let i, contents = body.getElementsByClassName("zone-content");
 	if (visible) {
 		for (i = 0; i < contents.length; i++)
 			contents[i].setAttribute("title", "Suppriner cette zone");
@@ -214,8 +217,6 @@ zone.setVisible = function(visible) {
 				else if (i > 0)
 					body.className = body.className.substring(0, i - 1) + body.className.substring(i + 9);
 			}
-		else
-			body.className = "zone-show";
 	}
 };
 
@@ -225,7 +226,7 @@ zone.drag = function(evt) {
 };
 
 zone.drop = function(evt) {
-	var id = evt.dataTransfer.getData("cadre");
+	let id = evt.dataTransfer.getData("cadre");
 	if (id) {
 		evt.target.appendChild(document.getElementById(id));
 		evt.preventDefault();
@@ -234,7 +235,7 @@ zone.drop = function(evt) {
 
 zone.allowDrop = function(evt) {
 	if (evt.dataTransfer.types.indexOf("cadre") != -1) {
-		var elt = evt.target;
+		let elt = evt.target;
 		while (elt && elt.className != "zone-content")
 			elt = elt.parentNode;
 		if (elt && elt.childNodes.length == 0)
@@ -243,18 +244,18 @@ zone.allowDrop = function(evt) {
 };
 
 zone.getConfig = function(eltId) {
-	var root = document.getElementById(eltId).querySelector(".zone");
-	var out = [];
-	var cn = root.childNodes;
-	for (var i = 1; i < cn.length; i += 2) {
+	let root = document.getElementById(eltId).querySelector(".zone");
+	let out = [];
+	let cn = root.childNodes;
+	for (let i = 1; i < cn.length; i += 2) {
 		out.push(zone.traverseHorizontalTr(cn[i].firstChild.firstChild.firstChild));
 	}
 	return out;
 };
 
 zone.traverseHorizontalTr = function(tr) {
-	var out = [], td, table, cn = tr.childNodes;
-	for (var i = 1; i < cn.length; i += 2) {
+	let out = [], td, table, cn = tr.childNodes;
+	for (let i = 1; i < cn.length; i += 2) {
 		td = cn[i];
 		if (td.className == "zone-content") {
 			if (td.firstChild)
@@ -262,11 +263,14 @@ zone.traverseHorizontalTr = function(tr) {
 		} else {
 			table = cn[i].firstChild;
 			if (table.childNodes.length == 3 && table.childNodes[1].firstChild.className == "zone-content") {
-				var td = table.childNodes[1].firstChild;
+				let td = table.childNodes[1].firstChild;
 				if (td.firstChild)
 					out.push(td.firstChild.id);
-			} else
-				out.push(zone.traverseVerticalTable(table));
+			} else {
+				let vertical = zone.traverseVerticalTable(table);
+				if (vertical.length > 0)
+					out.push(vertical);
+			}
 		}
 	}
 	if (typeof (out) != "string" && out.length == 1 && typeof (out[0]) != "string" && out[0].length == 1)
@@ -275,14 +279,17 @@ zone.traverseHorizontalTr = function(tr) {
 };
 
 zone.traverseVerticalTable = function(table) {
-	var out = [], td, cn = table.childNodes;
-	for (var i = 1; i < cn.length; i += 2) {
+	let out = [], td, cn = table.childNodes;
+	for (let i = 1; i < cn.length; i += 2) {
 		td = cn[i].firstChild;
 		if (td.className == "zone-content") {
 			if (td.firstChild)
 				out.push(td.firstChild.id);
-		} else
-			out.push(zone.traverseHorizontalTr(td.firstChild.firstChild));
+		} else {
+			let horizontal = zone.traverseHorizontalTr(td.firstChild.firstChild);
+			if (horizontal.length > 0)
+				out.push(horizontal);
+		}
 	}
 	if (typeof (out) != "string" && out.length == 1 && typeof (out[0]) != "string" && out[0].length == 1)
 		out = out[0][0];
@@ -290,22 +297,24 @@ zone.traverseVerticalTable = function(table) {
 };
 
 zone.setConfig = function(elt, cfg) {
-	var root = document.createElement("table");
+	let root = document.createElement("table");
 	root.setAttribute("class", "zone");
 	// elt.insertBefore(table, elt.firstChild);
 	elt.appendChild(root);
 	zone.createSepVertical(root, null, true);
-	var table = zone.createTableHorizontal(root);
+	let table = zone.createTableHorizontal(root);
 	zone.createSepVertical(root, null, true);
-	var tr = zone.createSepHorizontal(table, null, true);
+	let tr = zone.createSepHorizontal(table, null, true);
 	zone.createCellDrop(tr);
 	zone.createSepHorizontal(tr);
 	zone.readVerticalCfg(root, cfg);
 };
 
 zone.readVerticalCfg = function(table, vCfg) {
-	var tr, hCfg;
-	for (var i = 1; i <= vCfg.length; i++) {
+	if (!vCfg)
+		return;
+	let tr, hCfg;
+	for (let i = 1; i <= vCfg.length; i++) {
 		if (i == vCfg.length) {
 			tr = table.childNodes[1].firstChild.firstChild.firstChild;
 			hCfg = vCfg[0];
@@ -322,10 +331,15 @@ zone.readVerticalCfg = function(table, vCfg) {
 };
 
 zone.readHorizontalCfg = function(tr, hCfg) {
-	var table, vCfg;
-	for (var i = 1; i <= hCfg.length; i++) {
+	let table, vCfg;
+	for (let i = 1; i <= hCfg.length; i++) {
 		if (i == hCfg.length) {
 			table = tr.childNodes[1].firstChild;
+			if (!table) {
+				table = zone.onClickSep(tr.lastChild);
+				tr.removeChild(tr.firstChild);
+				tr.removeChild(tr.firstChild);
+			}
 			vCfg = hCfg[0];
 		} else {
 			table = zone.onClickSep(tr.lastChild);

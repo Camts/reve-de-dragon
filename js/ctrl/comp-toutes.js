@@ -1,17 +1,20 @@
+"use strict";
+// jshint esversion: 6
+
 controle.compToutes = function($scope) {
-	var normalizeText = function(t) {
+	let normalizeText = function(t) {
 		return t.toLowerCase().replace(/[éèê]/, "e").replace(/ç/, "c");
 	};
 
 	$scope.compToutesReorganize = function() {
 		util.removeEmptyText(document.getElementById("cadre-comp-toutes"));
 
-		var cols = $scope.display.cadre.compToutesCols;
+		let cols = $scope.display.cadre.compToutesCols;
 		if (cols < 1)
 			return;
-		var rootTr = document.getElementById("cadre-comp-toutes-comps");
-		var i, nodes = rootTr.getElementsByClassName("w-competence");
-		var i, nbc = nodes.length, competences = [], hidden = [];
+		let rootTr = document.getElementById("cadre-comp-toutes-comps");
+		let nodes = rootTr.getElementsByClassName("w-competence");
+		let i, nbc = nodes.length, competences = [], hidden = [];
 		for (i = 0; i < nbc; i++) {
 			if (window.getComputedStyle(nodes[i]).display == "none")
 				hidden.push(nodes[i]);
@@ -28,10 +31,10 @@ controle.compToutes = function($scope) {
 		while (rootTr.childNodes.length > cols) {
 			rootTr.removeChild(rootTr.lastChild);
 		}
-		var tbody = rootTr.parentNode;
+		let tbody = rootTr.parentNode;
 		while (rootTr.childNodes.length < cols) {
-			td = document.createElement("td");
-			table = document.createElement("table");
+			let td = document.createElement("td");
+			let table = document.createElement("table");
 			tbody = document.createElement("tbody");
 			table.appendChild(tbody);
 			td.appendChild(table);
@@ -39,11 +42,11 @@ controle.compToutes = function($scope) {
 		}
 
 		competences.sort(function(a, b) {
-			a = normalizeText(service.competence.label[a.getAttribute("competence")]);
-			b = normalizeText(service.competence.label[b.getAttribute("competence")]);
+			a = normalizeText(Comp.typeLabel[a.getAttribute("competence")][1]);
+			b = normalizeText(Comp.typeLabel[b.getAttribute("competence")][1]);
 			return a < b ? -1 : 1;
 		});
-		var col, byCol = Math.ceil(nbc / cols);
+		let col, byCol = Math.ceil(nbc / cols);
 		for (i = 0; i < nbc; i++) {
 			col = rootTr.childNodes[Math.floor(i / byCol)].firstChild.firstChild;
 			col.appendChild(competences[i]);

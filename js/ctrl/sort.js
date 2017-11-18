@@ -1,3 +1,6 @@
+"use strict";
+// jshint esversion: 6
+
 controle.sort = function($scope) {
 	$scope.sortVoies = function() {
 		return ["oniros", "hypnos", "narcos", "thanatos"];
@@ -9,43 +12,43 @@ controle.sort = function($scope) {
 	};
 
 	$scope.sortSeuilNormale = function(sort) {
-		var s = sort;
+		let s = sort;
 		if (!sort)
-			if ($scope.ihm.magie.sortVu !== undefined)
-				s = $scope.perso.magie.sorts[$scope.ihm.magie.sortVu];
+			if ($scope.perso.ihm.magie.sortVu !== undefined)
+				s = $scope.perso.magie.sorts[$scope.perso.ihm.magie.sortVu];
 			else
 				return;
-		var compDiff = service.competence.val($scope.perso.comp[s.voie]) + s.diff;
+		let compDiff = $scope.perso.comp[s.voie].val + s.diff;
 		if (!sort)
-			compDiff += $scope.ihm.magie.castAstro;
-		var out = service.seuil.normale($scope.perso.carac.reve.val, compDiff - $scope.ihm.jet.malus);
+			compDiff += $scope.perso.ihm.magie.castAstro;
+		let out = service.seuil.normale($scope.perso.carac.reve.val, compDiff - $scope.perso.compteur.malus);
 		if (!sort) {
-			var bonusCase = s.bonus[$scope.perso.magie.terreMediane];
+			let bonusCase = s.bonus[$scope.perso.magie.terreMediane];
 			if (bonusCase)
 				out += bonusCase;
 		}
 		return out;
 	};
 	$scope.sortSeuilCritique = function(sort) {
-		var normale = $scope.sortSeuilNormale(sort);
+		let normale = $scope.sortSeuilNormale(sort);
 		return normale ? service.seuil.critique(normale) : undefined;
 	};
 	$scope.sortSeuilParticuliere = function(sort) {
-		var normale = $scope.sortSeuilNormale(sort);
+		let normale = $scope.sortSeuilNormale(sort);
 		return normale ? service.seuil.particuliere(normale) : undefined;
 	};
 	$scope.sortSeuilSignificative = function(sort) {
-		var normale = $scope.sortSeuilNormale(sort);
+		let normale = $scope.sortSeuilNormale(sort);
 		return normale ? service.seuil.significative(normale) : undefined;
 	};
 	$scope.sortSeuilEchecTotal = function(sort) {
-		var normale = $scope.sortSeuilNormale(sort);
+		let normale = $scope.sortSeuilNormale(sort);
 		return normale ? service.seuil.echecTotal(normale) : undefined;
 	};
 
-	var sortDetailFormat = function(text) {
-		var out = "", i, ul = false, ol = false, lines = text ? text.split("\n") : "";
-		var closeOrOpen = function(closeUl, closeOl) {
+	let sortDetailFormat = function(text) {
+		let out = "", i, ul = false, ol = false, lines = text ? text.split("\n") : "";
+		let closeOrOpen = function(closeUl, closeOl) {
 			if (closeUl) {
 				if (ul) {
 					out += "</ul>";
@@ -66,7 +69,7 @@ controle.sort = function($scope) {
 			}
 		}
 		for (i = 0; i < lines.length; i++) {
-			var j, k, line = lines[i];
+			let j, k, line = lines[i];
 			// bold
 			while ((j = line.indexOf("'''", j)) != -1) {
 				if ((k = line.indexOf("'''", j + 3)) != -1) {
@@ -82,7 +85,7 @@ controle.sort = function($scope) {
 				j += 2;
 			}
 			// title
-			var j = line.match(/^=+ (.*) =+$/), k = line.indexOf(" ");
+			j = line.match(/^=+ (.*) =+$/), k = line.indexOf(" ");
 			if (j && k <= 3 && k == line.length - line.lastIndexOf(" ") - 1) {
 				closeOrOpen(true, true);
 				out += "<h" + k + ">" + j[1] + "</h" + k + ">";
@@ -102,11 +105,11 @@ controle.sort = function($scope) {
 	};
 
 	$scope.sortVoir = function(index, sort) {
-		if ($scope.ihm.magie.sortVu != index) {
-			$scope.ihm.magie.sortVu = index;
-			$scope.ihm.magie.typeCase = sort.typeCase;
-			$scope.ihm.magie.castVar = 0;
-			$scope.ihm.magie.castAstro = 0;
+		if ($scope.perso.ihm.magie.sortVu != index) {
+			$scope.perso.ihm.magie.sortVu = index;
+			$scope.perso.ihm.magie.typeCase = sort.typeCase;
+			$scope.perso.ihm.magie.castVar = 0;
+			$scope.perso.ihm.magie.castAstro = 0;
 			if (sort.variable)
 				document.getElementById("cadre-magie-sorts-var").removeAttribute("disabled");
 			else
@@ -115,44 +118,42 @@ controle.sort = function($scope) {
 				document.getElementById("cadre-magie-sorts-astro").removeAttribute("disabled");
 			else
 				document.getElementById("cadre-magie-sorts-astro").setAttribute("disabled", "disabled");
-			document.getElementById("cadre-magie-sorts-detail").innerHTML = sortDetailFormat($scope.perso.magie.sorts[$scope.ihm.magie.sortVu].detail);
+			document.getElementById("cadre-magie-sorts-detail").innerHTML = sortDetailFormat($scope.perso.magie.sorts[$scope.perso.ihm.magie.sortVu].detail);
 		} else {
-			$scope.ihm.magie.sortVu = undefined;
-			$scope.ihm.magie.typeCase = undefined;
+			$scope.perso.ihm.magie.sortVu = undefined;
+			$scope.perso.ihm.magie.typeCase = undefined;
 			document.getElementById("cadre-magie-sorts-detail").innerHTML = "";
 		}
 	};
 
 	$scope.sortInitBonusText = function(index, sort) {
-		var i, sorted = [];
+		let i, sorted = [];
 		for (i in sort.bonus) {
 			sorted.push(i);
 		}
 		sorted.sort();
-		var nom, s = "";
-		for (i = 0; i < sorted.length; i++) {
-			nom = sorted[i];
+		let s = "";
+		for (let nom of sorted)
 			s += ", " + nom + ": " + sort.bonus[nom];
-		}
-		$scope.ihm.magie.sortBonusTexte[index] = s.substring(2);
+		$scope.perso.ihm.magie.sortBonusTexte[index] = s.substring(2);
 	};
 
-	var validSort = function(sort, bonus) {
-		var err = [];
+	let validSort = function(sort, bonus) {
+		let err = [];
 		if (!sort.nom)
 			err.push("Le nom ne doit pas être vide");
-		var i = parseInt(sort.diff);
+		let i = parseInt(sort.diff);
 		if (isNaN(i) || i > -1)
 			err.push("La difficulté doit être un nombre inférieur à 0");
 		i = parseInt(sort.conso);
 		if (isNaN(i) || i < 1)
 			err.push("La consommation doit être un nombre supérieur à 0");
 
-		var a, b = {}, n, bs = bonus ? bonus.trim().split(",") : [];
+		let a, b = {}, n, bs = bonus ? bonus.trim().split(",") : [];
 		for (i = 0; i < bs.length; i++) {
 			a = bs[i].trim().split(":");
 			if (a.length == 2) {
-				if ($scope.terresMedianesType(a[0].trim())) {
+				if (Magie.terresMedianesType(a[0].trim())) {
 					n = parseInt(a[1].trim());
 					if (!isNaN(n)) {
 						if (n > 0) {
@@ -179,7 +180,7 @@ controle.sort = function($scope) {
 			}
 		}
 
-		var msg = "";
+		let msg = "";
 		for (i = 0; i < err.length; i++) {
 			msg += err[i];
 			if (i < err.length)
@@ -193,38 +194,38 @@ controle.sort = function($scope) {
 	}
 
 	$scope.sortIsEdit = function(index) {
-		return $scope.ihm.magie.sortEdit == index;
+		return $scope.perso.ihm.magie.sortEdit == index;
 	};
 
 	$scope.sortEdit = function(index) {
-		var sort = $scope.perso.magie.sorts[index];
+		let sort = $scope.perso.magie.sorts[index];
 		if ($scope.sortIsEdit(index)) {
-			var errAndBonus = validSort(sort, $scope.ihm.magie.sortBonusTexte[index]);
+			let errAndBonus = validSort(sort, $scope.perso.ihm.magie.sortBonusTexte[index]);
 			if (errAndBonus.err) {
 				util.notify(errAndBonus.err);
 			} else {
 				sort.bonus = errAndBonus.bonus;
-				sort.detail = $scope.ihm.magie.sortDetail;
-				$scope.ihm.magie.sortEdit = -1;
-				$scope.ihm.magie.sortDetail = "";
+				sort.detail = $scope.perso.ihm.magie.sortDetail;
+				$scope.perso.ihm.magie.sortEdit = -1;
+				$scope.perso.ihm.magie.sortDetail = "";
 			}
 		} else {
-			$scope.ihm.magie.sortEdit = index;
-			$scope.ihm.magie.sortDetail = sort.detail;
+			$scope.perso.ihm.magie.sortEdit = index;
+			$scope.perso.ihm.magie.sortDetail = sort.detail;
 		}
 
-		var tr = document.getElementById("sort-" + index).parentNode;
-		var i, inputs = tr.querySelectorAll("input");
+		let tr = document.getElementById("sort-" + index).parentNode;
+		let i, inputs = tr.querySelectorAll("input");
 		for (i = 0; i < inputs.length; i++) {
-			var name = inputs[i].name;
-			var input = document.querySelectorAll("#sort-new input[name=" + name + "]");
+			let name = inputs[i].name;
+			let input = document.querySelectorAll("#sort-new input[name=" + name + "]");
 			if (input.length == 1)
 				inputs[i].style.width = input[0].style.width;
 		}
 	};
 
-	var initBonusTexts = function() {
-		var i;
+	let initBonusTexts = function() {
+		let i;
 		for (i = 0; i < $scope.perso.magie.sorts.length; i++) {
 			$scope.sortInitBonusText(i, $scope.perso.magie.sorts[i]);
 		}
@@ -232,21 +233,21 @@ controle.sort = function($scope) {
 	initBonusTexts();
 
 	$scope.sortMoveDown = function(index) {
-		var i, sorts = $scope.perso.magie.sorts;
+		let i, sorts = $scope.perso.magie.sorts;
 		for (i = index; i < sorts.length - 1; i++) {
 			sorts.push(angular.copy(sorts[i]));
 			sorts.splice(i, 1);
 		}
 		initBonusTexts();
-		if ($scope.ihm.magie.sortVu == index)
-			$scope.ihm.magie.sortVu = index + 1;
-		else if ($scope.ihm.magie.sortVu == index + 1)
-			$scope.ihm.magie.sortVu = index;
+		if ($scope.perso.ihm.magie.sortVu == index)
+			$scope.perso.ihm.magie.sortVu = index + 1;
+		else if ($scope.perso.ihm.magie.sortVu == index + 1)
+			$scope.perso.ihm.magie.sortVu = index;
 	};
 
 	$scope.sortAdd = function() {
-		var s = $scope.ihm.magie.sortNew;
-		var errAndBonus = validSort(s, s.bonus);
+		let s = $scope.perso.ihm.magie.sortNew;
+		let errAndBonus = validSort(s, s.bonus);
 		if (errAndBonus.err) {
 			util.notify(errAndBonus.err);
 		} else {
@@ -260,15 +261,15 @@ controle.sort = function($scope) {
 				variable : s.variable,
 				rituel : s.rituel,
 				bonus : errAndBonus.bonus,
-				detail : $scope.ihm.magie.sortDetail
+				detail : $scope.perso.ihm.magie.sortDetail
 			}));
-			$scope.ihm.magie.sortNew = {
+			$scope.perso.ihm.magie.sortNew = {
 				voie : "oniros",
 				typeCase : "CITE",
 				diff : -1,
 				conso : 1
 			};
-			$scope.ihm.magie.sortDetail = "";
+			$scope.perso.ihm.magie.sortDetail = "";
 			initBonusTexts();
 		}
 	};
@@ -276,22 +277,22 @@ controle.sort = function($scope) {
 	$scope.sortCanCast = function() {
 		if (!$scope.perso.magie.monte)
 			return false;
-		var sort = $scope.perso.magie.sorts[$scope.ihm.magie.sortVu];
-		return sort && $scope.perso.compteur.reve >= sort.conso + $scope.ihm.magie.castVar
-				&& sort.typeCase == $scope.terresMedianesType($scope.perso.magie.terreMediane);
+		let sort = $scope.perso.magie.sorts[$scope.perso.ihm.magie.sortVu];
+		return sort && $scope.perso.compteur.reve >= sort.conso + $scope.perso.ihm.magie.castVar
+				&& sort.typeCase == Magie.terresMedianesType($scope.perso.magie.terreMediane);
 	};
 
 	$scope.sortCast = function(reussi, reserve) {
-		var sort = $scope.perso.magie.sorts[$scope.ihm.magie.sortVu];
-		$scope.perso.compteur.reve -= sort.conso + $scope.ihm.magie.castVar;
+		let sort = $scope.perso.magie.sorts[$scope.perso.ihm.magie.sortVu];
+		$scope.perso.compteur.reve -= sort.conso + $scope.perso.ihm.magie.castVar;
 		if (reussi) {
-			var bonus = sort.bonus[$scope.perso.magie.terreMediane];
+			let bonus = sort.bonus[$scope.perso.magie.terreMediane];
 			sort.bonus[$scope.perso.magie.terreMediane] = bonus ? bonus + 1 : 1;
-			$scope.sortInitBonusText($scope.ihm.magie.sortVu, sort);
+			$scope.sortInitBonusText($scope.perso.ihm.magie.sortVu, sort);
 			if (reserve) {
-				var text = sort.nom;
+				let text = sort.nom;
 				if (sort.variable) {
-					var nb = $scope.ihm.magie.castVar;
+					let nb = $scope.perso.ihm.magie.castVar;
 					text += " (+" + nb + (nb > 1 ? " points)" : " point)");
 				}
 				$scope.perso.magie.reserve[$scope.perso.magie.terreMediane] = text;

@@ -1,4 +1,50 @@
+"use strict";
+// jshint esversion: 6
+
 app.directive("competence", function() {
+	class CompStress {
+		constructor(scope) {
+			this.scope = scope;
+
+			// val : current val
+			// lvl up with stress
+			this.xp = 0; // stress to spend
+		}
+
+		get xp() {
+			return this[pXp];
+		}
+		set xp(val) {
+			if (isNaN(val))
+				return;
+			if (val < 0)
+				val = 0;
+			if (val - this[pXp] > this.scope.perso.ihm.xp.restant)
+				val = this[pXp] + this.scope.perso.ihm.xp.restant;
+			this.val = this.scope.m().val;
+			let up = service.competence.computeUp(this, (this.scope.m().xp ? this.scope.m().xp : 0) + val);
+			let seuil = Comp.xpToUpFrom(up[1]);
+			this.lvl = up[1] - this.val;
+
+			// Archetype
+			if (up[1] > this.scope.m().arch) {
+				let max = Comp.xpToArchetype(this.scope.m());
+				val = max;
+				this.lvl = this.scope.m().arch - this.val;
+				this.arch = true;
+			} else if (up[1] == this.scope.m().arch) {
+				if (up[2] > 0)
+					val -= up[2];
+				this.arch = true;
+			} else
+				this.arch = false;
+
+			this.scope.perso.ihm.xp.restant -= val - this[pXp];
+			this[pXp] = val;
+			this.canUp = seuil <= up[2] + this.scope.perso.ihm.xp.restant;
+		}
+	}
+
 	return {
 		restrict : "A",
 		replace : true,
@@ -6,107 +52,37 @@ app.directive("competence", function() {
 		templateUrl : "widget/competence.html",
 
 		controller : function($scope) {
-			$scope.onArchChange = function(newVal, oldVal) {
-				if (newVal === null)
-					return;
-				var v;
-				newVal = newVal.value !== undefined ? newVal.value : parseInt(newVal);
-				oldVal = oldVal.value !== undefined ? oldVal.value : parseInt(oldVal);
-				v = $scope.ihm.archetype.values[oldVal];
-				v.restant = v.restant + 1;
-				v = $scope.ihm.archetype.values[newVal];
-				v.restant = v.restant - 1;
-			};
-
-			$scope.onXpChange = function() {
-				service.competence.onXpChange($scope.m);
-			};
-
-			$scope.onStressXpChange = function() {
-				var valid = !$scope.g.input.classList.contains("ng-invalid");
-				var xp = valid ? parseInt($scope.g.xp) : 0;
-				$scope.g.val = service.competence.val($scope.m);
-				var up = service.competence.computeUp($scope.g, ($scope.m.xp ? $scope.m.xp : 0) + xp);
-				var seuil = service.competence.xpToUpFrom(up[1]);
-				if (valid != $scope.prevOK) {
-					if (valid)
-						$scope.ihm.xp.invalid = $scope.ihm.xp.invalid - 1;
-					else
-						$scope.ihm.xp.invalid = $scope.ihm.xp.invalid + 1;
-					$scope.prevOK = valid;
-				}
-				$scope.g.lvl = up[1] - $scope.g.val;
-
-				// Archetype
-				if (up[1] > $scope.m.arch) {
-					var max = service.competence.xpToArchetype($scope.m);
-					$scope.g.xp = max;
-					$scope.g.lvl = $scope.m.arch - $scope.g.val;
-					$scope.g.arch = true;
-				} else if (up[1] == $scope.m.arch) {
-					if (up[2] > 0)
-						$scope.g.xp = $scope.g.xp - up[2];
-					$scope.g.arch = true;
-				} else
-					$scope.g.arch = false;
-
-				if (xp != $scope.prevVal) {
-					$scope.ihm.xp.restant = $scope.ihm.xp.restant - (xp - $scope.prevVal);
-					$scope.prevVal = xp;
-				}
-				$scope.g.canUp = seuil <= up[2] + $scope.ihm.xp.restant;
-			};
-
 			$scope.upWithStress = function() {
-				var xp = $scope.g.xp ? parseInt($scope.g.xp) : 0;
-				$scope.g.val = service.competence.val($scope.m);
-				var up = service.competence.computeUp($scope.g, ($scope.m.xp ? $scope.m.xp : 0) + xp);
-				var seuil = service.competence.xpToUpFrom(up[1]);
+				let xp = $scope.g.xp ? parseInt($scope.g.xp) : 0;
+				$scope.g.val = $scope.m().val;
+				let up = service.competence.computeUp($scope.g, ($scope.m().xp ? $scope.m().xp : 0) + xp);
+				let seuil = Comp.xpToUpFrom(up[1]);
 				$scope.g.xp = xp + seuil - up[2];
-				$scope.onStressXpChange();
 			};
 		},
 
 		link : function(scope, elt, attrs) {
 			scope.nom = attrs.competence;
-			scope.label = service.competence.label[attrs.competence];
-			scope.m = scope.perso.comp[attrs.competence];
-			if (scope.m.arch === undefined)
-				scope.m.arch = 0;
-			scope.prevVal = 0;
-			scope.prevOK = true;
-			var inputs = elt[0].getElementsByTagName("input");
-			scope.g = {
-				val : service.competence.val(scope.m),
-				xp : 0,
-				lvl : 0,
-				input : inputs[inputs.length - 1]
+			scope.label = Comp.typeLabel[attrs.competence][1];
+			scope.m = function() {
+				return scope.perso.comp[attrs.competence];
 			};
-			scope.g.arch = scope.g.val >= scope.m.arch;
 
-			var classes = "w-competence";
-			if (scope.m.type == "drac")
+			let classes = "w-competence";
+			if (scope.m().type == "drac")
 				classes += " comp-drac";
 			elt[0].setAttribute("class", classes);
 
-			scope.ihm.xp.valid.push(function() {
-				var xp = (scope.m.xp ? scope.m.xp : 0) + (scope.g.xp ? scope.g.xp : 0);
+			scope.perso.ihm.xp.valid.push(function() {
+				let xp = defZero(scope.m().xp) + scope.g.xp;
 				scope.g.xp = 0;
 				scope.g.lvl = 0;
-				scope.m.xp = xp > 0 ? xp : undefined;
-				scope.onXpChange();
+				scope.m().xp = xp;
 			});
-			scope.$parent.$watch("ihm.xp.restant", scope.onStressXpChange);
-			scope.onStressXpChange();
 
-			scope.xpToUpFrom = function() {
-				return service.competence.xpToUpFrom(scope.m);
-			};
-
-			scope.$parent.$on("stress-cancel", function() {
-				scope.g.xp = 0;
-				scope.onStressXpChange();
-			});
+			scope.g = new CompStress(scope);
+			if (scope.addStressListener)
+				scope.addStressListener(scope.g);
 		}
 	}
 });

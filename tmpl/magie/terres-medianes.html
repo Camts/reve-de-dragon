@@ -5,18 +5,18 @@
 	<tr ng-show="!perso.magie.monte">
 		<td>
 			Monter :
-			<button ng-disabled="perso.compteur.reve < 1" ng-click="terresMedianesMonter(false)" title="Coûte 1 point de rêve et 1 point de fatigue">normalement</button>
-			<button ng-disabled="perso.compteur.reve < 2" ng-click="terresMedianesMonter(true)" title="Coûte 2 points de rêve et 1 point de fatigue">en accéléré</button>
+			<button ng-disabled="perso.compteur.reve < 1" ng-click="perso.terresMedianesMonter(false)" title="Coûte 1 point de rêve et 1 point de fatigue">normalement</button>
+			<button ng-disabled="perso.compteur.reve < 2" ng-click="perso.terresMedianesMonter(true)" title="Coûte 2 points de rêve et 1 point de fatigue">en accéléré</button>
 		</td>
 	</tr>
 	<tr ng-show="perso.magie.monte">
-		<td><button ng-click="terresMedianesDescendre()">Descendre</button></td>
+		<td><button ng-click="perso.magie.monte = false">Descendre</button></td>
 	</tr>
 	<tr>
-		<td>Case actuelle : {{terresMedianesTexte(perso.magie.terreMediane)}}</td>
+		<td>Case actuelle : {{perso.magie.terreMedianeTexte}}</td>
 	</tr>
 	<tr>
-		<td style="position: relative;" ng-class="'w-tmc-type-' + ihm.magie.typeCase">
+		<td style="position: relative;" ng-class="'w-tmc-type-' + perso.ihm.magie.typeCase">
 			<img src="../../img/terres-medianes.png"/>
 
 			<div terres-medianes-case="A1"></div>

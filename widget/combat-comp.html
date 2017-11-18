@@ -1,18 +1,20 @@
-<th>{{combatComp.label}}</th>
-<td class="bord-r"><xp diff="diff" carac="combatComp.caracNom" comp="combatComp.compNom"/></td>
-<td class="cadre-combat-eqmt val saisie"><input type="text" ng-model="eqmt.nom"/></td>
-<td class="cadre-combat-eqmt val saisie"><input type="number" maxlength="1" type-int-min="0" ng-model="eqmt.bonus" ng-change="computeStat()"/></td>
-<td class="cadre-combat-eqmt val saisie"><input type="number" maxlength="2" type-int-min="0" ng-model="eqmt.dt" ng-change="computeStat()"/></td>
-<td class="cadre-combat-eqmt val saisie"><input type="number" maxlength="2" type-int-min="0" ng-model="eqmt.dc" ng-change="computeStat()"/></td>
-<td class="cadre-combat-eqmt val saisie"><input type="number" maxlength="2" type-int-min="0" ng-model="eqmt.dp" ng-change="computeStat()"/></td>
-<td class="cadre-combat-eqmt val saisie"><input type="number" maxlength="2" type-int-min="0" ng-model="eqmt.res"/></td>
-<td class="cadre-combat-eqmt val saisie bord-r"><input type="number" maxlength="1" type-int-min="0" ng-model="eqmt.enc"/></td>
-<td class="val calcule">{{stat.init}}</td>
-<td class="val calcule" ng-class="{'emphase': stat.max=='t'}">{{stat.dt}}</td>
-<td class="val calcule" ng-class="{'emphase': stat.max=='c'}">{{stat.dc}}</td>
-<td class="val calcule bord-r" ng-class="{'emphase': stat.max=='p'}">{{stat.dp}}</td>
-<td class="val calcule seuil-crit">{{seuil.crit}}%</td>
-<td class="val calcule seuil-part">{{seuil.part}}%</td>
-<td class="val calcule seuil-sign">{{seuil.sign}}%</td>
-<td class="val calcule seuil-norm">{{seuil.norm}}%</td>
-<td class="val calcule seuil-total">{{seuil.total}}%</td>
+<tr ng-show="perso.eqmt.arme[arme][type].norm">
+	<th>{{perso.eqmt.arme[arme].label}}</th>
+	<td class="bord-r"><xp diff="perso.eqmt.arme[arme][type].diff" carac="perso.eqmt.arme[arme].carac" comp="perso.eqmt.arme[arme].comp"/></td>
+	<td class="cadre-combat-eqmt val saisie"><input type="text" ng-model="perso.eqmt.arme[arme].nom"/></td>
+	<td class="cadre-combat-eqmt val saisie"><input type="number" maxlength="1" type-int-min="0" ng-model="perso.eqmt.arme[arme].bonus" ng-hide="type=='def'"/></td>
+	<td class="cadre-combat-eqmt val saisie"><input type="number" maxlength="2" type-int-min="0" ng-model="perso.eqmt.arme[arme].dt"    ng-hide="type=='def'"/></td>
+	<td class="cadre-combat-eqmt val saisie"><input type="number" maxlength="2" type-int-min="0" ng-model="perso.eqmt.arme[arme].dc"    ng-hide="type=='def'"/></td>
+	<td class="cadre-combat-eqmt val saisie"><input type="number" maxlength="2" type-int-min="0" ng-model="perso.eqmt.arme[arme].dp"    ng-hide="type=='def'"/></td>
+	<td class="cadre-combat-eqmt val saisie"><input type="number" maxlength="2" type-int-min="0" ng-model="perso.eqmt.arme[arme].res"/></td>
+	<td class="cadre-combat-eqmt val saisie bord-r"><input type="number" maxlength="1" type-int-min="0" ng-model="perso.eqmt.arme[arme].enc"/></td>
+	<td class="val calcule" ng-class="{'hiddenText': type=='def'}">{{perso.eqmt.arme[arme].init}}</td>
+	<td class="val calcule"        ng-class="{'emphase': perso.eqmt.arme[arme].max=='t', 'hiddenText': type=='def'}">{{perso.eqmt.arme[arme].dtTotal}}</td>
+	<td class="val calcule"        ng-class="{'emphase': perso.eqmt.arme[arme].max=='c', 'hiddenText': type=='def'}">{{perso.eqmt.arme[arme].dcTotal}}</td>
+	<td class="val calcule bord-r" ng-class="{'emphase': perso.eqmt.arme[arme].max=='p', 'hiddenText': type=='def'}">{{perso.eqmt.arme[arme].dpTotal}}</td>
+	<td class="val calcule seuil-crit">{{perso.eqmt.arme[arme][type].crit}}%</td>
+	<td class="val calcule seuil-part">{{perso.eqmt.arme[arme][type].part}}%</td>
+	<td class="val calcule seuil-sign">{{perso.eqmt.arme[arme][type].sign}}%</td>
+	<td class="val calcule seuil-norm">{{perso.eqmt.arme[arme][type].norm}}%</td>
+	<td class="val calcule seuil-total">{{perso.eqmt.arme[arme][type].total}}%</td>
+</tr>

@@ -1,3 +1,6 @@
+"use strict";
+// jshint esversion: 6
+
 app.directive("eqmtItem", function() {
 	return {
 		restrict : "A",
@@ -13,7 +16,7 @@ app.directive("eqmtItem", function() {
 			};
 
 			$scope.onNomClick = function(evt) {
-				var elt = evt.target;
+				let elt = evt.target;
 				while (elt.nodeName != "TD")
 					elt = elt.parentNode;
 				elt.classList.toggle("eqmt-edit");
@@ -39,12 +42,9 @@ app.directive("eqmtItem", function() {
 			scope.item = scope.sac.liste[scope.$parent.$index];
 
 			elt[0].addEventListener("dragstart", function(evt) {
-				var sac = scope.perso.eqmt.sac.indexOf(scope.sac);
-				var item = scope.sac.liste.indexOf(scope.item);
+				let sac = scope.perso.eqmt.sac.indexOf(scope.sac);
+				let item = scope.sac.liste.indexOf(scope.item);
 				evt.dataTransfer.setData("eqmt-item", sac + "-" + item);
-				var elt = document.createElement("div");
-				elt.appendChild(document.createTextNode("Objet " + scope.item.qte));
-				evt.dataTransfer.setDragImage(elt, 0, 0);
 			});
 		}
 	}

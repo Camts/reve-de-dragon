@@ -1,4 +1,10 @@
+"use strict";
+// jshint esversion: 6
+
 app.directive("xp", function() {
+	let pRadio = Symbol("radio");
+	let pDiff = Symbol("diff");
+	let pCarac = Symbol("carac");
 	return {
 		restrict : "E",
 		replace : true,
@@ -10,41 +16,71 @@ app.directive("xp", function() {
 		templateUrl : "widget/xp.html",
 
 		controller : function($scope) {
+			$scope.xp = {};
+			$scope.caracs = {};
+			$scope.radio = undefined;
+
+			$scope.computeCaracXp = function() {
+				if ($scope.caracs.length == 1)
+					$scope.caracs[0].val = $scope.xp.caracs;
+				else if ($scope.caracs.length == 2) {
+					if ($scope.xp.caracs % 2 == 0)
+						$scope.caracs[0].val = $scope.caracs[1].val = $scope.xp.caracs / 2;
+					else {
+						$scope.caracs[0].val = $scope.caracs[1].val = Math.floor($scope.xp.caracs / 2);
+						$scope.caracs[$scope.radio == $scope.caracs[0].nom ? 0 : 1].val++;
+					}
+				} else if ($scope.caracs.length == 3) {
+					if ($scope.xp.caracs % 3 == 0)
+						$scope.caracs[0].val = $scope.caracs[1].val = $scope.caracs[2].val = $scope.xp.caracs / 3;
+					else if ($scope.xp.caracs % 3 == 1) {
+						$scope.caracs[0].val = $scope.caracs[1].val = $scope.caracs[2].val = Math
+								.floor($scope.xp.caracs / 3);
+						$scope.caracs[$scope.radio == $scope.caracs[0].nom ? 0
+								: $scope.radio == $scope.caracs[1].nom ? 1 : 2].val++;
+					} else { // $scope.xp.caracs % 3 == 2
+						$scope.caracs[0].val = $scope.caracs[1].val = $scope.caracs[2].val = Math
+								.ceil($scope.xp.caracs / 3);
+						$scope.caracs[$scope.radio == $scope.caracs[0].nom ? 0
+								: $scope.radio == $scope.caracs[1].nom ? 1 : 2].val--;
+					}
+				}
+			};
+
 			$scope.valid = function() {
-				var perso = $scope;
+				let perso = $scope;
 				while (!perso.perso)
 					perso = perso.$parent;
 				perso = perso.perso;
 
-				var cur, msg = "", notFirst = false;
+				let cur, msg = "", notFirst = false;
 				// comp
 				if ($scope.comp) {
-					var comp = perso.comp[$scope.comp];
+					let comp = perso.comp[$scope.comp];
 					cur = comp.xp;
 					if (isNaN(cur))
 						cur = 0;
 					comp.xp = cur + $scope.xp.comp;
 					service.competence.onXpChange(comp);
 					msg = "XP : <span class='emphase'>" + $scope.xp.comp
-							+ "</span> en compétence <span class='emphase'>" + service.competence.label[$scope.comp]
+							+ "</span> en compétence <span class='emphase'>" + Comp.typeLabel[$scope.comp][1]
 							+ "</span>.";
 					notFirst = true;
 				}
 
 				// carac
-				var carac;
-				if ($scope.xp.caracs > 0 && $scope.caracs.length > 1) {
-					var i, add;
+				let carac;
+				if ($scope.xp.caracs > 0) {
+					let i, add;
 					for (i = 0; i < $scope.caracs.length; i++) {
 						add = $scope.caracs[i].val;
 						if (add > 0) {
-							var nom = $scope.caracs[i].nom;
+							let nom = $scope.caracs[i].nom;
 							carac = perso.carac[nom];
 							cur = carac.xp;
 							if (isNaN(cur))
 								cur = 0;
 							carac.xp = cur + add;
-							service.carac.onXpChange(carac);
 							if (notFirst)
 								msg += "<br/>";
 							else
@@ -54,72 +90,71 @@ app.directive("xp", function() {
 									+ "</span>.";
 						}
 					}
-				} else if ($scope.xp.caracs > 0 && $scope.caracs.length == 1) {
-					carac = perso.carac[$scope.caracs[0].nom];
-					cur = carac.xp;
-					if (isNaN(cur))
-						cur = 0;
-					carac.xp = cur + $scope.xp.caracs;
-					service.carac.onXpChange(carac);
-					if (notFirst)
-						msg += "<br/>";
-					msg += "XP : <span class='emphase'>" + $scope.xp.caracs
-							+ "</span> en caractéristique <span class='emphase'>" + i18n.carac[$scope.caracs[0].nom]
-							+ "</span>.";
 				}
 				util.notify(msg);
 			};
-		},
 
-		link : function(scope, elt, attrs) {
-			scope.xp = {};
-			scope.caracs = {};
-
-			scope.computeInvalid = function() {
-				if (scope.caracs.length > 1) {
-					var i, sum = 0;
-					for (i = 0; i < scope.caracs.length; i++)
-						sum += scope.caracs[i].val;
-					scope.invalid = sum != scope.xp.caracs;
-				} else {
-					scope.invalid = false;
+			Object.defineProperty($scope, "radio", {
+				get : function() {
+					return $scope[pRadio];
+				},
+				set : function(val) {
+					if ($scope[pRadio] === val)
+						return;
+					$scope[pRadio] = val;
+					$scope.computeCaracXp();
 				}
-			};
+			});
 
-			onDiffChange = function() {
-				scope.xp.caracs = Math.floor(-scope.diff / 2);
-				scope.xp.comp = Math.ceil(-scope.diff / 2);
-				scope.computeInvalid();
-			};
-			scope.$watch("diff", onDiffChange);
+			let initDiff = $scope.diff;
+			Object.defineProperty($scope, "diff", {
+				get : function() {
+					return $scope[pDiff];
+				},
+				set : function(val) {
+					if ($scope[pDiff] === val)
+						return;
+					$scope[pDiff] = val;
+					$scope.xp.caracs = Math.floor(-$scope.diff / 2);
+					$scope.xp.comp = Math.ceil(-$scope.diff / 2);
+					$scope.computeCaracXp();
+				}
+			});
+			$scope.diff = initDiff;
 
-			var onCaracChange = function() {
-				scope.caracs = [];
-				var base = config.caracBase[scope.carac];
-				if (base) {
-					for (var i = 0; i < base.length; i++) {
-						if (config.caracNoXp.indexOf(base[i]) == -1) {
-							scope.caracs.push({
-								nom : base[i],
-								label : i18n.carac[base[i]],
-								val : 0
-							});
+			let initCarac = $scope.carac;
+			Object.defineProperty($scope, "carac", {
+				get : function() {
+					return $scope[pCarac];
+				},
+				set : function(val) {
+					if ($scope[pCarac] === val)
+						return;
+					$scope[pCarac] = val;
+					$scope.caracs = [];
+					let base = Carac.base[$scope.carac];
+					if (base) {
+						for (let i = 0; i < base.length; i++) {
+							if (Carac.noXp.indexOf(base[i]) == -1) {
+								$scope.caracs.push({
+									nom : base[i],
+									label : i18n.carac[base[i]],
+									val : 0
+								});
+							}
 						}
+					} else if ($scope.carac && Carac.noXp.indexOf($scope.carac) == -1) {
+						$scope.caracs.push({
+							nom : $scope.carac,
+							label : i18n.carac[$scope.carac],
+							val : 0
+						});
 					}
-				} else if (scope.carac && config.caracNoXp.indexOf(scope.carac) == -1) {
-					scope.caracs.push({
-						nom : scope.carac,
-						label : i18n.carac[scope.carac],
-						val : 0
-					});
+					$scope.radio = $scope.caracs.length > 0 ? $scope.caracs[0].nom : "";
+					$scope.computeCaracXp();
 				}
-				setTimeout(function() {
-					util.setNumberInputsWidth(elt[0]);
-				}, 250);
-				scope.computeInvalid();
-			};
-			scope.$watch("carac", onCaracChange);
-			onCaracChange();
-		}
+			});
+			$scope.carac = initCarac;
+		},
 	}
 });
