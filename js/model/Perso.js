@@ -25,7 +25,7 @@ class Perso {
 			this.carac[nom] = new Carac(this, nom, data.carac[nom], isModele);
 		}
 		for (i in Comp.typeLabel)
-			this.comp[i] = new Comp(this, i, data.comp[i]);
+			this.comp[i] = new Comp(this, i, data.comp[i], isModele);
 		for (i = 0; i<data.blessure.length; i++)
 			new Blessure(this, data.blessure[i]);
 		// If blessure not empty, adding them has decreased fatigue
@@ -214,7 +214,7 @@ class Perso {
 					xp += c.xp;
 			}
 		}
-		this.ihm.avancement.caracsNiv = niv - 180;
+		this.ihm.avancement.caracsNiv = niv - 185;
 		this.ihm.avancement.caracsXP = xp;
 
 		let j, v;

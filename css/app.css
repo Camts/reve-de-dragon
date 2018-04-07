@@ -314,3 +314,6 @@ th.label {text-align: center;}
 /* Modeles */
 #cadre-modeles-title {position: relative;}
 #cadre-modeles-title span {position: absolute; top: 5px; right: 5px}
+#cadre-modeles td.group-edit h2 {display: none;}
+#cadre-modeles td input {display: none; width: 80px;}
+#cadre-modeles td.group-edit input {display: block;}

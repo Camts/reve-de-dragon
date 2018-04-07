@@ -5,6 +5,7 @@
 		<input class="number" type="text" maxlength="3" ng-model="m().valIhm" type-int-min="{{Comp.min[m().type]}}"
 			ng-disabled="ihm.mode == 'stress' || ihm.mode == 'archetype'" title="{{m().valIhm !== undefined ? undefined : m().val}}"/>
 	</td>
+	<td ng-show="m().isModele" class="val saisie">- <input class="number" type="text" maxlength="3" ng-model="m().maxIhm" type-int-min="-11"/></td>
 	<td title="XP pour monter ({{Comp.xpToUpFrom(m())}}) : {{Comp.xpToUpFrom(m()) - m().xp}}" ng-hide="ihm.mode == 'archetype' || ihm.mode == 'pnjs'">
 		<input class="val saisie number" type="text" maxlength="3" ng-model="m().xpIhm" type-int-min="0" ng-disabled="ihm.mode == 'stress'"/>
 	</td>

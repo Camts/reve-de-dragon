@@ -225,7 +225,7 @@ service.dao = {
 			}
 		},
 		round : undefined,
-		sac : [[/* "Ceinture", "Besace" */]/* , ["Grand sac"], ["Monture"] */]
+		sac : [["Ceinture", "Besace", "Grand sac"], ["Monture"]]
 	},
 
 	initialPersoIhm : {

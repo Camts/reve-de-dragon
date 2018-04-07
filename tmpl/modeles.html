@@ -1,22 +1,25 @@
 <table id="cadre-modeles" class="cadre" draggable="true" ondragstart="zone.drag(event)">
 	<tr>
 		<td><h1>Modèles</h1></td>
-		<td><img title="Ajouter un nouveau groupe" src="img/plus.png" ng-click="modeleGroupes.push({nom: '', shown: false})"/></td>
+		<td><img title="Ajouter un nouveau groupe" src="img/plus.png" ng-click="modeleGroupes.push({nom: '?', shown: false})"/></td>
 	</tr>
 	<tr>
 		<td colspan="2">
-			<table ng-repeat="groupe in modeleGroupes track by $index">
+			<table ng-repeat="groupe in modeleGroupes">
 				<tr>
-					<td><h2>
+					<td>
 						<img ng-show="!groupe.shown" ng-click="modeleGroupeShow(groupe.nom)" src="img/arrow-right.png"/>
 						<img ng-show="groupe.shown" ng-click="modeleGroupeShow(groupe.nom)" src="img/arrow-down.png"/>
-						{{groupe.nom}}
-					</h2></td>
+					</td>
+					<td>
+						<h2 drop-type-index="modeles" ng-click="modeleGroupeNameToggle($event)">{{groupe.nom}}</h2>
+						<input ng-blur="modeleGroupeNameModify(groupe.nom, $event)" value="{{groupe.nom}}" />
+					</td>
 					<td drop-type-index="modeles"><img title="Glisser un modèle ici pour le supprimer" src="img/minus.png"/></td>
 					<td><img title="Ajouter un nouveau modèle vide" src="img/perso-plus.png" ng-click="modeleAdd(groupe.nom)"/></td>
 				</tr>
 				<tr ng-show="groupe.shown" ng-repeat="modele in modeles | groupe:groupe.nom">
-					<td drag-type-value="modeles|{{groupe.nom}}|{{$index}}" ng-click="modelesSelect(groupe.nom, $index)" ng-class="[{'selected': modele.selected}]">{{modele.id.nom}}</td>
+					<td colspan="2" drag-type-value="modeles|{{groupe.nom}}|{{$index}}" ng-click="modelesSelect(groupe.nom, $index)" ng-class="[{'selected': modele.selected}]">{{modele.id.nom}}</td>
 					<td><img title="Créer un PNJ à partir de ce modèle" src="img/perso-plus.png" ng-click="modeleInstancie(groupe.nom, $index)"/></td>
 					<td><img title="Dupliquer ce modèle" src="img/perso-duplicate.png" ng-click="modeleDuplicate(groupe.nom, $index)"/></td>
 				</tr>

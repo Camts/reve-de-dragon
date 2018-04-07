@@ -156,8 +156,11 @@ class Carac {
 		return this[pMax];
 	}
 	set max(max) {
-		if (max === this[pMax] || max < this[pVal])
+		if (max === this[pMax])
 			return;
+		if (max === undefined)
+			max = this[pVal];
+		// if (max < this[pVal])
 		this[pMax] = max;
 	}
 }

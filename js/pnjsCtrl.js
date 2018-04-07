@@ -12,6 +12,11 @@ app.controller("pnjsCtrl", ["$scope", function($scope) {
 				if (c.max > c.val)
 					c.val = Math.round(Math.random() * (c.max - c.val)) + c.val;
 			}
+			for (i in data.comp) {
+				let c = data.comp[i];
+				if (c.max > c.val)
+					c.val = Math.round(Math.random() * (c.max - c.val)) + c.val;
+			}
 		}
 		let p = new Perso(data, isModele);
 		if (!isModele) {
@@ -61,15 +66,61 @@ app.controller("pnjsCtrl", ["$scope", function($scope) {
 		$scope.modeleAdd();
 	}
 
+	$scope.modelesSort = function() {
+		$scope.modeles.sort(function(a, b) {
+			if (a.groupe < b.groupe)
+				return -1;
+			if (a.groupe > b.groupe)
+				return 1;
+			if (a.id.nom < b.id.nom)
+				return -1;
+			if (a.id.nom > b.id.nom)
+				return 1;
+			return $scope.modeles.indexOf(a) - $scope.modeles.indexOf(b);
+		});
+	};
+
+	// Groupes de modèles
+
 	$scope.modeleGroupes = [];
 	for (i of data.modeles)
 		$scope.modeleGroupes.push({nom: i.groupe, shown: false});
 	$scope.modeleGroupes[0].shown = true;
+	$scope.modeleGroupesSort = function() {
+		$scope.modeleGroupes.sort(function(a, b) {
+			return a.nom < b.nom ? -1 : a.nom == b.nom ? 0 : 1;
+		});
+		$scope.modelesSort();
+	};
+	$scope.modeleGroupesSort();
 
 	$scope.modeleGroupeShow = function(groupe) {
 		for (let g of $scope.modeleGroupes) {
 			g.shown = g.nom == groupe && !g.shown;
 		}
+	};
+
+	$scope.modeleGroupeNameToggle = function(evt) {
+		let td = evt.target.parentNode;
+		td.classList.toggle("group-edit");
+		setTimeout(function() {
+			td.querySelectorAll("input")[0].focus();
+		}, 100);
+	};
+
+	$scope.modeleGroupeNameModify = function(old, evt) {
+		let val = evt.currentTarget.value;
+		if (val !== old) {
+			for (let modele of $scope.modeles)
+				if (modele.groupe == old)
+					modele.groupe = val;
+			for (let groupe of $scope.modeleGroupes)
+				if (groupe.nom == old)
+					groupe.nom = val;
+			$scope.modeleGroupesSort();
+		}
+		let h2 = evt.target.parentNode;
+		h2.classList.toggle("group-edit");
 	};
 
 	$scope.modeleFindByGroupeAndIndex = function(groupe, index) {
@@ -200,7 +251,14 @@ app.directive("dropTypeIndex", function() {
 				} else { // type = "modeles"
 					let groupeIndex = value.split("|");
 					let m = scope.modeleFindByGroupeAndIndex(groupeIndex[0], groupeIndex[1]);
-					scope[type].splice(scope[type].indexOf(m), 1);
+					if (evt.target.nodeName == "IMG") { // remove modele
+						let index = scope[type].indexOf(m);
+						scope[type].splice(index, 1);
+						if (m.selected)
+							scope[type][0].selected = true;
+					} else // change modele groupe
+						m.groupe = evt.target.firstChild.nodeValue;
+					scope.modelesSort();
 				}
 				scope.$apply();
 			});

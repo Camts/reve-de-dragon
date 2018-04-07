@@ -1,6 +1,6 @@
 <td class="label saisie dice" ng-click="jetSetCaracNom(nom)" ng-attr-title="{{m().title}}">{{label}}</td>
 <td class="val saisie"><input class="number" type="text" maxlength="2" ng-model="m().val" type-int-min="1"/></td>
-<td ng-show="m().max > 0" class="val saisie">- <input class="number" type="text" maxlength="2" ng-model="m().max" type-int-min="1"/></td>
+<td ng-show="m().isModele" class="val saisie">- <input class="number" type="text" maxlength="2" ng-model="m().max" type-int-min="1"/></td>
 <td ng-hide="noXp || ihm.mode == 'pnjs'" class="val saisie" title="XP pour monter ({{Carac.xpToUpFrom(m().val)}}) : {{Carac.xpToUpFrom(m().val) - m().xp}}">
 	<input type="number" maxlength="2" ng-model="m().xpIhm"/>
 </td>

@@ -124,7 +124,7 @@ controle.encaissement = function($scope) {
 
 		let msg = "<div>Encaissement : dommage <span class='emphase'>" + $scope.perso.ihm.encaissement.dom
 				+ "</span>, réussite <span class='emphase'>" + reussiteTxt + "</span>, type <span class='emphase'>"
-				+ typeTxt + "</span></div><div>Locatisation <span class='emphase'>" + localisationDes
+				+ typeTxt + "</span></div><div>Localisation <span class='emphase'>" + localisationDes
 				+ "</span> : <span class='emphase'>" + armureTexte[localisation]
 				+ "</span>, protection <span class='emphase'>" + prot.val + "</span>";
 		if (prot.bonus > 0)

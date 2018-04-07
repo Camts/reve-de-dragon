@@ -2,16 +2,19 @@
 // jshint esversion: 6
 
 class Comp {
-	constructor(perso, nom, data) {
+	constructor(perso, nom, data, isModele) {
 		if (!data)
 			data = {};
 		this[pPerso] = perso;
+		this.isModele = isModele;
 		this.nom = nom;
 		this.type = Comp.typeLabel[nom][0];
 		this.label = Comp.typeLabel[nom][1];
 		this.val = data.val;
 		this.xp = data.xp;
 		this.arch = data.arch;
+		if (isModele)
+			this.max = data.max !== undefined && data.max > this.val ? data.max : this.val;
 	}
 
 	toData() {
@@ -21,6 +24,8 @@ class Comp {
 		if (this.xp != 0)
 			out.xp = this.xp;
 		out.arch = this.arch;
+		if (this.isModele)
+			out.max = this.max;
 		return out;
 	}
 
@@ -33,6 +38,8 @@ class Comp {
 		if (val === this[pVal])
 			return;
 		this[pVal] = val;
+		if (this.max !== undefined && this.max < this[pVal])
+			this.max = this[pVal];
 		this.xpToUp = Comp.xpToUpFrom(val);
 		if (this.type == "combat" || this.nom == "esquive") {
 			let i, armes = this[pPerso].eqmt.arme;
@@ -86,6 +93,24 @@ class Comp {
 		this[pArch] = arch;
 		if (arch)
 			this[pPerso].ihm.archetype[arch].restant --;
+	}
+
+	get max() {
+		return this[pMax];
+	}
+	set max(max) {
+		if (max === this[pMax])
+			return;
+		if (max === undefined)
+			max = this[pVal];
+		// if (max < this[pVal])
+		this[pMax] = max;
+	}
+	get maxIhm() {
+		return this[pMax] == Comp.min[this.type] ? undefined : this[pMax];
+	}
+	set maxIhm(val) {
+		this.max = val;
 	}
 }
 
