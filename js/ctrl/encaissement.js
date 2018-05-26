@@ -156,14 +156,9 @@ controle.encaissement = function($scope) {
 			type : type,
 			localisation : armureTexte[localisation],
 			jours : grade,
-			date : {
-				heure : $scope.perso.compteur.date.heure,
-				jour : $scope.perso.compteur.date.jour,
-				mois : $scope.perso.compteur.date.mois,
-				annee : $scope.perso.compteur.date.annee
-			},
-			endu : perte[0],
+			heure : $scope.perso.compteur.date.heure,
 			vie : perte[1],
+			endu : perte[0],
 			saigne : saigne,
 		});
 	};

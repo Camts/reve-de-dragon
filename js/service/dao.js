@@ -244,8 +244,7 @@ service.dao = {
 		},
 		recup : {
 			enduMn : 0,
-			fatigueH : 0,
-			fatigueMn : 0
+			fatigueH : 0
 		},
 		encaissement : {
 			dom : 0,
@@ -291,6 +290,7 @@ service.dao = {
 	},
 
 	initialPnjsData : {
+		joueurs : [],
 		persos : [],
 		modeles : []
 	},
@@ -322,8 +322,8 @@ service.dao = {
 	},
 
 	initialPnjsZones : [[
-			[["cadre-round"], ["cadre-persos"], ["cadre-modeles"]],
-			[["cadre-identite"], ["cadre-caracs"], ["cadre-jet"],
+			[["cadre-round"], ["cadre-joueurs"], ["cadre-persos"], ["cadre-modeles"]],
+			[["cadre-identite"], ["cadre-caracs", "cadre-assignation"], ["cadre-jet"],
 					[[["cadre-attributs"], ["cadre-endurance"]], [["cadre-vie"], ["cadre-fatigue"]]]],
 			[["cadre-comp-pnjs", [["cadre-encaissement"], ["cadre-armure"], ["cadre-blessures"]]], ["cadre-combat"]]]],
 
@@ -425,6 +425,8 @@ service.dao = {
 
 			if (service.dao.fs.existsSync(service.dao.dataDir + "/pnjs-persos.json")) {
 				pnjs = JSON.parse(service.dao.fs.readFileSync(service.dao.dataDir + "/pnjs-persos.json"));
+				if (pnjs.joueurs === undefined)
+					pnjs.joueurs = [];
 				let i;
 				for (i = 0; i < pnjs.persos.length; i++) {
 					service.dao.upgradeData(pnjs.persos[i]);
@@ -455,6 +457,7 @@ service.dao = {
 		}
 
 		service.dao.data = {
+			joueurs : pnjs.joueurs,
 			persos : pnjs.persos,
 			modeles : pnjs.modeles,
 			display : display,
@@ -466,7 +469,9 @@ service.dao = {
 
 	savePNJs : function() {
 		if (service.dao.fs != undefined) {
+			service.dao.removeHashKeys(service.dao.data.joueurs);
 			let i, pnjs = {
+				joueurs : service.dao.data.joueurs,
 				persos : [],
 				modeles : []
 			};

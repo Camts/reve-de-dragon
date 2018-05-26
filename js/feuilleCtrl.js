@@ -44,6 +44,7 @@ app.controller("feuilleCtrl", ["$scope", function($scope) {
 
 	$scope.roundEnd = function() {
 		$scope.display.round = undefined;
+		$scope.perso.combat.sonne = undefined;
 	};
 
 	$scope.roundIncr = function() {

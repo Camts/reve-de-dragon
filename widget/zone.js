@@ -6,7 +6,6 @@ let zone = {};
 zone.createSepVertical = function(elt, before, tr, colspan) {
 	let td = document.createElement("td");
 	td.setAttribute("class", "zone-sep-v");
-	td.setAttribute("title", "Insérer une zone en verticale");
 	td.setAttribute("onclick", "zone.onClickSep(this)");
 	if (colspan)
 		td.setAttribute("colspan", colspan);
@@ -39,7 +38,6 @@ zone.createTableHorizontal = function(elt, before) {
 zone.createSepHorizontal = function(elt, before, tr) {
 	let td = document.createElement("td");
 	td.setAttribute("class", "zone-sep-h");
-	td.setAttribute("title", "Insérer une zone en horizontale");
 	td.setAttribute("onclick", "zone.onClickSep(this)");
 	if (tr) {
 		let tr = document.createElement("tr");

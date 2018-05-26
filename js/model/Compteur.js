@@ -210,6 +210,8 @@ class Compteur {
 
 	sommeil() {
 		this.fatigue -= this[pPerso].fatiguePourSommeil();
+		this[pPerso].ihm.recup.enduMn = this[pPerso].ihm.recup.fatigueH * 120;
+		this[pPerso].blessureRepos();
 	}
 
 	// Malus global
@@ -271,9 +273,16 @@ class CompteurDate {
 	set jour(val) {
 		if (isNaN(val) || val < 1 || val === this[pJour])
 			return;
-		if (val == this[pJour] + 1 && this[pPerso].compteur.reve > this[pPerso].carac.reve.val) {
-			this[pPerso].compteur.reve--;
-			util.notify("Le changement de jour vous fait perdre 1 point de rêve actuel.");
+		if (val == this[pJour] + 1) {
+			if (this[pPerso].compteur.reve > this[pPerso].carac.reve.val) {
+				this[pPerso].compteur.reve--;
+				util.notify("Le changement de jour vous fait perdre 1 point de rêve actuel.");
+			} else if (this[pPerso].compteur.reve < this[pPerso].carac.reve.val) {
+				util.notify("Si vous avez dormi cette nuit, faites les jets de récupération de rêve actuel.");
+			}
+			if (this[pPerso].compteur.stress > 0) {
+				util.notify("Si vous avez dormi entièrement l'heure du château dormant, faites le jet de transformation de stress.");
+			}
 		}
 		while (val > 28) {
 			this.mois++;

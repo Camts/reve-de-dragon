@@ -12,11 +12,17 @@
 		</td>
 	</tr>
 	<tr>
-		<th class="label saisie dice" ng-click="jetSetCaracVal(perso.compteur.reve)">Rêve</th>
+		<th class="label saisie dice" ng-click="jetSetCaracVal(perso.compteur.reve)" title="Rêve actuel">Rêve</th>
 		<td class="val saisie"><input type="number" maxlength="2" ng-model="perso.compteur.reve" type-int-min="0"/></td>
 		<td colspan="3" class="center">
 			<div class="expandable">Herbe de lune
 				<table>
+					<tr>
+						<th>Herbe</th>
+						<th title="Quantité dans l'équipement">Qte.</th>
+						<th title="Chances de résister">Resist.</th>
+						<th colspan="2">Fumer</th>
+					</tr>
 					<tr ng-repeat="i in [0,1,2,3,4,5,6,7,8,9]">
 						<td class="label calcule">+{{i+1}}</td>
 						<td class="val calcule">{{perso.eqmt.herbe.lune[i]}}</td>
@@ -24,7 +30,10 @@
 							<span class="val calcule seuil-norm">{{service.seuil.normale(perso.compteur.reve, -1 - i -perso.compteur.malus)}}</span>%
 						</td>
 						<td>
-							<button title="Fumer et ne pas résister" ng-click="$parent.service.compteur.fumer($parent.perso, i)" class="ok">Fumer</button>
+							<button title="Fumer et ne pas résister" ng-click="$parent.service.compteur.fumer($parent.perso, i, false)" class="ok">OK</button>
+						</td>
+						<td>
+							<button title="Fumer mais résister" ng-click="$parent.service.compteur.fumer($parent.perso, i, true)" class="ko">KO</button>
 						</td>
 					</tr>
 				</table>

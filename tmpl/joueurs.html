@@ -1,0 +1,19 @@
+<table id="cadre-joueurs" class="cadre" draggable="true" ondragstart="zone.drag(event)">
+	<tr>
+		<td><h1>Joueurs</h1></td>
+		<td><img src="img/plus.png" ng-click="joueurs.push({nom: '?', couleur: '0', assignation: {}})"/></td>
+	</tr>
+	<tr ng-repeat="joueur in joueurs">
+		<td>
+			<select ng-style="joueurStyles[joueur.couleur]" ng-model="joueur.couleur">
+				<option value="0" style="width: 16px; height: 16px;" ng-style="joueurStyles[0]">&nbsp;</option>
+				<option value="1" style="width: 16px; height: 16px;" ng-style="joueurStyles[1];">&nbsp;</option>
+				<option value="2" style="width: 16px; height: 16px;" ng-style="joueurStyles[2]">&nbsp;</option>
+				<option value="3" style="width: 16px; height: 16px;" ng-style="joueurStyles[3]">&nbsp;</option>
+				<option value="4" style="width: 16px; height: 16px;" ng-style="joueurStyles[4]">&nbsp;</option>
+				<option value="5" style="width: 16px; height: 16px;" ng-style="joueurStyles[5]">&nbsp;</option>
+			</select>
+			<input style="width: 120px" ng-model="joueur.nom" />
+		</td>
+	</tr>
+</table>

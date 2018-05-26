@@ -2,6 +2,7 @@
 	<tr>
 		<td colspan="2"><h1>Persos</h1></td>
 		<td drop-type-index="persos"><img title="Glisser un perso ici pour le supprimer" src="img/minus.png"/></td>
+		<td style="text-align: center;">sur</td>
 	</tr>
 	<tr ng-repeat="perso in persos track by $index">
 		<td drag-type-value="persos|{{$index}}" ng-click="persosSelect($index)" ng-class="[{'selected': perso.selected}]">{{perso.id.nom}}</td>
@@ -14,6 +15,9 @@
 			<div style="width: 16px; height: 16px;" ng-style="persoJaugeBack(perso.compteur.endu, perso.compteur.enduMax)">
 				<div style="background-color: black;" ng-style="persoJaugeMissing(perso.compteur.endu, perso.compteur.enduMax)"></div>
 			</div>
+		</td>
+		<td>
+			<span ng-repeat="joueur in joueurs" ng-show="joueur.assignation[perso.id.nom]" style="color: white; padding: 0px 2px;" ng-style="joueurStyles[joueur.couleur]">{{joueur.nom.substring(0, 1)}}</span>
 		</td>
 	</tr>
 </table>

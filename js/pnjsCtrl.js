@@ -195,6 +195,8 @@ app.controller("pnjsCtrl", ["$scope", function($scope) {
 	$scope.roundEnd = function() {
 		$scope.display.round = undefined;
 		$scope.roundDisplay();
+		for (i = 0; i < $scope.persos.length; i++)
+			$scope.persos[i].combat.sonne = undefined;
 	};
 
 	$scope.roundDisplay = function() {
@@ -205,10 +207,37 @@ app.controller("pnjsCtrl", ["$scope", function($scope) {
 
 	$scope.roundIncr = function() {
 		$scope.display.round++;
-		let i;
-		for (i = 0; i < $scope.persos.length; i++)
+		for (let i = 0; i < $scope.persos.length; i++)
 			$scope.persos[i].blessureIncrRound($scope.display.round);
 	};
+
+	// Joueurs et assignation
+
+	$scope.joueurs = data.joueurs;
+	for (i = 0; i < $scope.joueurs.length; i++) {
+		let assi = $scope.joueurs[i].assignation;
+		if (assi) {
+			for (let j in assi) {
+				let k, notFound = true;
+				for (k = 0; notFound && k < $scope.persos.length; k++)
+					if ($scope.persos[k].id.nom == j)
+						notFound = false;
+				if (notFound)
+					assi[j] = undefined;
+			}
+		} else {
+			$scope.joueurs.assignation = {};
+		}
+	}
+
+	$scope.joueurStyles = [
+		{"background-color" : "#803030"},
+		{"background-color" : "#308030"},
+		{"background-color" : "#303080"},
+		{"background-color" : "#808030"},
+		{"background-color" : "#803080"},
+		{"background-color" : "#308080"}
+	];
 
 	setTimeout(function() {
 		zone.setConfig(document.getElementById("cadres-pnjs"), $scope.zones);

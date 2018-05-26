@@ -119,11 +119,13 @@ th.label {text-align: center;}
 .zone-sep-v, .zone-sep-h {display: none; border: none; padding: 0px;}
 .zone-content, .zone-inner {padding: 0px; cursor: auto;}
 .zone-show .zone {border: solid 1px black;}
-.zone-show .zone-sep-v {display: block; border: dashed 1px black; background-color: rgba(255,255,255,0.33); padding: 10px;}
-.zone-show .zone-sep-h {display: block; border: dashed 1px black; background-color: rgba(255,255,255,0.33); padding: 10px;}
+.zone-show .zone-sep-v {display: table-cell; border: dashed 1px black; background-color: rgba(255,255,255,0.33); padding: 5px;}
+.zone-show .zone-sep-v:hover:before {content: 'Insérer une zone en vertical';}
+.zone-show .zone-sep-h {display: table-cell; border: dashed 1px black; background-color: rgba(255,255,255,0.33); padding: 5px;}
+.zone-show .zone-sep-h:hover:before {content: 'Insérer une zone en horizontal';}
 .zone-show .zone-content:empty {border: dashed 1px black; background-color: #50C050; padding: 10px; cursor: pointer;}
 .zone-show .zone-content:empty:before {content: "Zone libre";}
-.zone-show .cadre {cursor: move;} 
+.zone-show .cadre {margin: 0px; cursor: move;}
 
 /* Prefs */
 .w-prefs-parent {position: relative;}
@@ -206,7 +208,7 @@ th.label {text-align: center;}
 	position: absolute; cursor: auto; box-sizing: border-box;
 	font-family: fantasy; font-weight: bolder; font-size: 32px; text-align: center; color: #C05050;
 }
-.w-tmc-reserve {background: linear-gradient(to bottom right, rgba(0,0,255,1), rgba(0,0,255,0));}
+.w-tmc-reserve {background: linear-gradient(to bottom right, rgba(255,0,0,0.25), rgba(0,0,0,0));}
 .w-tmc-current {background-color: rgba(80,192,80,0.66);}
 .w-tmc-neighbour {background-color: rgba(80,80,192,0.66); cursor: pointer;}
 .w-tmc-type-CITE .w-tmc-type-CITE, .w-tmc-type-COLLINES .w-tmc-type-COLLINES,
@@ -286,9 +288,6 @@ th.label {text-align: center;}
 /* Jet de  dés */
 #cadre-jet, #cadre-jet h1 {font-size: 20px;}
 #cadre-jet input {font-size: 15.2px;}
-
-/* Monnaie */
-#cadre-monnaie .space {height: 10px;}
 
 /* Sacs */
 #cadre-sacs-title {position: relative;}

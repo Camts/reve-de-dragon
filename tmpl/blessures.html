@@ -1,7 +1,7 @@
 <table id="cadre-blessures" class="cadre" draggable="true" ondragstart="zone.drag(event)"
  ng-class="{'cadre-blessures-hide-detail': !display.cadre.blessures.detail}">
 	<tr>
-		<td colspan="{{display.cadre.blessures.detail ? 9 : 4}}">
+		<td colspan="9">
 			<h1>Blessures</h1>
 			<table class="no-pnj" prefs>
 				<tr>
@@ -10,7 +10,7 @@
 				</tr>
 				<tr>
 					<td class="label saisie">Heure</td>
-					<td class="val saisie"><select type="checkbox" ng-model="display.cadre.blessures.heure">
+					<td class="val saisie"><select ng-model="display.cadre.blessures.heure">
 						<option value="top">Au dessus</option>
 						<option value="middle">Centré</option>
 						<option value="bottom">En dessous</option>
@@ -24,7 +24,7 @@
 		<th class="label calcule cadre-blessures-detail">Type</th>
 		<th class="label calcule">Localisation</th>
 		<th class="label calcule" title="Nombre de jouts avant test">Jours</th>
-		<th class="label calcule cadre-blessures-detail">Date</th>
+		<th class="label calcule cadre-blessures-detail">Heure</th>
 		<th class="label calcule">Perte</th>
 		<th class="label calcule cadre-blessures-detail">Herbes</th>
 		<th class="label calcule" colspan="2">Soin</th>
@@ -34,7 +34,7 @@
 		<td class="val calcule cadre-blessures-detail">{{b.type}}</td>
 		<td class="val calcule">{{b.localisation}}</td>
 		<td class="val calcule">{{b.jours}}</td>
-		<td class="val calcule cadre-blessures-detail"><span ng-class="display.cadre.blessures.heure" heure="b.date.heure"></span> {{b.date.jour}}/{{b.date.mois}}/{{b.date.annee}}</td>
+		<td class="val calcule cadre-blessures-detail"><span ng-class="display.cadre.blessures.heure" heure="b.heure"></span></td>
 		<td class="val calcule"><img ng-show="b.saigne" src="img/blood.png" title="Saignement"/> {{b.endu}} endu <span class="imp" ng-show="b.vie">{{b.vie}} vie</span></td>
 		<td class="val calcule cadre-blessures-detail">
 			<span ng-show="b.herbes">

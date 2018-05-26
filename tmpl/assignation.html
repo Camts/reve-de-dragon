@@ -1,0 +1,12 @@
+<table id="cadre-assignation" class="cadre" draggable="true" ondragstart="zone.drag(event)" ng-show="!perso.isModele">
+	<tr>
+		<td colspan="2"><h1>Assignation</h1></td>
+	</tr>
+	<tr ng-repeat="joueur in joueurs">
+		<td>
+			<span style="width: 16px; height: 16px;" ng-style="joueurStyles[joueur.couleur]">&nbsp;&nbsp;&nbsp;&nbsp;</span>
+			{{joueur.nom}}
+		</td>
+		<td><input type="checkbox" ng-model="joueur.assignation[perso.id.nom]" /></td>
+	</tr>
+</table>

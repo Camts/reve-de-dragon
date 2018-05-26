@@ -5,14 +5,16 @@
 	<tr>
 		<td rowspan="2" class="label saisie">Or</td>
 		<td rowspan="2" class="val saisie"><input type="number" maxlength="2" ng-model="perso.eqmt.monnaie.or"/></td>
-		<td class="space"></td>
+		<td style="height: 10px;"></td>
 	</tr>
 	<tr>
 		<td rowspan="2">
 			<img src="img/down-green.png" ng-show="perso.eqmt.monnaie.or > 0"
+				title="Transformer 1 pièce d'or en 10 pièces d'argent"
 				ng-click="perso.eqmt.monnaie.argent = perso.eqmt.monnaie.argent + 10; perso.eqmt.monnaie.or = perso.eqmt.monnaie.or - 1"/>
 			<img src="img/down-grey.png" ng-show="perso.eqmt.monnaie.or == 0"/>
 			<img src="img/up-green.png" ng-show="perso.eqmt.monnaie.argent >= 10"
+				title="Transformer 10 pièces d'argent en 1 pièce d'or"
 				ng-click="perso.eqmt.monnaie.argent = perso.eqmt.monnaie.argent - 10; perso.eqmt.monnaie.or = perso.eqmt.monnaie.or + 1"/>
 			<img src="img/up-grey.png" ng-show="perso.eqmt.monnaie.argent < 10"/>
 		</td>
@@ -24,9 +26,11 @@
 	<tr>
 		<td rowspan="2">
 			<img src="img/down-green.png" ng-show="perso.eqmt.monnaie.argent > 0"
+				title="Transformer 1 pièce d'argent en 10 pièces de bronze"
 				ng-click="perso.eqmt.monnaie.bronze = perso.eqmt.monnaie.bronze + 10; perso.eqmt.monnaie.argent = perso.eqmt.monnaie.argent - 1"/>
 			<img src="img/down-grey.png" ng-show="perso.eqmt.monnaie.argent == 0"/>
 			<img src="img/up-green.png" ng-show="perso.eqmt.monnaie.bronze >= 10"
+				title="Transformer 10 pièces de bronze en 1 pièce d'argent"
 				ng-click="perso.eqmt.monnaie.bronze = perso.eqmt.monnaie.bronze - 10; perso.eqmt.monnaie.argent = perso.eqmt.monnaie.argent + 1"/>
 			<img src="img/up-grey.png" ng-show="perso.eqmt.monnaie.bronze < 10"/>
 		</td>
@@ -38,9 +42,11 @@
 	<tr>
 		<td rowspan="2">
 			<img src="img/down-green.png" ng-show="perso.eqmt.monnaie.bronze > 0"
+				title="Transformer 1 pièce de bronze en 10 pièces d'étain"
 				ng-click="perso.eqmt.monnaie.etain = perso.eqmt.monnaie.etain + 10; perso.eqmt.monnaie.bronze = perso.eqmt.monnaie.bronze - 1"/>
 			<img src="img/down-grey.png" ng-show="perso.eqmt.monnaie.bronze == 0"/>
 			<img src="img/up-green.png" ng-show="perso.eqmt.monnaie.etain >= 10"
+				title="Transformer 10 pièces d'étain en 1 pièce de bronze"
 				ng-click="perso.eqmt.monnaie.etain = perso.eqmt.monnaie.etain - 10; perso.eqmt.monnaie.bronze = perso.eqmt.monnaie.bronze + 1"/>
 			<img src="img/up-grey.png" ng-show="perso.eqmt.monnaie.etain < 10"/>
 		</td>
@@ -49,5 +55,5 @@
 		<td rowspan="2" class="label saisie">Etain</td>
 		<td rowspan="2" class="val saisie"><input type="number" maxlength="2" ng-model="perso.eqmt.monnaie.etain"/></td>
 	</tr>
-	<tr><td class="space"></td></tr>
+	<tr><td style="height: 11px;"></td></tr>
 </table>

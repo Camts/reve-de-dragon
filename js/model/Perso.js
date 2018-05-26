@@ -125,7 +125,7 @@ class Perso {
 
 	fatiguePourSommeil() {
 		let cons = this.carac.constitution.val;
-		let mn = this.ihm.recup.fatigueH * 120 + this.ihm.recup.fatigueMn;
+		let mn = this.ihm.recup.fatigueH * 120;
 		let recup = Math.floor((mn / 60) * Carac.facteurResistance[cons]);
 		return Math.min(recup, this.compteur.fatigue);
 	}
@@ -146,10 +146,10 @@ class Perso {
 	};
 
 	blessureIncrRound(round) {
-		let c, i = this.combat;
+		let c = this.combat;
 		if (c.sonne && c.sonne < round)
 			c.sonne = undefined;
-		for (i = 0; i < this.blessure.length; i++) {
+		for (let i = 0; i < this.blessure.length; i++) {
 			this.blessure[i].incrRound();
 		}
 	}
@@ -162,11 +162,11 @@ class Perso {
 				this.compteur.perteEnduHorsBlessure = 0;
 			} else {
 				this.compteur.perteEnduHorsBlessure -= recup;
-				return;
+				recup = 0;
 			}
 		}
 		let i, recuperable, blessures = this.blessure;
-		for (i = 0; i < blessures.length; i++) {
+		for (i = 0; recup > 0 && i < blessures.length; i++) {
 			recuperable = blessures[i].recupEndu;
 			if (recuperable > 0) {
 				if (recuperable < recup) {
@@ -178,6 +178,7 @@ class Perso {
 				}
 			}
 		}
+		this.ihm.recup.enduMn = 0;
 	}
 
 	// Autre...
